@@ -3,7 +3,7 @@ title: 倒影
 date: 2018-09-29 14:28:13
 categories: 影集
 tags: 风景(影集)
-img: /medias/galleries/reflection/20180920_193229.jpeg
+img: /medias/galleries/reflection/20180920_193229.jpg
 ---
 
 > 几月前，于微博中见一题为——`“摄影师眼里雨后的世界”`的博文，摄影师将镜头倒转，在雨后的一汪小水潭中捕捉到一个美丽的`“镜像世界”`，幽蓝的夜色下，车水马龙、灯火阑珊的街头，却给人一种平静祥和来自现实的梦幻般的美，观之实为惊叹。
@@ -39,13 +39,13 @@ img: /medias/galleries/reflection/20180920_193229.jpeg
 <div class="gallery-tip-ceter">2018.06.26-摄于西安市高新区</div>
 
 
-[1]: /medias/galleries/reflection/20180920_193227.jpeg
-[2]: /medias/galleries/reflection/20180920_193229.jpeg
-[3]: /medias/galleries/reflection/20180920_193340.jpeg
-[4]: /medias/galleries/reflection/20180919_184602.jpeg
-[5]: /medias/galleries/reflection/20180905_191759.jpeg
+[1]: /medias/galleries/reflection/20180920_193227.jpg
+[2]: /medias/galleries/reflection/20180920_193229.jpg
+[3]: /medias/galleries/reflection/20180920_193340.jpg
+[4]: /medias/galleries/reflection/20180919_184602.jpg
+[5]: /medias/galleries/reflection/20180905_191759.jpg
 [6]: /medias/galleries/reflection/20180704_211340.jpg
-[7]: /medias/galleries/reflection/20180626_191742.jpeg
+[7]: /medias/galleries/reflection/20180626_191742.jpg
 
 
 <style>
