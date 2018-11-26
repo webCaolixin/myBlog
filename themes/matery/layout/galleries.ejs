@@ -1,0 +1,72 @@
+<%- partial('_partial/bg-cover') %>
+
+<main class="content">
+    <div id="galleries" class="container">
+        <div>
+            <%
+            var hashCode = function(str) {
+                if (!str && str.length === 0) {
+                    return 0;
+                }
+
+                var hash = 0;
+                for (var i = 0, len = str.length; i < len; i++) {
+                    hash = ((hash << 5) - hash) + str.charCodeAt(i);
+                    hash |= 0;
+                }
+                return hash;
+            };
+            %>
+
+            <article>
+                <div class="row galleries-posts">
+                    <% site.posts.sort('date').reverse().forEach(post => {
+                        if (post.categories && post.categories.length > 0) {
+                            post.categories.forEach(category => {
+                                if (category.name.indexOf('影集') !== -1) {
+                    %>
+                        <div class="article gallery-post col s12 m6 l4" data-aos="zoom-in">
+                            <div class="card">
+                                <a href="<%- url_for(post.path) %>">
+                                    <div class="card-image gallery-image">
+                                        <% if (post.img) { %>
+                                        <img src="<%= post.img %>" class="responsive-img" alt="<%- post.title %>">
+                                        <% } else { %>
+                                        <%
+                                            var len = theme.featureImages.length;
+                                            var num = Math.abs(hashCode(post.title) % len);
+                                            var featureimg = theme.featureImages[num];
+                                        %>
+                                        <img src="<%= featureimg %>" class="responsive-img" alt="<%- post.title %>">
+                                        <% } %>
+                                        <span class="card-title"><%- post.title %></span>
+                                    </div>
+                                </a>
+                                <div class="card-content article-content">
+                                    <div class="publish-info">
+                                            <span class="publish-date">
+                                                <i class="fa fa-calendar fa-fw"></i><%= date(post.date, config.date_format) %>
+                                            </span>
+                                        <span class="publish-author">
+                                                <i class="fa fa-user fa-fw"></i>
+                                            <% if(post.author && post.author.length > 0) { %>
+                                            <%= post.author %>
+                                            <% } else { %>
+                                            <%= config.author %>
+                                            <% } %>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <%
+                                }
+                            });
+                        }
+                    });
+                    %>
+                </div>
+            </article>
+        </div>
+    </div>
+</main>

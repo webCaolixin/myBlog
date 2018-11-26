@@ -1,0 +1,87 @@
+# Miscelaneous
+favicon:
+  small: /favicon-16x16.png
+  medium: /favicon-32x32.png
+  apple_touch_icon: /favicon-32x32.png
+  safari_pinned_tab: /favicon-32x32.png
+
+# the path of logo for your site
+logo: /medias/logo.png
+
+# main menu navigation
+menu:
+  index: /
+  codings: /codings/
+  random-thoughts: /random-thoughts/
+  journals: /journals/
+  ## categories: /categories/
+  galleries: /galleries/
+  tags: /tags/
+  archives: /archives/
+  about: /about/
+
+# index page dream text(the notice in index page)
+dream: 欢迎访问我的博客！最近更换了博客的主题,在UI、UE有了很大的优化！感谢 ©Blinkfox(闪烁之狐) 大神提供的主题！欢迎大家访问大神的相关网页：https://blinkfox.github.io/、http://blinkfox.com/！
+
+# Valine.
+# You can get your appid and appkey from https://leancloud.cn
+# more info please open https://valine.js.org
+valine:
+  enable: true # 是否开启
+  appid: 8QCStxYhzTmcfzSimF0rbgWW-gzGzoHsz # 填上之前获取的AppID
+  appkey: cRiWQY0NyClTBqBiF0HrCFgw # 填上之前获取的AppKey
+  notify: true # 新留言是否需要通知 https://github.com/xCss/Valine/wiki
+  verify: false # 是否需要验证，验证比较反人类建议false关闭
+  placeholder: 请输入您的留言 # 默认留言框内的文字
+  avatar: mm # 默认头像
+  guest_info: nick,mail,link # 默认留言框的头部需要访问者输入的信息
+  pageSize: 10 # pagination size #默认单页的留言条数
+  visitor: true
+
+vendors:
+  valine:
+
+# the gitment config，default disabled
+gitment:
+  enable: false
+  owner: webcaolixin
+  repo: webcaolixin.github.io
+  oauth:
+    clientId: 5ef03bb0992b0a7fa520
+    clientSecret: a0a893649a4dd68e76c90e1b6d020e1a330ba332
+
+# disqus config, default disabled
+disqus:
+  enable: false
+  shortname:
+
+# Baidu Analytics ID
+baidu_analytics: d1e670e15af1e406f40405b910c79644
+
+# posts feature images
+featureImages: 
+- /medias/featureimages/0.jpg
+- /medias/featureimages/1.jpg
+- /medias/featureimages/2.jpg
+- /medias/featureimages/3.jpg
+- /medias/featureimages/4.jpg
+- /medias/featureimages/5.jpg
+- /medias/featureimages/6.jpg
+- /medias/featureimages/7.jpg
+- /medias/featureimages/8.jpg
+- /medias/featureimages/9.jpg
+- /medias/featureimages/10.jpg
+- /medias/featureimages/11.jpg
+- /medias/featureimages/12.jpg
+- /medias/featureimages/13.jpg
+- /medias/featureimages/14.jpg
+- /medias/featureimages/15.jpg
+- /medias/featureimages/16.jpg
+- /medias/featureimages/17.jpg
+- /medias/featureimages/18.jpg
+- /medias/featureimages/19.jpg
+- /medias/featureimages/20.jpg
+- /medias/featureimages/21.jpg
+- /medias/featureimages/22.jpg
+- /medias/featureimages/23.jpg
+- /medias/featureimages/24.jpg

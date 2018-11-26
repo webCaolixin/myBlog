@@ -1,0 +1,28 @@
+<div class="bg-cover" style="background-image: url('/medias/cover.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="brand">
+                <div class="title center-align">
+                <% if (config.subtitle && config.subtitle.length > 0) { %>
+                <%= config.subtitle %>
+                <% } else { %>
+                    subtitle
+                <% } %>
+                </div>
+
+                <div class="description center-align">
+                <% if (config.description && config.description.length > 0) { %>
+                    <%= config.description %>
+                <% } else { %>
+                    This is your root _config.yml 'description' value.
+                <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Dynamically switch banner pictures every day.
+$('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
+</script>

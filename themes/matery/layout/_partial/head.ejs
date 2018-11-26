@@ -1,0 +1,62 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+
+    <%
+        var keywords = (page.tags && page.tags.length > 0) ? page.tags.map(tag => tag.name).join(',') : '';
+        var description = strip_html(page.content)
+        ? strip_html(page.content).substring(0, 120)
+        : `${config.prefix_description}，${config.subtitle}，${config.description}`
+    %>
+    <meta name="keywords" content="<%= keywords ? keywords : config.keyword %>,hexo-theme-matery">
+    <meta name="description" content="<%= description %>">
+
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="<%= page.title || config.title %>">
+    <meta property="og:url" content="<%= `${config.url}${url_for(page.path)}` %>">
+    <meta property="og:site_name" content="<%= config.title %>">
+    <meta property="og:description" content="<%= description %>">
+    <meta property="og:locale" content="<%= config.language %>">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="<%= page.title || config.title %>">
+    <meta name="twitter:description" content="<%= description %>">
+    
+    <link rel="canonical" href="<%= url_for(page.path) || config.url %>">
+
+    <title><%= page.title ? `${page.title} | ${config.title}` : config.title %></title>
+
+    <link rel="icon" type="image/png" sizes="16x16" href="<%= theme.favicon.small %>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<%= theme.favicon.medium %>">
+    <% if (theme.favicon.apple_touch_icon) { %>
+    <link rel="icon" type="image/png" sizes="32x32" href="<%= theme.favicon.apple_touch_icon %>">
+    <% } %>
+    <% if (theme.favicon.safari_pinned_tab) { %>
+    <link rel="icon" type="image/png" sizes="32x32" href="<%= theme.favicon.safari_pinned_tab %>">
+    <% } %>
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <!--prettify代码高亮主题css引入-->
+    <link rel="stylesheet" type="text/css" href="/libs/prettify/css/atelier-heath-light.min.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/libs/baidu/autoPush.js"></script>
+
+    <%- partial('_partial/prettify') %>
+    <%- partial('_partial/baidu-analytics') %>
+</head>
