@@ -24,7 +24,7 @@
             %>
 
             <article>
-                <div class="row tags-posts">
+                <div class="row tags-posts" data-aos="fade-up">
                     <% site.posts.sort('date').reverse().forEach(post => { %>
                     <%
                         var tagArr = [];
@@ -35,7 +35,7 @@
                         }
                         var tags = tagArr.join(', ');
                     %>
-                    <div class="article tag-post col s12 m6 l4"  data-aos="zoom-in" data-tags="<%- tags %>">
+                    <div class="article tag-post col s12 m6 l4" data-tags="<%- tags %>">
                         <div class="card">
                             <a href="<%- url_for(post.path) %>">
                                 <div class="card-image tag-image">
@@ -58,12 +58,17 @@
                                         <i class="fa fa-calendar fa-fw"></i><%= date(post.date, config.date_format) %>
                                     </span>
                                     <span class="publish-author">
-                                        <i class="fa fa-user fa-fw"></i>
-                                        <% if(post.author && post.author.length > 0) { %>
-                                            <%= post.author %>
-                                        <% } else { %>
-                                            <%= config.author %>
-                                        <% } %>
+                                    <% if (post.categories && post.categories.length > 0) { %>
+                                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                        <% post.categories.forEach(category => { %>
+                                            <a href="<%- url_for(category.path) %>" class="post-category" target="_blank"><%- category.name %></a>
+                                        <% }); %>
+                                    <% } %>
+                                    <%if (post.author && post.author.length > 0) { %>
+                                        <i class="fa fa-user fa-fw"></i><%- post.author %>
+                                    <% } else { %>
+                                        <i class="fa fa-user fa-fw"></i><%- config.author %>
+                                    <% } %>
                                     </span>
                                 </div>
                             </div>
@@ -75,3 +80,8 @@
         </div>
     </div>
 </main>
+
+
+<% if (page.total > 1) { %>
+    <%- partial('_partial/paging') %>
+<% } %>

@@ -1,8 +1,6 @@
 ---
 title: CreateJS 入门
-categories:
-- 编程
-- 前端
+categories: 编程
 tags: Create.JS
 date: 2018-07-18 16:30:49
 ---

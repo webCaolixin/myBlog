@@ -1,8 +1,6 @@
 ---
 title: 分分钟教你用node.js写个爬虫
-categories:
-- 编程
-- 前端
+categories: 编程
 tags: Node.JS
 date: 2018-06-08 14:34:49
 ---

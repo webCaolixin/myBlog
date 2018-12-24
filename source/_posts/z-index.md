@@ -1,12 +1,8 @@
 ---
 title: CSS层叠上下文、层叠等级、层叠顺序、z-index完全说明
 date: 2018-08-28 11:29:28
-categories:
-- 编程
-- 前端
-tags:
-- CSS
-- z-index
+categories: 编程
+tags: z-index
 ---
 
 ### 前言
