@@ -593,6 +593,10 @@ article .article-tags .chip {
     font-weight: 500;
 }
 
+#articleContent {
+    letter-spacing: 0.08rem;
+}
+
 #articleContent p {
     margin: 2px 2px 10px;
     font-size: 1.1rem;
