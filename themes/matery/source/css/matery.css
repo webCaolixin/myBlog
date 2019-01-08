@@ -594,12 +594,12 @@ article .article-tags .chip {
 }
 
 #articleContent {
-    letter-spacing: 0.08rem;
+    letter-spacing: 0.04rem;
 }
 
 #articleContent p {
     margin: 2px 2px 10px;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     line-height: 2rem;
 }
 
