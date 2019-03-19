@@ -1,5 +1,5 @@
 ---
-title: JavaScript——执行环境、作用域、作用域链、闭包
+title: JavaScript - 执行环境、作用域、作用域链、闭包
 date: 2019-03-13 14:30:37
 categories: 编程
 tags: JavaScript

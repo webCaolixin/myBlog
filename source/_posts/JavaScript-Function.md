@@ -1,5 +1,5 @@
 ---
-title: JavaScript-Function
+title: JavaScript - Function
 date: 2019-03-12 10:46:11
 categories: 编程
 tags: JavaScript
