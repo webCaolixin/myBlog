@@ -1,7 +1,7 @@
 ---
 title: ES6 - let、const、var的区别
 date: 2019-03-15 22:40:21
-categories: JavaScript
+categories: 编程
 tags: ES6
 img: /medias/featureimages/ES6.jpg
 ---
