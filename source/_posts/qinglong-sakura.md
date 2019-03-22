@@ -9,7 +9,7 @@ img: /medias/galleries/qinglong-sakura/cover.webp
 
 近日，稍有闲暇，与朋友一同前去，也算是弥补了往日的遗憾，再续大学四年的缘分。此次前去，是三月下旬，时间稍早，算是早春时节，樱花并未全部开放，但依然有络绎不绝的游人前来观赏，其中也不乏许多外地游客。
 
-游玩的过程中，拍的些许美丽景致，挑选其中几张满意之作，成此影集，与大家分享，也望朋友们不吝赐教。
+游玩的过程中，拍得些许美丽景致，挑选其中几张满意之作，成此影集，与大家分享，也望朋友们不吝赐教。
 
 ![日本垂樱-娥眉][1]
 <div class="gallery-tip-ceter">2019.03.20-摄于西安市青龙寺</div>
@@ -26,12 +26,15 @@ img: /medias/galleries/qinglong-sakura/cover.webp
 ![摄于西安市青龙寺][5]
 <div class="gallery-tip-ceter">2019.03.20-摄于西安市青龙寺</div>
 
+![青龙寺遗址出土文物][6]
+<div class="gallery-tip-ceter">2019.03.20-摄于西安市青龙寺</div>
 
 [1]: /medias/galleries/qinglong-sakura/IMG_20190320_144732.jpg
 [2]: /medias/galleries/qinglong-sakura/IMG_20190320_145046.jpg
 [3]: /medias/galleries/qinglong-sakura/IMG_20190320_145943.jpg
 [4]: /medias/galleries/qinglong-sakura/IMG_20190320_150139.jpg
 [5]: /medias/galleries/qinglong-sakura/IMG_20190320_151655.jpg
+[6]: /medias/galleries/qinglong-sakura/IMG_20190320_160616.jpg
 
 
 <style>
