@@ -3,7 +3,7 @@ title: JavaScript - 执行环境、作用域、作用域链、闭包
 date: 2019-03-13 14:30:37
 categories: 编程
 tags: JavaScript
-img: /medias/featureimages/JavaScript.jpg
+img: /medias/article/featureimages/JavaScript.webp
 ---
 
 > JavaScript中的执行环境、作用域、作用域链、闭包一直是一个非常有意思的话题，很多博主和大神都分享过相关的文章。这些知识点不仅比较抽象，不易理解，更重要的是与这些知识点相关的问题在面试中高频出现。之前我也看过不少文章，依旧是似懂非懂，模模糊糊。最近，仔细捋了捋相关问题的思路，对这些问题的理解清晰深入了不少，在这里和大家分享。

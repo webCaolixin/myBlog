@@ -2,8 +2,10 @@
 title: JavaScript - Function
 date: 2019-03-12 10:46:11
 categories: 编程
-tags: JavaScript
-img: /medias/featureimages/JavaScript.jpg
+tags:
+- JavaScript
+- Function
+img: /medias/article/featureimages/JavaScript.webp
 ---
 > JavaScript中的函数一直是一个很有讨论性的话题点。函数本身不仅仅是一个引用类型——所有函数都是Function类型的实例，更重要的是因为函数还会涉及到执行环境、作用域、闭包以及让人头疼的this等等...这篇文章我们来回顾一下与函数有关的一些值得注意的地方。
 

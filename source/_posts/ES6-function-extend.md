@@ -1,9 +1,11 @@
 ---
-title: ES6-函数的扩展
+title: ES6 - 函数的扩展
 date: 2019-03-22 20:35:25
 categories: 编程
-tags: ES6
-img: /medias/featureimages/ES6.jpg
+tags:
+- ES6
+- Function
+img: /medias/article/featureimages/ES6.webp
 ---
 ### 1、函数参数的默认值
 
