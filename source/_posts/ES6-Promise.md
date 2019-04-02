@@ -93,8 +93,8 @@ let promise = new Promise(Function);
 `resolve()`函数，可以将`Promise`的状态由`pending`改变为`fulfilled`。`reject()`函数，可以将`Promise`的状态由`pending`改变为`rejected`。
 
 **这里有两点需要注意的地方！！**
- 1. 在`Promise`内部只有用`resolve()`、`reject()`才能改变它的状态。`return`任何值（包括一个Error实例）都不会改变它的状态。`throw`任何值，还会引起报错！
- 2. `resolve()`、`reject()`和`return`的意义不同。他们只是改变了`Promise`的状态，并不会结束代码执行。也就是说`resolve()`、`reject()`之后的代码依旧会执行。（虽然不建议在他们后面再有代码出现）
+ 1. 在`Promise`内部只有用`resolve()`、`reject()`才能改变它的状态。`return`任何值（包括一个Error实例）都不会改变它的状态。
+ 2. `resolve()`、`reject()`和`return`的意义不同。它们只是改变了`Promise`的状态，并不会结束代码执行。也就是说`resolve()`、`reject()`之后的代码依旧会执行。（虽然不建议在他们后面再有代码出现）
  3. 在定义`Promise`时，参数函数中异步操作之外的同步代码都会立即执行。
 
 来看一个示例，简单明了地理解上面的文字。
@@ -160,7 +160,7 @@ promise.then(function(resData) {
 **这里有一些需要注意的地方！！**
  1. 前一个`.then()`中`return`任何值（包括一个`Error`实例），都会进入后面最邻近的`.then()`。
  2. 前一个`.then()`中`throw`任何值或者内部代码报错，都会进入后面最邻近的`.catch()`。
- 3. 同理，`.catch()`中情况与`.then()`完全一致。
+ 3. 同理，上述原理在`.catch()`中的情况与`.then()`中完全一致。
 
 ### 四、Promise的其他方法
 

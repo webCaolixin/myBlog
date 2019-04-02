@@ -274,7 +274,7 @@ for (let v of gen2()){
 }
 ```
 
-### 小节
+### 小结
 本文主要讲解Generator函数的基本语法和一些细节，Generator函数的定义、`yield`表达式、`.next()`方法及传参、`.throw()`方法、`.return()`方法以及 `yield*` 表达式。
 
 文章开头讲到，Generator函数时ES6提出的异步编程的一种解决方案。在实际应用中，**一般在`yield`关键字后面会跟随一个异步操作，当异步操作成功返回后调用`.next()`方法，将异步流程交给下一个yield表达式。**具体关于Generator函数的异步应用，大家可以参考阮一峰老师的[这篇文章](http://es6.ruanyifeng.com/#docs/generator-async)，或参考其他网上资料，继续深入学习。
