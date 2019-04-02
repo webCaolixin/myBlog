@@ -1,5 +1,5 @@
 ---
-title: two-columns-layout
+title: 布局篇 - 两栏式布局（左侧定宽，右侧自适应）
 date: 2019-04-02 13:56:59
 categories: 编程
 tags:
