@@ -3,7 +3,7 @@ title: ES6 - 解构赋值
 date: 2019-03-18 00:41:12
 categories: 编程
 tags: ES6
-img: /medias/article/featureimages/ES6.webp
+img: /medias/article/featureimages/ES6.jpg
 ---
 ### 解构赋值
 

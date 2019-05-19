@@ -5,7 +5,7 @@ categories: 编程
 tags:
 - ES6
 - Function
-img: /medias/article/featureimages/ES6.webp
+img: /medias/article/featureimages/ES6.jpg
 ---
 ### 1、函数参数的默认值
 

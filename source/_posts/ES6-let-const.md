@@ -3,7 +3,7 @@ title: ES6 - let、const、var的区别
 date: 2019-03-15 22:40:21
 categories: 编程
 tags: ES6
-img: /medias/article/featureimages/ES6.webp
+img: /medias/article/featureimages/ES6.jpg
 ---
 > 为了使JavaScript语言可以用来编写复杂的大型应用程序，成为企业级开发语言，`ECMAScript 6.0`（简称`ES6`）在标准中添加了很多新的特性。我们将用几篇文章总结一下ES6标准中一些常用的新特性。本片文章主要讲解ES6中的`let`、`const`命令，并区分其与`var`命令的区别。
 

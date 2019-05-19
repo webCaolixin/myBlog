@@ -5,7 +5,7 @@ categories: 编程
 tags:
 - ES6
 - Generator函数
-img: /medias/article/featureimages/ES6.webp
+img: /medias/article/featureimages/ES6.jpg
 ---
 
 ### 一、什么是Generator函数

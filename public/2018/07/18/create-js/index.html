@@ -1,0 +1,866 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+
+    
+    <meta name="keywords" content="Create.JS,hexo-theme-matery">
+    <meta name="description" content="什么是CreateJS
+官网介绍 （中文）：CreateJS 是一组模块化代码库和工具套件，可以独立工作也可以组合工作，用于通过HTML5技术来在网页上开发丰富的交互式内容。
+
+四个核心库CreateJS主要包含如下四个类库：
+
+Easel">
+
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="CreateJS 入门">
+    <meta property="og:url" content="https://webCaolixin.github.io/2018/07/18/create-js/">
+    <meta property="og:site_name" content="长安曹公子的博客">
+    <meta property="og:description" content="什么是CreateJS
+官网介绍 （中文）：CreateJS 是一组模块化代码库和工具套件，可以独立工作也可以组合工作，用于通过HTML5技术来在网页上开发丰富的交互式内容。
+
+四个核心库CreateJS主要包含如下四个类库：
+
+Easel">
+    <meta property="og:locale" content="zh-CN">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="CreateJS 入门">
+    <meta name="twitter:description" content="什么是CreateJS
+官网介绍 （中文）：CreateJS 是一组模块化代码库和工具套件，可以独立工作也可以组合工作，用于通过HTML5技术来在网页上开发丰富的交互式内容。
+
+四个核心库CreateJS主要包含如下四个类库：
+
+Easel">
+    
+    <link rel="canonical" href="/2018/07/18/create-js/">
+
+    <title>CreateJS 入门 | 长安曹公子的博客</title>
+
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <!--prettify代码高亮主题css引入-->
+    <link rel="stylesheet" type="text/css" href="/libs/prettify/css/atelier-heath-light.min.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/libs/baidu/autoPush.js"></script>
+
+    <!--prettify代码高亮脚本引入-->
+<script src="/libs/prettify/js/prettify.js"></script>
+
+<script type="text/javascript">
+  $(window).load(function(){
+    $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+    prettyPrint();
+  })
+</script>
+    
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d1e670e15af1e406f40405b910c79644";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+</head>
+</head>
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="nav-transparent">
+        <div id="navContainer" class="container">
+            <div class="nav-wrapper">
+                <div class="brand-logo">
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <img src="/medias/logo.jpg" class="logo-img hide-on-small-only">
+                        
+                        <span class="logo-span">长安曹公子的博客</span>
+                    </a>
+                </div>
+
+                <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/" class="waves-effect waves-light">首页</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/codings/" class="waves-effect waves-light">编程</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/random-thoughts/" class="waves-effect waves-light">随想</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/journals/" class="waves-effect waves-light">日志</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/galleries/" class="waves-effect waves-light">影集</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/tags/" class="waves-effect waves-light">标签</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/archives/" class="waves-effect waves-light">时间轴</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/about/" class="waves-effect waves-light">关于</a>
+        </li>
+        
+    
+    <li>
+        <a id="toggleSearch" class="waves-effect waves-light">
+            <i id="searchIcon" class="mdi-action-search"></i>
+        </a>
+    </li>
+    
+</ul>
+
+<div class="side-nav" id="mobile-nav">
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">长安曹公子的博客</div>
+        <div class="logo-desc">
+        
+            谜一样的浮世，每一步都未知
+        
+        </div>
+    </div>
+    <ul class="menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/codings/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>编程
+            </a>
+        </li>
+        
+        <li>
+            <a href="/random-thoughts/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>随想
+            </a>
+        </li>
+        
+        <li>
+            <a href="/journals/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>日志
+            </a>
+        </li>
+        
+        <li>
+            <a href="/galleries/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>影集
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>时间轴
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>关于
+            </a>
+        </li>
+        
+    </ul>
+    <div class="social-link">
+        <a href="https://github.com/webCaolixin" class="tooltipped" target="_blank" data-tooltip="GitHub" data-position="top" data-delay="50">
+            <i class="fa fa-github fa-lg"></i>
+        </a>
+        <a href="mailto:changAncgz@163.com" class="tooltipped" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+            <i class="fa fa-envelope fa-lg"></i>
+        </a>
+        <a href="https://weibo.com/u/5153743489" class="tooltipped" target="_blank" data-tooltip="新浪微博" data-position="top" data-delay="50">
+            <i class="fa fa-weibo fa-lg"></i>
+        </a>
+        <a href="https://www.jianshu.com/u/a75c156bd273" class="tooltipped" target="_blank" data-tooltip="简书主页" data-position="top" data-delay="50">
+            <i class="fa fa-lg">简</i>
+        </a>
+        <a href="https://juejin.im/user/5b398404f265da5967194815" class="tooltipped" target="_blank" data-tooltip="掘金主页" data-position="top" data-delay="50">
+            <i class="fa fa-lg">掘</i>
+        </a>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </nav>
+</header>
+
+    
+
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        CreateJS 入门
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<main class="content">
+
+    <!-- 文章内容详情 -->
+    <div id="artDetail" class="container">
+        <div class="card">
+            <div class="card-content article-info">
+                
+                <div class="article-tag">
+                    
+                    <a href="/tags/#Create.JS" target="_blank">
+                        <span class="chip bg-color">Create.JS</span>
+                    </a>
+                    
+                </div>
+                
+                <div class="author-info">
+                    <span>
+                        <i class="fa fa-calendar fa-fw"></i>2018-07-18
+                    </span>
+                </div>
+            </div>
+            <hr>
+            <div class="card-content article-card-content">
+                <div id="articleContent">
+                
+
+                
+                    <h3 id="什么是CreateJS"><a href="#什么是CreateJS" class="headerlink" title="什么是CreateJS"></a>什么是CreateJS</h3><blockquote>
+<p><a href="https://www.createjs.com/" target="_blank" rel="noopener">官网介绍</a> （<a href="http://www.createjs.cc/" target="_blank" rel="noopener">中文</a>）：CreateJS 是一组模块化代码库和工具套件，可以独立工作也可以组合工作，用于通过HTML5技术来在网页上开发丰富的交互式内容。</p>
+</blockquote>
+<h3 id="四个核心库"><a href="#四个核心库" class="headerlink" title="四个核心库"></a>四个核心库</h3><p>CreateJS主要包含如下四个类库：</p>
+<ul>
+<li><code>EaselJS</code> – 简化处理HTML5画布（核心）</li>
+<li><code>TweenJS</code> – 用来帮助设计H5动画，调整HTML5属性</li>
+<li><code>SoundJS</code> – 用来简化处理HTML5 audio 音频</li>
+<li><code>PreloadJS</code> – 帮助管理和协调加载中的一些资源</li>
+</ul>
+<a id="more"></a>
+<p><strong>今天，主要来了解一下 <code>EaselJS</code> 库</strong></p>
+<h3 id="EaselJS"><a href="#EaselJS" class="headerlink" title="EaselJS"></a>EaselJS</h3><p><img src="/medias/article/coding/create-js/easeljs.jpg" alt="EaselJS"></p>
+<h4 id="EaselJS-简介"><a href="#EaselJS-简介" class="headerlink" title="EaselJS 简介"></a>EaselJS 简介</h4><blockquote>
+<p><code>EaselJS</code> 是一个JavaScript库,用来简单快捷的操作 <code>HTML5 Canvas</code> 标签。在创建H5游戏，生成艺术作品、处理其他高级图形化等工作中有着很友好的体验。</p>
+</blockquote>
+<h4 id="EaselJS中的一些核心类"><a href="#EaselJS中的一些核心类" class="headerlink" title="EaselJS中的一些核心类"></a>EaselJS中的一些核心类</h4><ol>
+<li><code>Stage Class</code> – 创建舞台</li>
+<li><code>Text Class</code> – 绘制文字</li>
+<li><code>Graphics Class</code> – 绘制图形</li>
+<li><code>Shape Class</code> – 绘制图形</li>
+<li><code>Bitmap Class</code> – 绘制图片</li>
+<li><code>Ticker Class</code> – 定时广播</li>
+<li>……等</li>
+</ol>
+<h3 id="一些”栗子”"><a href="#一些”栗子”" class="headerlink" title="一些”栗子”"></a>一些”栗子”</h3><h4 id="绘制文本-Text-Class"><a href="#绘制文本-Text-Class" class="headerlink" title="绘制文本(Text Class)"></a>绘制文本(Text Class)</h4><p>定义一个<code>&lt;canvas&gt; &lt;/canvas&gt;</code> 画布。</p>
+<pre><code>// HTML:
+&lt;!-- Text Class 文本类--&gt;
+&lt;canvas id=&quot;demo1&quot; width=&quot;650&quot; height=&quot;400&quot;&gt;&lt;/canvas&gt;
+</code></pre><p>调用<code>EaselJS</code>提供的<code>API - new createjs.Text()</code>，绘制文字</p>
+<pre><code>// JS
+&lt;script src=&quot;https://code.createjs.com/1.0.0/createjs.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+  window.onload = () =&gt; {
+    /**
+      * Test Class 文本类 -- demo
+      */
+    let stage1 = new createjs.Stage(&quot;demo1&quot;);
+
+    let text1 = new createjs.Text(&quot;Text 1 !&quot;, &quot;bold 26px Arial&quot;, &quot;#ff7700&quot;);
+    text1.regX = -50;     // 沿X轴负方向的偏移量
+    text1.regY = -50;     // 沿Y轴负方向的偏移量
+    text1.x = 100;        // 绘制源点 X坐标
+    text1.y = 50;         // 绘制源点 Y坐标
+
+    let text2 = new createjs.Text(&quot;旋转+XY拉伸！&quot;, &quot;bold 18px Arial&quot;, &quot;#ff7700&quot;);
+    text2.x = 50;
+    text2.y = 50;
+    text2.rotation = 50;      // 旋转角度 DEG
+    text2.scaleX = 3;         // X轴放大(拉伸)
+    text2.scaleY = 2;         // X轴放大(拉伸)
+
+    let text3 = new createjs.Text(&quot;XY轴倾斜&quot;, &quot;bold 50px Arial&quot;, &quot;#ff7700&quot;);
+    text3.x = 300;
+    text3.y = 200;
+    text3.skewX = 45;         // X轴倾斜角度 DEG
+    text3.skewY = 20;         // Y周倾斜角度 DEG
+
+    let text4 = new createjs.Text(&quot;文字shadow&quot;, &quot;bold 30px Arial&quot;, &quot;#ff7700&quot;);
+    text4.x = 400;
+    text4.y = 100;
+    text4.shadow = new createjs.Shadow(&quot;#000000&quot;, 5, 5, 10);      // 创建一个shadow实例Object
+
+    stage1.addChild(text1, text2, text3, text4);
+    stage1.update();    // 更新舞台，每次修改操作后需要更新真个舞台才有效果
+  }
+&lt;/script&gt;
+</code></pre><h4 id="绘制图形-Graphics-Class"><a href="#绘制图形-Graphics-Class" class="headerlink" title="绘制图形(Graphics Class)"></a>绘制图形(Graphics Class)</h4><p>定义一个<code>&lt;canvas&gt; &lt;/canvas&gt;</code> 画布。</p>
+<pre><code>// HTML:
+&lt;!-- Graphics Class 文本类--&gt;
+&lt;canvas id=&quot;demo2&quot; width=&quot;650&quot; height=&quot;400&quot;&gt;&lt;/canvas&gt;
+</code></pre><p>调用<code>EaselJS</code>提供的<code>API - new createjs.Graphics()</code>，绘制图形</p>
+<pre><code>// JS
+&lt;script src=&quot;https://code.createjs.com/1.0.0/createjs.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+  window.onload = () =&gt; {
+    /**
+      * Graphics Class 绘图类 -- demo
+      * 用于生成矢量绘图指令
+      */
+    let stage2 = new createjs.Stage(&#39;demo2&#39;)
+
+    // 画线
+    let g = new createjs.Graphics();
+    /* 同一个 Graphics 实例， 可以多次绘制，以下线段、折线都是用 g 实例绘制的*/
+    g.setStrokeStyle(10).beginStroke(&quot;#d23c4f&quot;).moveTo(400,10).lineTo(600,100)
+    // 简写形式
+    g.ss(20).s(&#39;#fafa35&#39;).mt(400,100).lt(400,260)
+    // 多点折线的简写形式
+    g.ss(1).s(&#39;#000&#39;).mt(600,400).lt(600, 200).lt(400,300).lt(500, 550)
+
+    // Graphics 实例不能直接 addChild() 到舞台 stage 中，实例化为 Shape 实例后才可以
+    let line = new createjs.Shape(g)
+
+    // 圆
+    let g1 = new createjs.Graphics();
+    g1.setStrokeStyle(1);         // 描边
+    g1.beginStroke(&quot;#000000&quot;);    // 描边颜色
+    g1.beginFill(&quot;red&quot;);          // 图形填充
+    g1.drawCircle(0,0,100);        // 绘制 (X, X, R)
+    let c1 = new createjs.Shape(g1)     // 实例化Shape对象
+
+    // 矩形
+    let g2 = new createjs.Graphics().beginStroke(&quot;red&quot;).beginFill(&quot;blue&quot;).drawRect(150, 0, 200, 100);     // X, Y, W, H
+    let c2 = new createjs.Shape(g2)
+
+    // 命令对象
+    let g3 = new createjs.Graphics();
+    // 每个图形接口调用后会生成一个命令对象，可以使用.command访问，它保存对已创建或附加的最后一个命令的引用
+    let fillCommand = g3.beginFill(&quot;green&quot;).command;
+    g3.drawCircle(200,200,50);        // 绘制 (X, X, R)
+    let c3 = new createjs.Shape(g3);
+
+    // 一些异步操作后，更新填充样式/颜色:
+    setTimeout(() =&gt; {
+      fillCommand.style = &quot;gray&quot;;
+      stage2.update();                // 不更新舞台，不会重新渲染
+    }, 2000);
+
+    // 点击事件
+    //c3.addEventListener(&#39;click&#39;, () =&gt; {
+    // alert(123)
+    // fillCommand.style = &quot;gray&quot;;
+    // stage2.update();          // 不更新舞台，不会重新渲染
+    //})
+
+    stage2.addChild(c1, c2, c3, line);
+    stage2.update();
+  }
+&lt;/script&gt;
+</code></pre><h4 id="绘制图像imgaes-Bitmap-Class"><a href="#绘制图像imgaes-Bitmap-Class" class="headerlink" title="绘制图像imgaes(Bitmap Class)"></a>绘制图像imgaes(Bitmap Class)</h4><p>定义一个<code>&lt;canvas&gt; &lt;/canvas&gt;</code> 画布。</p>
+<pre><code>// HTML:
+&lt;!-- Bitmap Class 图像类--&gt;
+&lt;canvas id=&quot;demo3&quot; width=&quot;650&quot; height=&quot;400&quot;&gt;&lt;/canvas&gt;
+</code></pre><p>调用<code>EaselJS</code>提供的<code>API - new createjs.Bitmap()</code>，绘制图像</p>
+<pre><code>// JS
+&lt;script src=&quot;https://code.createjs.com/1.0.0/createjs.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+  window.onload = () =&gt; {
+    /**
+      * bitmap Class 图像类
+      * 用于在画布显示列表中渲染图像
+      */
+    let stage3 = new createjs.Stage(&#39;demo3&#39;)
+
+    // 渲染图片
+    let bitmap = new createjs.Bitmap(&#39;./assets/img/hill1.png&#39;)
+    bitmap.alpha = 0.6      // 透明度
+    bitmap.cursor = &#39;help&#39;
+    // 创建一个shadow实例Object(color, offsetX, offsetY, blur)
+    bitmap.shadow = new createjs.Shadow(&quot;#97c89e&quot;, 20, 10, 20);
+
+    // 给图片添加遮罩
+    let bitmap2 = new createjs.Bitmap(&#39;./assets/img/avatar.jpg&#39;)
+    bitmap2.x = 400;        // 图片绘制的起始点X坐标
+    bitmap2.y = 0;          // 图片绘制的起始点Y坐标
+    //遮罩图形
+    let shape = new createjs.Shape();
+    shape.graphics.beginFill(&#39;#000&#39;).drawCircle(0, 0, 100);
+    shape.x = 500;          // 圆心X坐标
+    shape.y = 100;          // 圆心Y坐标
+    bitmap2.mask = shape;   //给图片bg添加遮罩
+
+    // 绘制一片草地
+    let groundBg = new createjs.Bitmap(&quot;./assets/img/ground.png&quot;).image;
+    let ground = new createjs.Shape();
+    w = stage3.canvas.width;      // 650
+    h = stage3.canvas.height;     // 400
+    stage3.addChild(ground)
+
+    stage3.addChild(bitmap, bitmap2)
+    stage3.update()       // 此处刷新无效
+
+    // 监听定时广播
+    createjs.Ticker.timingMode = createjs.Ticker.RAF;
+    createjs.Ticker.addEventListener(&#39;tick&#39;,(event) =&gt; {
+      ground.tileW = groundBg.width;
+      ground.y = h - groundBg.height;
+      ground.graphics.beginBitmapFill(groundBg).drawRect(0, 0, w, groundBg.height);
+      ground.cache(0, 0, w, groundBg.height);
+
+      stage3.update()
+    });
+  }
+&lt;/script&gt;
+</code></pre><h3 id="一个小游戏-来自官网Demo-Running-man"><a href="#一个小游戏-来自官网Demo-Running-man" class="headerlink" title="一个小游戏(来自官网Demo) Running man"></a>一个小游戏(来自官网Demo) Running man</h3><h4 id="定义一个-lt-canvas-gt-lt-canvas-gt-画布"><a href="#定义一个-lt-canvas-gt-lt-canvas-gt-画布" class="headerlink" title="定义一个&lt;canvas&gt;&lt;/canvas&gt;画布"></a>定义一个<code>&lt;canvas&gt;&lt;/canvas&gt;</code>画布</h4><pre><code>&lt;!-- HTML --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+  &lt;title&gt;running-man game&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;canvas id=&quot;demoCanvas&quot; width=&quot;960&quot; height=&quot;400&quot;&gt;&lt;/canvas&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h4 id="JS代码"><a href="#JS代码" class="headerlink" title="JS代码"></a>JS代码</h4><p>这里就不写具体思路分析了，代码不长，注释也很详细，方便理解，直接上代码。</p>
+<pre><code>// JS
+&lt;script src=&quot;https://code.createjs.com/1.0.0/createjs.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+  window.onload = () =&gt; {
+    let stage, w, h, loader;
+    let sky, grant, ground, hill, hill2;
+
+    function init() {
+      stage = new createjs.StageGL(&quot;demoCanvas&quot;);
+
+      // 获取画布的宽和高，后面计算使用
+      w = stage.canvas.width;     // 960
+      h = stage.canvas.height;    // 400
+
+      // 定义静态资源
+      let manifest = [{
+        src: &quot;spritesheet_grant.png&quot;, id: &quot;grant&quot;}, {     // 人物动作雪碧图
+        src: &quot;sky.png&quot;, id: &quot;sky&quot;}, {           // 天空
+        src: &quot;ground.png&quot;, id: &quot;ground&quot;}, {     // 地面
+        src: &quot;hill1.png&quot;, id: &quot;hill&quot;}, {        // 远山
+        src: &quot;hill2.png&quot;, id: &quot;hill2&quot;           // 近山
+      }];     // Array, String, Object
+
+      // 创建资源加载队列
+      // (Boolean) 用XHR还是用HTML标签来加载
+      // 如果是false的时候，就用标签来加载，如果不能用标签的话，就用XHR来加载。默认是true，用XHR来加载。
+      loader = new createjs.LoadQueue(false);
+      // 添加&quot;资源加载完成&quot;事件
+      loader.addEventListener(&quot;complete&quot;, handleComplete);
+      // 加载资源
+      loader.loadManifest(manifest, true, &quot;./assets/img/&quot;);  // (manifest, loadNow, basePath)
+    }
+
+    /**
+      * 静态资源加载完成，处理函数
+      */
+    function handleComplete() {
+      // 渲染天空
+      sky = new createjs.Shape();
+      sky.graphics.beginBitmapFill(loader.getResult(&quot;sky&quot;)).drawRect(0, 0, w, h);
+      // 定义缓存区域(整个天空的区域))
+      sky.cache(0, 0, w, h);
+
+      // 渲染地面
+      let groundImg = loader.getResult(&quot;ground&quot;);
+      ground = new createjs.Shape();
+      // 注意：drawRect()宽度要躲绘制一个单位
+      ground.graphics.beginBitmapFill(groundImg).drawRect(0, 0, w + groundImg.width, groundImg.height);
+      ground.tileW = groundImg.width;
+      ground.y = h - groundImg.height;
+      // 缓存区域(地面的区域)
+      ground.cache(0, 0, w + groundImg.width, groundImg.height);
+
+      // 随机渲染远处山脉
+      hill = new createjs.Bitmap(loader.getResult(&quot;hill&quot;));
+      // 设置图像转换
+      // setTransform([x=0], [y=0], [scaleX=1], [scaleY=1], [rotation=0], [skewX=0], [skewY=0], [regX=0], [regY=0])
+      hill.setTransform(Math.random() * w, h - hill.image.height * 4 - groundImg.height, 4, 4);
+      hill.alpha = 0.5;     // 设置透明度
+
+      // 随机渲染近处山脉
+      hill2 = new createjs.Bitmap(loader.getResult(&quot;hill2&quot;));
+      hill2.setTransform(Math.random() * w, h - hill2.image.height * 3 - groundImg.height, 3, 3);
+
+      // 创建雪碧图动画
+      let spriteSheet = new createjs.SpriteSheet({
+        framerate: 30,      // 帧率 FPS
+        &quot;images&quot;: [loader.getResult(&quot;grant&quot;)],      // 雪碧图原图
+        &quot;frames&quot;: {&quot;width&quot;: 165, &quot;height&quot;: 292, &quot;count&quot;: 64, &quot;regX&quot;: 82, &quot;regY&quot;: 0},  // 初始化
+        // 定义动画
+        &quot;animations&quot;: {
+          &quot;run&quot;: [0, 25, &quot;run&quot;],     // name: [开始索引, 结束索引, &#39;下一个动画名称&#39;, 倍率]
+          &quot;jump&quot;: [26, 63, &quot;run&quot;]
+        }
+      });
+
+      // 绘制动画
+      grant = new createjs.Sprite(spriteSheet, &quot;run&quot;);
+      // 处理雪碧图人物下方空白
+      grant.y = 35;
+
+      // 将生成的所有内容渲染至舞台
+      stage.addChild(sky, ground, hill, hill2, grant);
+
+      // 监听舞台上的鼠标点击事件
+      stage.addEventListener(&quot;stagemousedown&quot;, () =&gt; {
+        // 跳转播放 jump 动画
+        grant.gotoAndPlay(&quot;jump&quot;);
+      });
+
+      createjs.Ticker.timingMode = createjs.Ticker.RAF;     // RAF / RAF_SYNCHED / TIMEOUT
+      createjs.Ticker.addEventListener(&quot;tick&quot;, tick);
+    }
+
+
+    /**
+      * 定时器-重绘舞台
+      */
+    function tick(event) {
+      // event.delta -- 上一次tick到当前tick的ms
+      let deltaS = event.delta / 1000;
+      // 雪碧图人物移动距离
+      let position = grant.x + 150 * deltaS;
+
+      // getBounds() -- 返回当前帧相对于雪碧图原点的边界
+      let grantW = grant.getBounds().width * grant.scaleX;
+      grant.x = (position &gt;= w + grantW) ? -grantW : position;
+
+      ground.x = (ground.x - deltaS * 150) % ground.tileW;
+
+      // 从右至左移动山脉
+      hill.x = (hill.x - deltaS * 30);
+      // 如果山脉从左侧离开屏幕
+      if (hill.x + hill.image.width * hill.scaleX &lt;= 0) {
+        hill.x = w;     // 重置回屏幕最右侧
+      }
+
+      // 处理如上
+      hill2.x = (hill2.x - deltaS * 45);
+      if (hill2.x + hill2.image.width * hill2.scaleX &lt;= 0) {
+        hill2.x = w;
+      }
+
+      stage.update();
+    }
+
+    // 程序主入口-初始化
+    init()
+  }
+&lt;/script&gt;
+</code></pre><h3 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h3><blockquote>
+<p>示例demo的GitHub地址：<a href="https://github.com/webCaolixin/study-notes/tree/master/create-js" target="_blank" rel="noopener">完整代码</a></p>
+</blockquote>
+<!-- 图片链接定义-->
+
+                
+                </div>
+
+                <hr />
+                
+                <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+                <div class="reprint">
+                    <p>
+                        <span class="reprint-tip">转载请注明: </span>
+                        <a href="https://webCaolixin.github.io" class="b-link-green">长安曹公子的博客</a>
+                        <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                        <a href="/2018/07/18/create-js/" class="b-link-green">CreateJS 入门</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        
+
+        
+        
+    <link rel="stylesheet" type="text/css" href="/libs/valine/custom.css"/>
+
+    <div id="valine-comments">
+        <div id="comments-notice">
+            <i class="fa fa-volume-up fa-lg fa-fw notice-icon"></i>
+            温馨提示：请您务必输入文明且有用的评论信息！本站评论系统支持匿名评论，建议您评论时填写个人昵称，邮箱和个人网址可选择填写，感谢您的支持！
+        </div>
+        <div class="comments" id="comments"></div>
+    </div>
+
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+    <script type="text/javascript">
+      var GUEST = ['nick','mail','link'];
+      var guest = 'nick,mail,link';
+      guest = guest.split(',').filter(function (item) {
+        return GUEST.indexOf(item)>-1;
+      });
+      new Valine({
+        el: '#comments' ,
+        verify: 'false',
+        notify: 'true',
+        appId: '8QCStxYhzTmcfzSimF0rbgWW-gzGzoHsz',
+        appKey: 'cRiWQY0NyClTBqBiF0HrCFgw',
+        placeholder: '请输入您的留言',
+        avatar: 'mm',
+        guest_info: guest,
+        pageSize: '10' || 10,
+        visitor: 'true'
+      });
+    </script>
+
+        
+
+        
+
+        
+
+<article id="articles" class="container prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6">
+            <div class="article-badge left-badge text-color">上一篇</div>
+            <div class="card">
+                <a href="/2018/08/01/journal-1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="你的工作是对生命的极大浪费">
+                        
+                        <span class="card-title">你的工作是对生命的极大浪费</span>
+                    </div>
+                    <div class="card-content article-content">
+                        <div class="summary">
+                            序言
+这篇文章有一些桥段是我生活的影子，但本文的主人公完全虚构，不代表我和周围任何一个同事朋友。文章内容是我根据自己的经历更多是和不同朋友交流时了解到的加工而来。文章没有什么华丽的词藻，内容平铺直叙，但是我相信读下去你也许能在其中找到自己的
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-calendar fa-fw"></i>2018-08-01
+                            </span>
+                            <span class="publish-author">
+                                <i class="fa fa-user fa-fw"></i>
+                                
+                                    长安曹公子
+                                
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/#生活工作" target="_blank">
+                            <span class="chip bg-color">生活工作</span>
+                        </a>
+                        
+                    </div>
+                    
+                </a>
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6">
+            <div class="article-badge right-badge text-color">下一篇</div>
+            <div class="card">
+                <a href="/2018/07/11/beginning/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="伊 始">
+                        
+                        <span class="card-title">伊 始</span>
+                    </div>
+                    <div class="card-content article-content">
+                        <div class="summary">
+                            开始的开始最近几天的西安城，阴雨绵绵，到哪都是湿漉漉的一片，给人一种身处烟雨江南的感觉。走在人少路窄的街道上，你也许能体会到戴望舒那“独自徘徊在悠长、悠长又寂寥的雨巷”朦胧而又幽深的美感，还会期待着“逢着一个丁香一样的结着愁怨的姑娘”。说实
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-calendar fa-fw"></i>2018-07-11
+                            </span>
+                            <span class="publish-author">
+                                <i class="fa fa-user fa-fw"></i>
+                                
+                                    长安曹公子
+                                
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/#生活工作" target="_blank">
+                            <span class="chip bg-color">生活工作</span>
+                        </a>
+                        
+                    </div>
+                    
+                </a>
+            </div>
+        </div>
+        
+    </div>
+</article>
+    </div>
+</main>
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m12 l8 copy-right">
+            本站由 &copy;<a href="http://blinkfox.com" target="_blank">Blinkfox </a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 采用
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank"> hexo-theme-matery </a>主题搭建
+        </div>
+        <div class="col s12 m12 l4 social-link hide-on-med-and-down">
+            <a href="https://github.com/webCaolixin" class="tooltipped" target="_blank" data-tooltip="GitHub" data-position="top" data-delay="50">
+                <i class="fa fa-github fa-lg"></i>
+            </a>
+            <a href="mailto:changAncgz@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+                <i class="fa fa-envelope fa-lg"></i>
+            </a>
+            <a href="https://weibo.com/u/5153743489" class="tooltipped" target="_blank" data-tooltip="新浪微博" data-position="top" data-delay="50">
+                <i class="fa fa-weibo fa-lg"></i>
+            </a>
+            <a href="https://www.jianshu.com/u/a75c156bd273" class="tooltipped" target="_blank" data-tooltip="简书主页" data-position="top" data-delay="50">
+                <i class="fa fa-lg">简</i>
+            </a>
+            <a href="https://juejin.im/user/5b398404f265da5967194815" class="tooltipped" target="_blank" data-tooltip="掘金主页" data-position="top" data-delay="50">
+                <i class="fa fa-lg">掘</i>
+            </a>
+        </div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+<script src="/js/search.js"></script>
+
+<script type="text/javascript">
+  (function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title">搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus="">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-double-up"></i>
+    </a>
+</div>
+
+</body>
+</html>

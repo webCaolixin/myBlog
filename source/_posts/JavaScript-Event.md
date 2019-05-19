@@ -3,7 +3,7 @@ title: JavaScript - 事件（基础篇）
 date: 2019-03-04 10:17:13
 categories: 编程
 tags: JavaScript
-img: /medias/article/featureimages/JavaScript.webp
+img: /medias/article/featureimages/JavaScript.jpg
 ---
 ### 什么是事件
 

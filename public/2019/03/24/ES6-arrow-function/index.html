@@ -1,0 +1,705 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+
+    
+    <meta name="keywords" content="ES6,Function,箭头函数,hexo-theme-matery">
+    <meta name="description" content="
+这篇文章我们来了解一下ES6中的箭头函数。首先会介绍一下箭头函数的基本语法，因为基本语法比较好理解，我们用示例做简单介绍即可。之后，我们重点来讨论一下箭头函数与普通函数之间的区别。
+
+一、基本语法ES6中允许使用箭头=&amp;gt;来定义箭头函">
+
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="ES6 - 箭头函数">
+    <meta property="og:url" content="https://webCaolixin.github.io/2019/03/24/ES6-arrow-function/">
+    <meta property="og:site_name" content="长安曹公子的博客">
+    <meta property="og:description" content="
+这篇文章我们来了解一下ES6中的箭头函数。首先会介绍一下箭头函数的基本语法，因为基本语法比较好理解，我们用示例做简单介绍即可。之后，我们重点来讨论一下箭头函数与普通函数之间的区别。
+
+一、基本语法ES6中允许使用箭头=&amp;gt;来定义箭头函">
+    <meta property="og:locale" content="zh-CN">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="ES6 - 箭头函数">
+    <meta name="twitter:description" content="
+这篇文章我们来了解一下ES6中的箭头函数。首先会介绍一下箭头函数的基本语法，因为基本语法比较好理解，我们用示例做简单介绍即可。之后，我们重点来讨论一下箭头函数与普通函数之间的区别。
+
+一、基本语法ES6中允许使用箭头=&amp;gt;来定义箭头函">
+    
+    <link rel="canonical" href="/2019/03/24/ES6-arrow-function/">
+
+    <title>ES6 - 箭头函数 | 长安曹公子的博客</title>
+
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <!--prettify代码高亮主题css引入-->
+    <link rel="stylesheet" type="text/css" href="/libs/prettify/css/atelier-heath-light.min.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/libs/baidu/autoPush.js"></script>
+
+    <!--prettify代码高亮脚本引入-->
+<script src="/libs/prettify/js/prettify.js"></script>
+
+<script type="text/javascript">
+  $(window).load(function(){
+    $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+    prettyPrint();
+  })
+</script>
+    
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d1e670e15af1e406f40405b910c79644";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+</head>
+</head>
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="nav-transparent">
+        <div id="navContainer" class="container">
+            <div class="nav-wrapper">
+                <div class="brand-logo">
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <img src="/medias/logo.jpg" class="logo-img hide-on-small-only">
+                        
+                        <span class="logo-span">长安曹公子的博客</span>
+                    </a>
+                </div>
+
+                <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/" class="waves-effect waves-light">首页</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/codings/" class="waves-effect waves-light">编程</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/random-thoughts/" class="waves-effect waves-light">随想</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/journals/" class="waves-effect waves-light">日志</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/galleries/" class="waves-effect waves-light">影集</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/tags/" class="waves-effect waves-light">标签</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/archives/" class="waves-effect waves-light">时间轴</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/about/" class="waves-effect waves-light">关于</a>
+        </li>
+        
+    
+    <li>
+        <a id="toggleSearch" class="waves-effect waves-light">
+            <i id="searchIcon" class="mdi-action-search"></i>
+        </a>
+    </li>
+    
+</ul>
+
+<div class="side-nav" id="mobile-nav">
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">长安曹公子的博客</div>
+        <div class="logo-desc">
+        
+            谜一样的浮世，每一步都未知
+        
+        </div>
+    </div>
+    <ul class="menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/codings/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>编程
+            </a>
+        </li>
+        
+        <li>
+            <a href="/random-thoughts/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>随想
+            </a>
+        </li>
+        
+        <li>
+            <a href="/journals/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>日志
+            </a>
+        </li>
+        
+        <li>
+            <a href="/galleries/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>影集
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>时间轴
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>关于
+            </a>
+        </li>
+        
+    </ul>
+    <div class="social-link">
+        <a href="https://github.com/webCaolixin" class="tooltipped" target="_blank" data-tooltip="GitHub" data-position="top" data-delay="50">
+            <i class="fa fa-github fa-lg"></i>
+        </a>
+        <a href="mailto:changAncgz@163.com" class="tooltipped" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+            <i class="fa fa-envelope fa-lg"></i>
+        </a>
+        <a href="https://weibo.com/u/5153743489" class="tooltipped" target="_blank" data-tooltip="新浪微博" data-position="top" data-delay="50">
+            <i class="fa fa-weibo fa-lg"></i>
+        </a>
+        <a href="https://www.jianshu.com/u/a75c156bd273" class="tooltipped" target="_blank" data-tooltip="简书主页" data-position="top" data-delay="50">
+            <i class="fa fa-lg">简</i>
+        </a>
+        <a href="https://juejin.im/user/5b398404f265da5967194815" class="tooltipped" target="_blank" data-tooltip="掘金主页" data-position="top" data-delay="50">
+            <i class="fa fa-lg">掘</i>
+        </a>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </nav>
+</header>
+
+    
+
+<div class="bg-cover post-cover" style="background-image: url('/medias/article/featureimages/arrow-function.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        ES6 - 箭头函数
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<main class="content">
+
+    <!-- 文章内容详情 -->
+    <div id="artDetail" class="container">
+        <div class="card">
+            <div class="card-content article-info">
+                
+                <div class="article-tag">
+                    
+                    <a href="/tags/#ES6" target="_blank">
+                        <span class="chip bg-color">ES6</span>
+                    </a>
+                    
+                    <a href="/tags/#Function" target="_blank">
+                        <span class="chip bg-color">Function</span>
+                    </a>
+                    
+                    <a href="/tags/#箭头函数" target="_blank">
+                        <span class="chip bg-color">箭头函数</span>
+                    </a>
+                    
+                </div>
+                
+                <div class="author-info">
+                    <span>
+                        <i class="fa fa-calendar fa-fw"></i>2019-03-24
+                    </span>
+                </div>
+            </div>
+            <hr>
+            <div class="card-content article-card-content">
+                <div id="articleContent">
+                
+
+                
+                    <blockquote>
+<p>这篇文章我们来了解一下ES6中的箭头函数。首先会介绍一下箭头函数的基本语法，因为基本语法比较好理解，我们用示例做简单介绍即可。之后，我们重点来讨论一下箭头函数与普通函数之间的区别。</p>
+</blockquote>
+<h3 id="一、基本语法"><a href="#一、基本语法" class="headerlink" title="一、基本语法"></a>一、基本语法</h3><p>ES6中允许使用箭头<code>=&gt;</code>来定义箭头函数，具体语法，我们来看一个简单的例子：</p>
+<pre><code>// 箭头函数
+let fun = (name) =&gt; {
+    // 函数体
+    return `Hello ${name} !`;
+};
+
+// 等同于
+let fun = function (name) {
+    // 函数体
+    return `Hello ${name} !`;
+};
+</code></pre><p>可以看出，定义箭头函在数语法上要比普通函数简洁得多。箭头函数省去了<code>function</code>关键字，采用箭头<code>=&gt;</code>来定义函数。函数的参数放在<code>=&gt;</code>前面的括号中，函数体跟在<code>=&gt;</code>后的花括号中。</p>
+<p><strong>关于箭头函数的参数：</strong><br> <strong>①</strong> 如果箭头函数没有参数，直接写一个空括号即可。<br> <strong>②</strong> 如果箭头函数的参数只有一个，也可以省去包裹参数的括号。<br> <strong>③</strong> 如果箭头函数有多个参数，将参数依次用逗号(,)分隔，包裹在括号中即可。</p>
+<pre><code>// 没有参数
+let fun1 = () =&gt; {
+    console.log(111);
+};
+
+// 只有一个参数，可以省去参数括号
+let fun2 = name =&gt; {
+    console.log(`Hello ${name} !`)
+};
+
+// 有多个参数
+let fun3 = (val1, val2, val3) =&gt; {
+    return [val1, val2, val3];
+};
+</code></pre><p><strong>关于箭头函数的函数体：</strong><br> <strong>①</strong> 如果箭头函数的函数体只有一句代码，就是简单返回某个变量或者返回一个简单的JS表达式，可以省去函数体的大括号{ }。</p>
+<pre><code>let f = val =&gt; val;
+// 等同于
+let f = function (val) { return val };
+
+let sum = (num1, num2) =&gt; num1 + num2;
+// 等同于
+let sum = function(num1, num2) {
+  return num1 + num2;
+};
+</code></pre><p> <strong>②</strong> 如果箭头函数的函数体只有一句代码，就是返回一个对象，可以像下面这样写：</p>
+<pre><code>// 用小括号包裹要返回的对象，不报错
+let getTempItem = id =&gt; ({ id: id, name: &quot;Temp&quot; });
+
+// 但绝不能这样写，会报错。
+// 因为对象的大括号会被解释为函数体的大括号
+let getTempItem = id =&gt; { id: id, name: &quot;Temp&quot; };
+</code></pre><p> <strong>③</strong> 如果箭头函数的函数体只有一条语句并且不需要返回值（最常见是调用一个函数），可以给这条语句前面加一个<code>void</code>关键字</p>
+<pre><code>let fn = () =&gt; void doesNotReturn();
+</code></pre><p>箭头函数最常见的用处就是简化回调函数。</p>
+<pre><code>// 例子一
+// 正常函数写法
+[1,2,3].map(function (x) {
+  return x * x;
+});
+
+// 箭头函数写法
+[1,2,3].map(x =&gt; x * x);
+
+// 例子二
+// 正常函数写法
+var result = [2, 5, 1, 4, 3].sort(function (a, b) {
+  return a - b;
+});
+
+// 箭头函数写法
+var result = [2, 5, 1, 4, 3].sort((a, b) =&gt; a - b);
+</code></pre><h3 id="二、箭头函数与普通函数的区别"><a href="#二、箭头函数与普通函数的区别" class="headerlink" title="二、箭头函数与普通函数的区别"></a>二、箭头函数与普通函数的区别</h3><h4 id="1、语法更加简洁、清晰"><a href="#1、语法更加简洁、清晰" class="headerlink" title="1、语法更加简洁、清晰"></a>1、语法更加简洁、清晰</h4><p>从上面的基本语法示例中可以看出，箭头函数的定义要比普通函数定义简洁、清晰得多，很快捷。</p>
+<h4 id="2、箭头函数不会创建自己的this（重要！！深入理解！！）"><a href="#2、箭头函数不会创建自己的this（重要！！深入理解！！）" class="headerlink" title="2、箭头函数不会创建自己的this（重要！！深入理解！！）"></a>2、箭头函数不会创建自己的this（重要！！深入理解！！）</h4><p>我们先来看看<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions" target="_blank" rel="noopener">MDN</a>上对箭头函数<code>this</code>的解释。</p>
+<blockquote>
+<p>箭头函数不会创建自己的<code>this</code>，所以它没有自己的<code>this</code>，它只会从自己的作用域链的上一层继承<code>this</code>。</p>
+</blockquote>
+<p>箭头函数没有自己的<code>this</code>，它会捕获自己在<strong>定义时</strong>（注意，是定义时，不是调用时）所处的<strong>外层执行环境的<code>this</code></strong>，并继承这个<code>this</code>值。所以，箭头函数中<code>this</code>的指向在它被定义的时候就已经确定了，之后永远不会改变。</p>
+<p>来看个例子：</p>
+<pre><code>var id = &#39;Global&#39;;
+
+function fun1() {
+    // setTimeout中使用普通函数
+    setTimeout(function(){
+        console.log(this.id);
+    }, 2000);
+}
+
+function fun2() {
+    // setTimeout中使用箭头函数
+    setTimeout(() =&gt; {
+        console.log(this.id);
+    }, 2000)
+}
+
+fun1.call({id: &#39;Obj&#39;});     // &#39;Global&#39;
+
+fun2.call({id: &#39;Obj&#39;});     // &#39;Obj&#39;
+</code></pre><p>上面这个例子，函数<code>fun1</code>中的<code>setTimeout</code>中使用普通函数，2秒后函数执行时，这时函数其实是在全局作用域执行的，所以<code>this</code>指向<code>Window</code>对象，<code>this.id</code>就指向全局变量<code>id</code>，所以输出<code>&#39;Global&#39;</code>。<br>但是函数<code>fun2</code>中的<code>setTimeout</code>中使用的是箭头函数，这个箭头函数的<code>this</code>在定义时就确定了，它继承了它外层<code>fun2</code>的执行环境中的<code>this</code>，而<code>fun2</code>调用时<code>this</code>被<code>call</code>方法改变到了对象<code>{id: &#39;Obj&#39;}</code>中，所以输出<code>&#39;Obj&#39;</code>。</p>
+<p>再来看另一个例子：</p>
+<pre><code>var id = &#39;GLOBAL&#39;;
+var obj = {
+  id: &#39;OBJ&#39;,
+  a: function(){
+    console.log(this.id);
+  },
+  b: () =&gt; {
+      console.log(this.id);
+  }
+};
+
+obj.a();    // &#39;OBJ&#39;
+obj.b();    // &#39;GLOBAL&#39;
+</code></pre><p>上面这个例子，对象<code>obj</code>的方法<code>a</code>使用普通函数定义的，<strong>普通函数作为对象的方法调用时，<code>this</code>指向它所属的对象</strong>。所以，<code>this.id</code>就是<code>obj.id</code>，所以输出<code>&#39;OBJ&#39;</code>。<br>但是方法<code>b</code>是使用箭头函数定义的，箭头函数中的<code>this</code>实际是继承的它定义时所处的全局执行环境中的<code>this</code>，所以指向<code>Window</code>对象，所以输出<code>&#39;GLOBAL&#39;</code>。（<strong>这里要注意，定义对象的大括号<code>{}</code>是无法形成一个单独的执行环境的，它依旧是处于全局执行环境中！！</strong>）</p>
+<h4 id="3、箭头函数继承而来的this指向永远不变（重要！！深入理解！！）"><a href="#3、箭头函数继承而来的this指向永远不变（重要！！深入理解！！）" class="headerlink" title="3、箭头函数继承而来的this指向永远不变（重要！！深入理解！！）"></a>3、箭头函数继承而来的this指向永远不变（重要！！深入理解！！）</h4><p>上面的例子，就完全可以说明箭头函数继承而来的<code>this</code>指向永远不变。对象<code>obj</code>的方法<code>b</code>是使用箭头函数定义的，这个函数中的<code>this</code>就<strong>永远指向</strong>它定义时所处的全局执行环境中的<code>this</code>，即便这个函数是作为对象<code>obj</code>的方法调用，<code>this</code>依旧指向<code>Window</code>对象。</p>
+<h4 id="4、-call-apply-bind-无法改变箭头函数中this的指向"><a href="#4、-call-apply-bind-无法改变箭头函数中this的指向" class="headerlink" title="4、.call()/.apply()/.bind()无法改变箭头函数中this的指向"></a>4、.call()/.apply()/.bind()无法改变箭头函数中this的指向</h4><p><code>.call()</code>/<code>.apply()</code>/<code>.bind()</code>方法可以用来动态修改函数执行时<code>this</code>的指向，但由于箭头函数的<code>this</code>定义时就已经确定且永远不会改变。所以使用这些方法永远也改变不了箭头函数<code>this</code>的指向，虽然这么做代码不会报错。</p>
+<pre><code>var id = &#39;Global&#39;;
+// 箭头函数定义在全局作用域
+let fun1 = () =&gt; {
+    console.log(this.id)
+};
+
+fun1();     // &#39;Global&#39;
+// this的指向不会改变，永远指向Window对象
+fun1.call({id: &#39;Obj&#39;});     // &#39;Global&#39;
+fun1.apply({id: &#39;Obj&#39;});    // &#39;Global&#39;
+fun1.bind({id: &#39;Obj&#39;})();   // &#39;Global&#39;
+</code></pre><h4 id="5、箭头函数不能作为构造函数使用"><a href="#5、箭头函数不能作为构造函数使用" class="headerlink" title="5、箭头函数不能作为构造函数使用"></a>5、箭头函数不能作为构造函数使用</h4><p>我们先了解一下构造函数的new都做了些什么？简单来说，分为四步：<br> ① JS内部首先会先生成一个对象；<br> ② 再把函数中的this指向该对象；<br> ③ 然后执行构造函数中的语句；<br> ④ 最终返回该对象实例。</p>
+<p>但是！！因为箭头函数没有自己的<code>this</code>，它的<code>this</code>其实是继承了外层执行环境中的<code>this</code>，且<code>this</code>指向永远不会随在哪里调用、被谁调用而改变，所以箭头函数不能作为构造函数使用，或者说构造函数不能定义成箭头函数，否则用<code>new</code>调用时会报错！</p>
+<pre><code>let Fun = (name, age) =&gt; {
+    this.name = name;
+    this.age = age;
+};
+
+// 报错
+let p = new Fun(&#39;cao&#39;, 24);
+</code></pre><h4 id="6、箭头函数没有自己的arguments"><a href="#6、箭头函数没有自己的arguments" class="headerlink" title="6、箭头函数没有自己的arguments"></a>6、箭头函数没有自己的arguments</h4><p>箭头函数没有自己的<code>arguments</code>对象。在箭头函数中访问<code>arguments</code>实际上获得的是外层局部（函数）执行环境中的值。</p>
+<pre><code>// 例子一
+let fun = (val) =&gt; {
+    console.log(val);   // 111
+    // 下面一行会报错
+    // Uncaught ReferenceError: arguments is not defined
+    // 因为外层全局环境没有arguments对象
+    console.log(arguments); 
+};
+fun(111);
+
+// 例子二
+function outer(val1, val2) {
+    let argOut = arguments;
+    console.log(argOut);    // ①
+    let fun = () =&gt; {
+        let argIn = arguments;
+        console.log(argIn);     // ②
+        console.log(argOut === argIn);  // ③
+    };
+    fun();
+}
+outer(111, 222);
+</code></pre><p>上面例子二，①②③处的输出结果如下：<br><img src="/medias/article/coding/arrow-function/arrow-function-arguments.png" alt="箭头函数的arguments"><br>很明显，普通函数<code>outer</code>内部的箭头函数<code>fun</code>中的<code>arguments</code>对象，其实是沿作用域链向上访问的外层<code>outer</code>函数的<code>arguments</code>对象。</p>
+<p><strong>可以在箭头函数中使用rest参数代替arguments对象，来访问箭头函数的参数列表！！</strong></p>
+<h4 id="7、箭头函数没有原型prototype"><a href="#7、箭头函数没有原型prototype" class="headerlink" title="7、箭头函数没有原型prototype"></a>7、箭头函数没有原型prototype</h4><pre><code>let sayHi = () =&gt; {
+    console.log(&#39;Hello World !&#39;)
+};
+console.log(sayHi.prototype); // undefined
+</code></pre><h4 id="8、箭头函数不能用作Generator函数，不能使用yeild关键字"><a href="#8、箭头函数不能用作Generator函数，不能使用yeild关键字" class="headerlink" title="8、箭头函数不能用作Generator函数，不能使用yeild关键字"></a>8、箭头函数不能用作Generator函数，不能使用yeild关键字</h4><p>这一点等到讲解Generator函数的时候我们在深入讨论。</p>
+
+                
+                </div>
+
+                <hr />
+                
+                <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+                <div class="reprint">
+                    <p>
+                        <span class="reprint-tip">转载请注明: </span>
+                        <a href="https://webCaolixin.github.io" class="b-link-green">长安曹公子的博客</a>
+                        <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                        <a href="/2019/03/24/ES6-arrow-function/" class="b-link-green">ES6 - 箭头函数</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        
+
+        
+        
+    <link rel="stylesheet" type="text/css" href="/libs/valine/custom.css"/>
+
+    <div id="valine-comments">
+        <div id="comments-notice">
+            <i class="fa fa-volume-up fa-lg fa-fw notice-icon"></i>
+            温馨提示：请您务必输入文明且有用的评论信息！本站评论系统支持匿名评论，建议您评论时填写个人昵称，邮箱和个人网址可选择填写，感谢您的支持！
+        </div>
+        <div class="comments" id="comments"></div>
+    </div>
+
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+    <script type="text/javascript">
+      var GUEST = ['nick','mail','link'];
+      var guest = 'nick,mail,link';
+      guest = guest.split(',').filter(function (item) {
+        return GUEST.indexOf(item)>-1;
+      });
+      new Valine({
+        el: '#comments' ,
+        verify: 'false',
+        notify: 'true',
+        appId: '8QCStxYhzTmcfzSimF0rbgWW-gzGzoHsz',
+        appKey: 'cRiWQY0NyClTBqBiF0HrCFgw',
+        placeholder: '请输入您的留言',
+        avatar: 'mm',
+        guest_info: guest,
+        pageSize: '10' || 10,
+        visitor: 'true'
+      });
+    </script>
+
+        
+
+        
+
+        
+
+<article id="articles" class="container prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6">
+            <div class="article-badge left-badge text-color">上一篇</div>
+            <div class="card">
+                <a href="/2019/03/25/ES6-Promise/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/article/featureimages/ES6-Promise.jpg" class="responsive-img" alt="ES6 - Promise">
+                        
+                        <span class="card-title">ES6 - Promise</span>
+                    </div>
+                    <div class="card-content article-content">
+                        <div class="summary">
+                            
+Promise是面试中最常见的问题之一，也是ES6中很有用、很核心的一个新特性。尤其在如今异步操作越来越多、越来越复杂的情况下，Prmoise更是显示出了它强大而又优雅的本质。这篇文章，我们来系统地讲解一下Promise相关的核心知识点。
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-calendar fa-fw"></i>2019-03-25
+                            </span>
+                            <span class="publish-author">
+                                <i class="fa fa-user fa-fw"></i>
+                                
+                                    长安曹公子
+                                
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/#ES6" target="_blank">
+                            <span class="chip bg-color">ES6</span>
+                        </a>
+                        
+                        <a href="/tags/#Promise" target="_blank">
+                            <span class="chip bg-color">Promise</span>
+                        </a>
+                        
+                    </div>
+                    
+                </a>
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6">
+            <div class="article-badge right-badge text-color">下一篇</div>
+            <div class="card">
+                <a href="/2019/03/22/ES6-function-extend/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/article/featureimages/ES6.jpg" class="responsive-img" alt="ES6 - 函数的扩展">
+                        
+                        <span class="card-title">ES6 - 函数的扩展</span>
+                    </div>
+                    <div class="card-content article-content">
+                        <div class="summary">
+                            1、函数参数的默认值在ES6之前，是不能直接给函数参数设置默认值的。如果需要设置默认值，就只能采用||（或）的短路原则来设置参数的默认值。
+function say (x, y) {
+    y = y || &#39;World&#39;
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-calendar fa-fw"></i>2019-03-22
+                            </span>
+                            <span class="publish-author">
+                                <i class="fa fa-user fa-fw"></i>
+                                
+                                    长安曹公子
+                                
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/#ES6" target="_blank">
+                            <span class="chip bg-color">ES6</span>
+                        </a>
+                        
+                        <a href="/tags/#Function" target="_blank">
+                            <span class="chip bg-color">Function</span>
+                        </a>
+                        
+                    </div>
+                    
+                </a>
+            </div>
+        </div>
+        
+    </div>
+</article>
+    </div>
+</main>
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m12 l8 copy-right">
+            本站由 &copy;<a href="http://blinkfox.com" target="_blank">Blinkfox </a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 采用
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank"> hexo-theme-matery </a>主题搭建
+        </div>
+        <div class="col s12 m12 l4 social-link hide-on-med-and-down">
+            <a href="https://github.com/webCaolixin" class="tooltipped" target="_blank" data-tooltip="GitHub" data-position="top" data-delay="50">
+                <i class="fa fa-github fa-lg"></i>
+            </a>
+            <a href="mailto:changAncgz@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+                <i class="fa fa-envelope fa-lg"></i>
+            </a>
+            <a href="https://weibo.com/u/5153743489" class="tooltipped" target="_blank" data-tooltip="新浪微博" data-position="top" data-delay="50">
+                <i class="fa fa-weibo fa-lg"></i>
+            </a>
+            <a href="https://www.jianshu.com/u/a75c156bd273" class="tooltipped" target="_blank" data-tooltip="简书主页" data-position="top" data-delay="50">
+                <i class="fa fa-lg">简</i>
+            </a>
+            <a href="https://juejin.im/user/5b398404f265da5967194815" class="tooltipped" target="_blank" data-tooltip="掘金主页" data-position="top" data-delay="50">
+                <i class="fa fa-lg">掘</i>
+            </a>
+        </div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+<script src="/js/search.js"></script>
+
+<script type="text/javascript">
+  (function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title">搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus="">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-double-up"></i>
+    </a>
+</div>
+
+</body>
+</html>

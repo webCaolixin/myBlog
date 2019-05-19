@@ -1,0 +1,665 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+
+    
+    <meta name="keywords" content="ES6,hexo-theme-matery">
+    <meta name="description" content="
+为了使JavaScript语言可以用来编写复杂的大型应用程序，成为企业级开发语言，ECMAScript 6.0（简称ES6）在标准中添加了很多新的特性。我们将用几篇文章总结一下ES6标准中一些常用的新特性。本片文章主要讲解ES6中的let">
+
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="ES6 - let、const、var的区别">
+    <meta property="og:url" content="https://webCaolixin.github.io/2019/03/15/ES6-let-const/">
+    <meta property="og:site_name" content="长安曹公子的博客">
+    <meta property="og:description" content="
+为了使JavaScript语言可以用来编写复杂的大型应用程序，成为企业级开发语言，ECMAScript 6.0（简称ES6）在标准中添加了很多新的特性。我们将用几篇文章总结一下ES6标准中一些常用的新特性。本片文章主要讲解ES6中的let">
+    <meta property="og:locale" content="zh-CN">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="ES6 - let、const、var的区别">
+    <meta name="twitter:description" content="
+为了使JavaScript语言可以用来编写复杂的大型应用程序，成为企业级开发语言，ECMAScript 6.0（简称ES6）在标准中添加了很多新的特性。我们将用几篇文章总结一下ES6标准中一些常用的新特性。本片文章主要讲解ES6中的let">
+    
+    <link rel="canonical" href="/2019/03/15/ES6-let-const/">
+
+    <title>ES6 - let、const、var的区别 | 长安曹公子的博客</title>
+
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <!--prettify代码高亮主题css引入-->
+    <link rel="stylesheet" type="text/css" href="/libs/prettify/css/atelier-heath-light.min.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/libs/baidu/autoPush.js"></script>
+
+    <!--prettify代码高亮脚本引入-->
+<script src="/libs/prettify/js/prettify.js"></script>
+
+<script type="text/javascript">
+  $(window).load(function(){
+    $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+    prettyPrint();
+  })
+</script>
+    
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d1e670e15af1e406f40405b910c79644";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+</head>
+</head>
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="nav-transparent">
+        <div id="navContainer" class="container">
+            <div class="nav-wrapper">
+                <div class="brand-logo">
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <img src="/medias/logo.jpg" class="logo-img hide-on-small-only">
+                        
+                        <span class="logo-span">长安曹公子的博客</span>
+                    </a>
+                </div>
+
+                <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/" class="waves-effect waves-light">首页</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/codings/" class="waves-effect waves-light">编程</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/random-thoughts/" class="waves-effect waves-light">随想</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/journals/" class="waves-effect waves-light">日志</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/galleries/" class="waves-effect waves-light">影集</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/tags/" class="waves-effect waves-light">标签</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/archives/" class="waves-effect waves-light">时间轴</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/about/" class="waves-effect waves-light">关于</a>
+        </li>
+        
+    
+    <li>
+        <a id="toggleSearch" class="waves-effect waves-light">
+            <i id="searchIcon" class="mdi-action-search"></i>
+        </a>
+    </li>
+    
+</ul>
+
+<div class="side-nav" id="mobile-nav">
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">长安曹公子的博客</div>
+        <div class="logo-desc">
+        
+            谜一样的浮世，每一步都未知
+        
+        </div>
+    </div>
+    <ul class="menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/codings/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>编程
+            </a>
+        </li>
+        
+        <li>
+            <a href="/random-thoughts/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>随想
+            </a>
+        </li>
+        
+        <li>
+            <a href="/journals/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>日志
+            </a>
+        </li>
+        
+        <li>
+            <a href="/galleries/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>影集
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>时间轴
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>关于
+            </a>
+        </li>
+        
+    </ul>
+    <div class="social-link">
+        <a href="https://github.com/webCaolixin" class="tooltipped" target="_blank" data-tooltip="GitHub" data-position="top" data-delay="50">
+            <i class="fa fa-github fa-lg"></i>
+        </a>
+        <a href="mailto:changAncgz@163.com" class="tooltipped" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+            <i class="fa fa-envelope fa-lg"></i>
+        </a>
+        <a href="https://weibo.com/u/5153743489" class="tooltipped" target="_blank" data-tooltip="新浪微博" data-position="top" data-delay="50">
+            <i class="fa fa-weibo fa-lg"></i>
+        </a>
+        <a href="https://www.jianshu.com/u/a75c156bd273" class="tooltipped" target="_blank" data-tooltip="简书主页" data-position="top" data-delay="50">
+            <i class="fa fa-lg">简</i>
+        </a>
+        <a href="https://juejin.im/user/5b398404f265da5967194815" class="tooltipped" target="_blank" data-tooltip="掘金主页" data-position="top" data-delay="50">
+            <i class="fa fa-lg">掘</i>
+        </a>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </nav>
+</header>
+
+    
+
+<div class="bg-cover post-cover" style="background-image: url('/medias/article/featureimages/ES6.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        ES6 - let、const、var的区别
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<main class="content">
+
+    <!-- 文章内容详情 -->
+    <div id="artDetail" class="container">
+        <div class="card">
+            <div class="card-content article-info">
+                
+                <div class="article-tag">
+                    
+                    <a href="/tags/#ES6" target="_blank">
+                        <span class="chip bg-color">ES6</span>
+                    </a>
+                    
+                </div>
+                
+                <div class="author-info">
+                    <span>
+                        <i class="fa fa-calendar fa-fw"></i>2019-03-15
+                    </span>
+                </div>
+            </div>
+            <hr>
+            <div class="card-content article-card-content">
+                <div id="articleContent">
+                
+
+                
+                    <blockquote>
+<p>为了使JavaScript语言可以用来编写复杂的大型应用程序，成为企业级开发语言，<code>ECMAScript 6.0</code>（简称<code>ES6</code>）在标准中添加了很多新的特性。我们将用几篇文章总结一下ES6标准中一些常用的新特性。本片文章主要讲解ES6中的<code>let</code>、<code>const</code>命令，并区分其与<code>var</code>命令的区别。</p>
+</blockquote>
+<h3 id="let-与-var-的区别"><a href="#let-与-var-的区别" class="headerlink" title="let 与 var 的区别"></a>let 与 var 的区别</h3><h4 id="一、let声明的变量只在其所在的块级作用于有效"><a href="#一、let声明的变量只在其所在的块级作用于有效" class="headerlink" title="一、let声明的变量只在其所在的块级作用于有效"></a>一、let声明的变量只在其所在的块级作用于有效</h4><p>所谓块级作用域是指：将多个代码语句封装在一起，通常是包含在一个大括号中，没有返回值。比如：</p>
+<pre><code>if (true) {  // 块级作用域  }
+
+for (let i = 0; i &lt; 10; i++) {  // 块级作用域  }
+
+while (true) {  // 块级作用域  }
+
+switch (case) {  // 块级作用域  }
+</code></pre><p>以上例子，大括号（{…}）中形成的都属于块级作用域。</p>
+<p>众所周知，在ES6之前，JavaScript中只有全局作用域和局部（函数）作用域，不存在块级作用域。而且也只能使用关键字<code>var</code>来声明变量。所以用<code>var</code>声明的变量要么是属于全局作用域的全局变量，要么就是属于局部（函数）作用域的局部变量。</p>
+<p>在ES6标准中，添加了使用<code>let</code>声明变量的方式。使用<code>let</code>声明的变量只在块级作用域中有效，在其外层作用域访问时就会报错。</p>
+<pre><code>if (true) {
+    // 这个用let声明的变量a，只在当前块级作用域中有效
+    let a = 123;
+    // 这个用var声明的变量b，在全局作用域中都有效
+    var b = &#39;123&#39;;
+
+    console.log(a);     // 123
+    console.log(b);     // &#39;123&#39;
+}
+
+console.log(a);     // 报错 —— ReferenceError: a is not defined.
+console.log(b);     // &#39;123&#39;
+</code></pre><p>上面的例子中，因为变量<code>a</code>是使用<code>let</code>声明的，它只在其所在的块级作用域——<code>if</code>后面的大括号({…})之中有效，在块级作用域外层访问时就会报错。而用<code>var</code>声明的变量<code>b</code>，不受块级作用域的约束，可以跨块级作用域访问。这个例子中，变量<code>b</code>实际是属于全局作用域的全局变量。</p>
+<p>那么，为什么ES6中需要引入块级作用域的概念呢？为什么要增加使用<code>let</code>来声明变量的方式呢？</p>
+<p>因为，如果没有块级作用域会导致一些不合理的情形出现。</p>
+<p>1、 内层变量可能会覆盖外层变量。</p>
+<pre><code>var a = &#39;Global&#39;;
+
+function inner() {
+    if (true) {
+        console.log(a);     // undefined
+        var a = &#39;inner&#39;;
+        /**
+         * 以上两行代码相当于
+         * var a;
+         * console.log(a);
+         * a = &#39;inner&#39;; 
+         * 再次使用var声明同名变量a，会覆盖全局变量a
+         */
+    }
+}
+
+inner();
+</code></pre><p>这个例子，当在函数<code>inner</code>内部<code>if</code>代码块内首先访问变量<code>a</code>时，却得到的是<code>undefined</code>。这是因为紧随其后<code>var</code>声明的同名变量<code>a</code>会变量提升并覆盖全局变量<code>a</code>。所以打印出<code>a</code>的值为<code>undefined</code>。</p>
+<p>2、计数的循环变量会泄露为全局变量</p>
+<pre><code>for (var i = 0; i &lt; 10; i++) {
+    // 一些循环操作
+}
+
+console.log(i);     // 10
+</code></pre><p>上面的例子，<code>for</code>循环中的循环变量按道理来说应该只属于<code>for</code>循环体，循环结束就不能再访问。但实际这样用<code>var</code>声明的<code>i</code>，属于外层作用域中的变量，也就是说<code>i</code>泄露为全局变量。所以当执行到<code>console.log(i)</code>时，因为<code>i</code>经过循环已经增加到<code>10</code>，所以打印出<code>i</code>的值为<code>10</code>。</p>
+<h4 id="二、let声明的变量不存在变量提升过程"><a href="#二、let声明的变量不存在变量提升过程" class="headerlink" title="二、let声明的变量不存在变量提升过程"></a>二、let声明的变量不存在变量提升过程</h4><p>用<code>var</code>声明的变量，会在其作用域中<strong>发生<code>变量提升</code>的过程</strong>。变量会被提升到作用域顶部，JS默认给变量一个<code>undefined</code>值。在使用<code>var</code>声明一个变量前访问它，得到的值永远是<code>undefined</code>。</p>
+<p>但是，在ES6中<strong>使用<code>let</code>声明的变量，不存在<code>变量提升</code>过程</strong>。也就是说，不能在使用<code>let</code>声明任何一个变量前访问它，否则都会报错。</p>
+<pre><code>console.log(a);     // 报错——ReferenceError: a is not defined
+
+let a = &#39;Hello World!&#39;；
+</code></pre><h4 id="三、let声明的变量存在“暂时性死区”"><a href="#三、let声明的变量存在“暂时性死区”" class="headerlink" title="三、let声明的变量存在“暂时性死区”"></a>三、let声明的变量存在“暂时性死区”</h4><p>只要使用<code>let</code>声明了一个变量，那这个变量就“绑定”到了这个作用域（全局/局部/块级），该变量就不再受外层作用域的影响。</p>
+<p>ES6明确规定，如果区块中存在<code>let</code>和<code>const</code>命令，这个区块对这些命令声明的变量从一开始就形成了封闭作用域。凡是在声明之前就使用这些变量，就会报错。</p>
+<p>总之，在代码块内，使用<code>let</code>命令声明变量之前，该变量都是不可用的。这在语法上，称为<code>“暂时性死区”</code>（temporal dead zone，简称 TDZ）。</p>
+<pre><code>let g = &#39;Global&#39;;
+
+if (true) {
+    g = &#39;Block&#39;;    // 报错——ReferenceError: g is not defined
+    let g;
+}
+</code></pre><p>上面的例子中，<code>if</code>代码块最顶部一直到<code>let</code>声明变量<code>g</code>之前，都是<code>g</code>的“暂时性死区”。在该范围内访问<code>g</code>都会报错。</p>
+<h4 id="四、let声明的变量不允许再次重复声明"><a href="#四、let声明的变量不允许再次重复声明" class="headerlink" title="四、let声明的变量不允许再次重复声明"></a>四、let声明的变量不允许再次重复声明</h4><p>使用<code>var</code>声明变量，可以多次重复声明一个同名变量。最终变量的值为最后一次声明赋值的结果。</p>
+<pre><code>var a = 123;
+var a = &#39;Hello World!&#39;;
+
+console.log(a);     // &#39;Hello World!&#39;
+</code></pre><p>但是，<strong>在同一作用域（全局/局部/块级）中不允许使用let重复声明变量。或者说不允许存在与用<code>let</code>声明的变量同名的变量</strong>。以下代码都会报错！</p>
+<pre><code>// 先var，后let
+var a = 123;
+// ...一些代码
+let a = &#39;Hello World!&#39;;     // 报错——Uncaught SyntaxError: Identifier &#39;a&#39; has already been declared
+
+// 先let，后var
+let b = 123;
+// ...一些代码
+var b = &#39;Hello World!&#39;;     // 报错——Uncaught SyntaxError: Identifier &#39;a&#39; has already been declared
+
+// 先let，再let
+let c = 123;
+// ...一些代码
+let c = &#39;Hello World!&#39;;     // 报错——Uncaught SyntaxError: Identifier &#39;a&#39; has already been declared
+</code></pre><h4 id="五、let声明的全局变量不会作为window对象的一个属性"><a href="#五、let声明的全局变量不会作为window对象的一个属性" class="headerlink" title="五、let声明的全局变量不会作为window对象的一个属性"></a>五、let声明的全局变量不会作为window对象的一个属性</h4><p>使用<code>var</code>声明的全局变量，会被JS自动添加在全局对象<code>window</code>上，作为该对象的一个属性。</p>
+<pre><code>var myVar = &#39;myName&#39;;
+
+console.log(window.myVar);      // &#39;myName&#39;
+console.log(window.hasOwnProperty(&#39;myVar&#39;));    // true
+</code></pre><p>但是，使用let声明的全局变量不会作为window对象的一个属性。</p>
+<pre><code>let yourVar = &#39;yourName&#39;;
+
+console.log(window.yourVar);      // undefined
+console.log(window.hasOwnProperty(&#39;yourVar&#39;));    // false
+</code></pre><p>这个例子可以看出，<code>let</code>声明的全局变量<code>yourVar</code>，并没有被添加到<code>window</code>对象上，没有作为<code>window</code>的一个属性。</p>
+<h3 id="let-与const-的区别"><a href="#let-与const-的区别" class="headerlink" title="let 与const 的区别"></a>let 与const 的区别</h3><p>在ES6中，上述所有<code>let</code>所具有的特性，对于<code>const</code>来说同样存在。但<code>const</code>与<code>let</code>、<code>var</code>的区别在于<code>const</code>是用来声明<strong>常量</strong>的。</p>
+<p>常量具有以下特点：</p>
+<h4 id="一、常量值不可修改"><a href="#一、常量值不可修改" class="headerlink" title="一、常量值不可修改"></a>一、常量值不可修改</h4><p>一个常量，一旦声明，任何时间、任何地点都不能修改它的值。</p>
+<pre><code>const PI = 3.1415926;
+
+console.log(PI);    // 3.1415926
+
+PI = 3; // 报错——Uncaught TypeError: Assignment to constant variable.
+</code></pre><h4 id="二、常量在声明时必须必须立即初始化（赋初始值）"><a href="#二、常量在声明时必须必须立即初始化（赋初始值）" class="headerlink" title="二、常量在声明时必须必须立即初始化（赋初始值）"></a>二、常量在声明时必须必须立即初始化（赋初始值）</h4><p>不能只声明一个常量名，但不对其进行初始化赋值。否则在声明常量时就会报错。</p>
+<pre><code>const PI;   // 报错——Uncaught SyntaxError: Missing initializer in const declaration
+
+PI = 3.1415926;
+</code></pre><h4 id="三、常量的值不可修改的实质（重要！！）"><a href="#三、常量的值不可修改的实质（重要！！）" class="headerlink" title="三、常量的值不可修改的实质（重要！！）"></a>三、常量的值不可修改的实质（重要！！）</h4><p>实际上，常量的值不变，是指常量指向的那个内存地址中所保存的数据不可更改。对于简单的数据类型（数值，字符串、布尔值），他们本身具体的值就保存在常量所指向的那个内存地址中，所以不能修改改简单类型的数据值。</p>
+<p>但是，如果一个常量的值是一个引用类型值，那么常量所指向的内存地址中实际保存的是指向该引用类型值的一个指针（也就是引用类型值在内存中的地址）。所以const只能保证该引用类型地址不变，但该地址中的具体数据是可以变化的。</p>
+<p>下面的例子，代码不会报错，可以正常运行！</p>
+<pre><code>// !!!常量OBJ中实际保存的是后面的对象在内存中的地址!!!
+const OBJ = {};
+
+/**
+ * !!!!!!!!!!
+ * 修改OBJ.prop1，实际只是修改了对象的属性，
+ * 但并没有改变该对象在内存中的地址，
+ * 所以常量OBJ并没有发生变化
+ * !!!!!!!!!!
+ */
+OBJ.prop1 = 123;
+OBJ.prop2 = &#39;Hello World!&#39;
+
+/**
+ * !!!!!!!!!!
+ * 下面这一行就会报错,
+ * 因为此时OBJ指向了另一个对象，OBJ中保存的地址发生了变化
+ * !!!!!!!!!!
+ */
+OBJ = {};   // 报错——Uncaught TypeError: Assignment to constant variable.
+</code></pre><p>下面的例子和上面同理。</p>
+<pre><code>const ARR = [];
+ARR.push(&#39;Hello&#39;);  // 可执行
+ARR.length = 0;     // 可执行
+ARR = [&#39;Dave&#39;];     // 报错，因为ARR重新指向了数组[&#39;Dave&#39;]所在的内存地址
+</code></pre>
+                
+                </div>
+
+                <hr />
+                
+                <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+                <div class="reprint">
+                    <p>
+                        <span class="reprint-tip">转载请注明: </span>
+                        <a href="https://webCaolixin.github.io" class="b-link-green">长安曹公子的博客</a>
+                        <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                        <a href="/2019/03/15/ES6-let-const/" class="b-link-green">ES6 - let、const、var的区别</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        
+
+        
+        
+    <link rel="stylesheet" type="text/css" href="/libs/valine/custom.css"/>
+
+    <div id="valine-comments">
+        <div id="comments-notice">
+            <i class="fa fa-volume-up fa-lg fa-fw notice-icon"></i>
+            温馨提示：请您务必输入文明且有用的评论信息！本站评论系统支持匿名评论，建议您评论时填写个人昵称，邮箱和个人网址可选择填写，感谢您的支持！
+        </div>
+        <div class="comments" id="comments"></div>
+    </div>
+
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+    <script type="text/javascript">
+      var GUEST = ['nick','mail','link'];
+      var guest = 'nick,mail,link';
+      guest = guest.split(',').filter(function (item) {
+        return GUEST.indexOf(item)>-1;
+      });
+      new Valine({
+        el: '#comments' ,
+        verify: 'false',
+        notify: 'true',
+        appId: '8QCStxYhzTmcfzSimF0rbgWW-gzGzoHsz',
+        appKey: 'cRiWQY0NyClTBqBiF0HrCFgw',
+        placeholder: '请输入您的留言',
+        avatar: 'mm',
+        guest_info: guest,
+        pageSize: '10' || 10,
+        visitor: 'true'
+      });
+    </script>
+
+        
+
+        
+
+        
+
+<article id="articles" class="container prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6">
+            <div class="article-badge left-badge text-color">上一篇</div>
+            <div class="card">
+                <a href="/2019/03/18/ES6-destructuring/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/article/featureimages/ES6.jpg" class="responsive-img" alt="ES6 - 解构赋值">
+                        
+                        <span class="card-title">ES6 - 解构赋值</span>
+                    </div>
+                    <div class="card-content article-content">
+                        <div class="summary">
+                            解构赋值
+ES6允许按照一定的模式，从数组和对象中提取值，然后对变量赋值，这被称为解构赋值。
+
+这听起来比较抽象。我们来用一个简单的例子，直观明了的解释什么是解构赋值。
+在解构赋值之前，我们如果需要一次性声明并赋值多个变量，需要这样操作：
+
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-calendar fa-fw"></i>2019-03-18
+                            </span>
+                            <span class="publish-author">
+                                <i class="fa fa-user fa-fw"></i>
+                                
+                                    长安曹公子
+                                
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/#ES6" target="_blank">
+                            <span class="chip bg-color">ES6</span>
+                        </a>
+                        
+                    </div>
+                    
+                </a>
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6">
+            <div class="article-badge right-badge text-color">下一篇</div>
+            <div class="card">
+                <a href="/2019/03/13/ECtx-scope-closure/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/article/featureimages/JavaScript.jpg" class="responsive-img" alt="JavaScript - 执行环境、作用域、作用域链、闭包">
+                        
+                        <span class="card-title">JavaScript - 执行环境、作用域、作用域链、闭包</span>
+                    </div>
+                    <div class="card-content article-content">
+                        <div class="summary">
+                            
+JavaScript中的执行环境、作用域、作用域链、闭包一直是一个非常有意思的话题，很多博主和大神都分享过相关的文章。这些知识点不仅比较抽象，不易理解，更重要的是与这些知识点相关的问题在面试中高频出现。之前我也看过不少文章，依旧是似懂非懂
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-calendar fa-fw"></i>2019-03-13
+                            </span>
+                            <span class="publish-author">
+                                <i class="fa fa-user fa-fw"></i>
+                                
+                                    长安曹公子
+                                
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/#JavaScript" target="_blank">
+                            <span class="chip bg-color">JavaScript</span>
+                        </a>
+                        
+                    </div>
+                    
+                </a>
+            </div>
+        </div>
+        
+    </div>
+</article>
+    </div>
+</main>
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m12 l8 copy-right">
+            本站由 &copy;<a href="http://blinkfox.com" target="_blank">Blinkfox </a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 采用
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank"> hexo-theme-matery </a>主题搭建
+        </div>
+        <div class="col s12 m12 l4 social-link hide-on-med-and-down">
+            <a href="https://github.com/webCaolixin" class="tooltipped" target="_blank" data-tooltip="GitHub" data-position="top" data-delay="50">
+                <i class="fa fa-github fa-lg"></i>
+            </a>
+            <a href="mailto:changAncgz@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+                <i class="fa fa-envelope fa-lg"></i>
+            </a>
+            <a href="https://weibo.com/u/5153743489" class="tooltipped" target="_blank" data-tooltip="新浪微博" data-position="top" data-delay="50">
+                <i class="fa fa-weibo fa-lg"></i>
+            </a>
+            <a href="https://www.jianshu.com/u/a75c156bd273" class="tooltipped" target="_blank" data-tooltip="简书主页" data-position="top" data-delay="50">
+                <i class="fa fa-lg">简</i>
+            </a>
+            <a href="https://juejin.im/user/5b398404f265da5967194815" class="tooltipped" target="_blank" data-tooltip="掘金主页" data-position="top" data-delay="50">
+                <i class="fa fa-lg">掘</i>
+            </a>
+        </div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+<script src="/js/search.js"></script>
+
+<script type="text/javascript">
+  (function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title">搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus="">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-double-up"></i>
+    </a>
+</div>
+
+</body>
+</html>

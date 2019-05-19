@@ -5,7 +5,7 @@ categories: 编程
 tags:
 - ES6
 - Promise
-img: /medias/article/featureimages/ES6-Promise.webp
+img: /medias/article/featureimages/ES6-Promise.jpg
 ---
 > Promise是面试中最常见的问题之一，也是ES6中很有用、很核心的一个新特性。尤其在如今异步操作越来越多、越来越复杂的情况下，Prmoise更是显示出了它强大而又优雅的本质。这篇文章，我们来系统地讲解一下Promise相关的核心知识点。
 

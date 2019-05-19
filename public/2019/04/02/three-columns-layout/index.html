@@ -1,0 +1,730 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+
+    
+    <meta name="keywords" content="CSS,布局,hexo-theme-matery">
+    <meta name="description" content="
+面试时，经常会被问到一种常用布局方式 —— 三栏式布局（左右两栏定宽，中间一栏宽度自适应），这样的布局方式用CSS应该如何来实现呢？今天我们来总结一下实现这种布局方式的5种不同方法。
+
+我们先来看看最终要实现的效果。
+
+1. 利用浮动（f">
+
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="布局篇 - 三栏布局（左右定宽，中间自适应）">
+    <meta property="og:url" content="https://webCaolixin.github.io/2019/04/02/three-columns-layout/">
+    <meta property="og:site_name" content="长安曹公子的博客">
+    <meta property="og:description" content="
+面试时，经常会被问到一种常用布局方式 —— 三栏式布局（左右两栏定宽，中间一栏宽度自适应），这样的布局方式用CSS应该如何来实现呢？今天我们来总结一下实现这种布局方式的5种不同方法。
+
+我们先来看看最终要实现的效果。
+
+1. 利用浮动（f">
+    <meta property="og:locale" content="zh-CN">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="布局篇 - 三栏布局（左右定宽，中间自适应）">
+    <meta name="twitter:description" content="
+面试时，经常会被问到一种常用布局方式 —— 三栏式布局（左右两栏定宽，中间一栏宽度自适应），这样的布局方式用CSS应该如何来实现呢？今天我们来总结一下实现这种布局方式的5种不同方法。
+
+我们先来看看最终要实现的效果。
+
+1. 利用浮动（f">
+    
+    <link rel="canonical" href="/2019/04/02/three-columns-layout/">
+
+    <title>布局篇 - 三栏布局（左右定宽，中间自适应） | 长安曹公子的博客</title>
+
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <!--prettify代码高亮主题css引入-->
+    <link rel="stylesheet" type="text/css" href="/libs/prettify/css/atelier-heath-light.min.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/libs/baidu/autoPush.js"></script>
+
+    <!--prettify代码高亮脚本引入-->
+<script src="/libs/prettify/js/prettify.js"></script>
+
+<script type="text/javascript">
+  $(window).load(function(){
+    $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+    prettyPrint();
+  })
+</script>
+    
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d1e670e15af1e406f40405b910c79644";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+</head>
+</head>
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="nav-transparent">
+        <div id="navContainer" class="container">
+            <div class="nav-wrapper">
+                <div class="brand-logo">
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <img src="/medias/logo.jpg" class="logo-img hide-on-small-only">
+                        
+                        <span class="logo-span">长安曹公子的博客</span>
+                    </a>
+                </div>
+
+                <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/" class="waves-effect waves-light">首页</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/codings/" class="waves-effect waves-light">编程</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/random-thoughts/" class="waves-effect waves-light">随想</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/journals/" class="waves-effect waves-light">日志</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/galleries/" class="waves-effect waves-light">影集</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/tags/" class="waves-effect waves-light">标签</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/archives/" class="waves-effect waves-light">时间轴</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/about/" class="waves-effect waves-light">关于</a>
+        </li>
+        
+    
+    <li>
+        <a id="toggleSearch" class="waves-effect waves-light">
+            <i id="searchIcon" class="mdi-action-search"></i>
+        </a>
+    </li>
+    
+</ul>
+
+<div class="side-nav" id="mobile-nav">
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">长安曹公子的博客</div>
+        <div class="logo-desc">
+        
+            谜一样的浮世，每一步都未知
+        
+        </div>
+    </div>
+    <ul class="menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/codings/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>编程
+            </a>
+        </li>
+        
+        <li>
+            <a href="/random-thoughts/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>随想
+            </a>
+        </li>
+        
+        <li>
+            <a href="/journals/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>日志
+            </a>
+        </li>
+        
+        <li>
+            <a href="/galleries/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>影集
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>时间轴
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>关于
+            </a>
+        </li>
+        
+    </ul>
+    <div class="social-link">
+        <a href="https://github.com/webCaolixin" class="tooltipped" target="_blank" data-tooltip="GitHub" data-position="top" data-delay="50">
+            <i class="fa fa-github fa-lg"></i>
+        </a>
+        <a href="mailto:changAncgz@163.com" class="tooltipped" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+            <i class="fa fa-envelope fa-lg"></i>
+        </a>
+        <a href="https://weibo.com/u/5153743489" class="tooltipped" target="_blank" data-tooltip="新浪微博" data-position="top" data-delay="50">
+            <i class="fa fa-weibo fa-lg"></i>
+        </a>
+        <a href="https://www.jianshu.com/u/a75c156bd273" class="tooltipped" target="_blank" data-tooltip="简书主页" data-position="top" data-delay="50">
+            <i class="fa fa-lg">简</i>
+        </a>
+        <a href="https://juejin.im/user/5b398404f265da5967194815" class="tooltipped" target="_blank" data-tooltip="掘金主页" data-position="top" data-delay="50">
+            <i class="fa fa-lg">掘</i>
+        </a>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </nav>
+</header>
+
+    
+
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        布局篇 - 三栏布局（左右定宽，中间自适应）
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<main class="content">
+
+    <!-- 文章内容详情 -->
+    <div id="artDetail" class="container">
+        <div class="card">
+            <div class="card-content article-info">
+                
+                <div class="article-tag">
+                    
+                    <a href="/tags/#CSS" target="_blank">
+                        <span class="chip bg-color">CSS</span>
+                    </a>
+                    
+                    <a href="/tags/#布局" target="_blank">
+                        <span class="chip bg-color">布局</span>
+                    </a>
+                    
+                </div>
+                
+                <div class="author-info">
+                    <span>
+                        <i class="fa fa-calendar fa-fw"></i>2019-04-02
+                    </span>
+                </div>
+            </div>
+            <hr>
+            <div class="card-content article-card-content">
+                <div id="articleContent">
+                
+
+                
+                    <blockquote>
+<p>面试时，经常会被问到一种常用布局方式 —— <code>三栏式布局</code>（左右两栏定宽，中间一栏宽度自适应），这样的布局方式用<code>CSS</code>应该如何来实现呢？今天我们来总结一下实现这种布局方式的<code>5种</code>不同方法。</p>
+</blockquote>
+<p>我们先来看看最终要实现的效果。</p>
+<p><img src="/medias/article/coding/three-columns-layout/three-columns-layout.png" alt="三栏式布局"></p>
+<h3 id="1-利用浮动（float）布局"><a href="#1-利用浮动（float）布局" class="headerlink" title="1. 利用浮动（float）布局"></a>1. 利用浮动（float）布局</h3><pre><code>&lt;!--HTML--&gt;
+&lt;body&gt;
+  &lt;section id=&quot;container&quot;&gt;
+    &lt;!--注意！！.left和.right谁在前都可以，但是.center必须在它俩后面--&gt;
+    &lt;aside class=&quot;left&quot;&gt;left(定宽)&lt;/aside&gt;
+    &lt;aside class=&quot;right&quot;&gt;right(定宽)&lt;/aside&gt;
+    &lt;main class=&quot;center&quot;&gt;center(宽度自适应)&lt;/main&gt;
+  &lt;/section&gt;
+&lt;/body&gt;
+</code></pre><pre><code>/***CSS***/
+.left {
+    width: 200px;
+    height: 100vh;
+    background: #61daa5;
+    /* 左侧左浮动 */
+    float: left;
+}
+
+.right {
+    width: 200px;
+    height: 100vh;
+    background: #ffa7e9;
+    /* 右侧右浮动 */
+    float: right;
+}
+
+.center {
+    height: 100vh;
+    background: #78a5f1;
+    /* 多出10px，是给左中右三栏留出10px间距 */
+    margin-left: 210px;
+    margin-right: 210px;
+}
+</code></pre><h3 id="2-利用绝对定位（absolute）布局"><a href="#2-利用绝对定位（absolute）布局" class="headerlink" title="2. 利用绝对定位（absolute）布局"></a>2. 利用绝对定位（absolute）布局</h3><pre><code>&lt;!--HTML--&gt;
+&lt;body&gt;
+  &lt;section id=&quot;container&quot;&gt;
+    &lt;!--注意！！.left/.center/.right任意排序，不会影响最终结果--&gt;
+    &lt;aside class=&quot;left&quot;&gt;left(定宽)&lt;/aside&gt;
+    &lt;main class=&quot;center&quot;&gt;center(宽度自适应)&lt;/main&gt;
+    &lt;aside class=&quot;right&quot;&gt;right(定宽)&lt;/aside&gt;
+  &lt;/section&gt;
+&lt;/body&gt;
+</code></pre><pre><code>/***CSS***/
+.left {
+    width: 200px;
+    height: 100vh;
+    background: #61daa5;
+    /* 绝对定位 */
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.right {
+    width: 200px;
+    height: 100vh;
+    background: #ffa7e9;
+    /* 绝对定位 */
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.center {
+    height: 100vh;
+    background: #78a5f1;
+    /* 多出10px，是给左中右三栏留出10px间距 */
+    margin-left: 210px;
+    margin-right: 210px;
+}
+</code></pre><h3 id="3-利用表格（table-table-cell）布局"><a href="#3-利用表格（table-table-cell）布局" class="headerlink" title="3. 利用表格（table/table-cell）布局"></a>3. 利用表格（table/table-cell）布局</h3><pre><code>&lt;!--HTML--&gt;
+&lt;body&gt;
+  &lt;section id=&quot;container&quot;&gt;
+    &lt;!--注意！！.left/.center/.right/必须按照左中右顺序排序--&gt;
+    &lt;aside class=&quot;left&quot;&gt;left(定宽)&lt;/aside&gt;
+    &lt;main class=&quot;center&quot;&gt;center(宽度自适应)&lt;/main&gt;
+    &lt;aside class=&quot;right&quot;&gt;right(定宽)&lt;/aside&gt;
+  &lt;/section&gt;
+&lt;/body&gt;
+</code></pre><pre><code>/***CSS***/
+/* .left,.center,.right的父元素 */
+#container {
+    display: table;
+    /* 一定要设置width: 100% */
+    width: 100%;
+}
+
+/* .left,.center,.right三个元素 */
+.left, .center, .right {
+    display: table-cell;
+}
+
+.left {
+    width: 200px;
+    height: 100vh;
+    background: #61daa5;
+}
+
+.right {
+    width: 200px;
+    height: 100vh;
+    background: #ffa7e9;
+}
+
+.center {
+    height: 100vh;
+    background: #78a5f1;
+}
+</code></pre><h3 id="4-利用弹性和（flex-box）布局"><a href="#4-利用弹性和（flex-box）布局" class="headerlink" title="4. 利用弹性和（flex-box）布局"></a>4. 利用弹性和（flex-box）布局</h3><pre><code>&lt;!--HTML--&gt;
+&lt;body&gt;
+  &lt;section id=&quot;container&quot;&gt;
+    &lt;!--注意！！.left/.center/.right/必须按照左中右顺序排序--&gt;
+    &lt;aside class=&quot;left&quot;&gt;left(定宽)&lt;/aside&gt;
+    &lt;main class=&quot;center&quot;&gt;center(宽度自适应)&lt;/main&gt;
+    &lt;aside class=&quot;right&quot;&gt;right(定宽)&lt;/aside&gt;
+  &lt;/section&gt;
+&lt;/body&gt;
+</code></pre><pre><code>/***CSS***/
+#container {
+    /* 设置父元素为弹性盒 */
+    display: flex;
+}
+
+.left {
+    width: 200px;
+    height: 100vh;
+    background: #61daa5;
+}
+
+.right {
+    width: 200px;
+    height: 100vh;
+    background: #ffa7e9;
+}
+
+.center {
+    height: 100vh;
+    background: #78a5f1;
+    /* 设置flex:1; 表示该元素占满剩余空间 */
+    flex: 1;
+    /* 左中右之间留出10px间距 */
+    margin: 0 10px;
+}
+</code></pre><h3 id="5-利用栅格（grid）布局"><a href="#5-利用栅格（grid）布局" class="headerlink" title="5. 利用栅格（grid）布局"></a>5. 利用栅格（grid）布局</h3><p>关于grid布局的基础知识，大家可以参考<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Grid_Layout" target="_blank" rel="noopener">MDN-网格布局</a>和<a href="http://www.ruanyifeng.com/blog/2019/03/grid-layout-tutorial.html" target="_blank" rel="noopener">阮一峰-Grid 布局教程</a>以及<a href="https://www.zhangxinxu.com/wordpress/2018/11/display-grid-css-css3/" target="_blank" rel="noopener">张鑫旭-写给自己看的display: grid布局教程</a>三篇文章深入学习。</p>
+<pre><code>&lt;!--HTML--&gt;
+&lt;body&gt;
+  &lt;section id=&quot;container&quot;&gt;
+    &lt;!--注意！！.left/.center/.right/必须按照左中右顺序排序--&gt;
+    &lt;aside class=&quot;left&quot;&gt;left(定宽)&lt;/aside&gt;
+    &lt;main class=&quot;center&quot;&gt;center(宽度自适应)&lt;/main&gt;
+    &lt;aside class=&quot;right&quot;&gt;right(定宽)&lt;/aside&gt;
+  &lt;/section&gt;
+&lt;/body&gt;
+</code></pre><pre><code>/***CSS***/
+#container {
+    /* 设置父元素为grid */
+    display: grid;
+    /* 设置几个值代表布局为几行，每个值是行高 */
+    grid-template-rows: 100vh;
+    /* 设置几个值代表布局为几列，每个值是列宽 */
+    grid-template-columns: 200px auto 200px;
+}
+
+.left {
+    background: #61daa5;
+}
+
+.right {
+    background: #ffa7e9;
+}
+
+.center {
+    background: #78a5f1;
+    /* 左中右之间留出10px间距 */ 
+    margin: 0 10px;
+}
+</code></pre>
+                
+                </div>
+
+                <hr />
+                
+                <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+                <div class="reprint">
+                    <p>
+                        <span class="reprint-tip">转载请注明: </span>
+                        <a href="https://webCaolixin.github.io" class="b-link-green">长安曹公子的博客</a>
+                        <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                        <a href="/2019/04/02/three-columns-layout/" class="b-link-green">布局篇 - 三栏布局（左右定宽，中间自适应）</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        
+
+        
+        
+    <link rel="stylesheet" type="text/css" href="/libs/valine/custom.css"/>
+
+    <div id="valine-comments">
+        <div id="comments-notice">
+            <i class="fa fa-volume-up fa-lg fa-fw notice-icon"></i>
+            温馨提示：请您务必输入文明且有用的评论信息！本站评论系统支持匿名评论，建议您评论时填写个人昵称，邮箱和个人网址可选择填写，感谢您的支持！
+        </div>
+        <div class="comments" id="comments"></div>
+    </div>
+
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+    <script type="text/javascript">
+      var GUEST = ['nick','mail','link'];
+      var guest = 'nick,mail,link';
+      guest = guest.split(',').filter(function (item) {
+        return GUEST.indexOf(item)>-1;
+      });
+      new Valine({
+        el: '#comments' ,
+        verify: 'false',
+        notify: 'true',
+        appId: '8QCStxYhzTmcfzSimF0rbgWW-gzGzoHsz',
+        appKey: 'cRiWQY0NyClTBqBiF0HrCFgw',
+        placeholder: '请输入您的留言',
+        avatar: 'mm',
+        guest_info: guest,
+        pageSize: '10' || 10,
+        visitor: 'true'
+      });
+    </script>
+
+        
+
+        
+
+        
+
+<article id="articles" class="container prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6">
+            <div class="article-badge left-badge text-color">上一篇</div>
+            <div class="card">
+                <a href="/2019/04/02/two-columns-layout/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="布局篇 - 两栏式布局（左侧定宽，右侧自适应）">
+                        
+                        <span class="card-title">布局篇 - 两栏式布局（左侧定宽，右侧自适应）</span>
+                    </div>
+                    <div class="card-content article-content">
+                        <div class="summary">
+                            
+面试中，另外一种经常被问到一种常用布局方式 —— 两栏式布局（左侧栏定宽，右侧一栏宽度自适应），这样的布局方式用CSS应该如何来实现呢？今天我们来总结一下实现这种布局方式的5种不同方法。
+
+我们先来看看最终要实现的效果。
+
+1. 利用浮动
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-calendar fa-fw"></i>2019-04-02
+                            </span>
+                            <span class="publish-author">
+                                <i class="fa fa-user fa-fw"></i>
+                                
+                                    长安曹公子
+                                
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/#CSS" target="_blank">
+                            <span class="chip bg-color">CSS</span>
+                        </a>
+                        
+                        <a href="/tags/#布局" target="_blank">
+                            <span class="chip bg-color">布局</span>
+                        </a>
+                        
+                    </div>
+                    
+                </a>
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6">
+            <div class="article-badge right-badge text-color">下一篇</div>
+            <div class="card">
+                <a href="/2019/03/28/ES6-Generator/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/article/featureimages/ES6.jpg" class="responsive-img" alt="ES6 - Generator函数">
+                        
+                        <span class="card-title">ES6 - Generator函数</span>
+                    </div>
+                    <div class="card-content article-content">
+                        <div class="summary">
+                            一、什么是Generator函数Generator函数是ES6标准中提出的一种异步编程的解决方案。这种函数与普通函数最大的区别在于它可以暂停执行，又可以从暂停的位置恢复继续执行。
+从语法上看，Generator函数就是一个状态机，封装了许多
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-calendar fa-fw"></i>2019-03-28
+                            </span>
+                            <span class="publish-author">
+                                <i class="fa fa-user fa-fw"></i>
+                                
+                                    长安曹公子
+                                
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/#ES6" target="_blank">
+                            <span class="chip bg-color">ES6</span>
+                        </a>
+                        
+                        <a href="/tags/#Generator函数" target="_blank">
+                            <span class="chip bg-color">Generator函数</span>
+                        </a>
+                        
+                    </div>
+                    
+                </a>
+            </div>
+        </div>
+        
+    </div>
+</article>
+    </div>
+</main>
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m12 l8 copy-right">
+            本站由 &copy;<a href="http://blinkfox.com" target="_blank">Blinkfox </a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 采用
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank"> hexo-theme-matery </a>主题搭建
+        </div>
+        <div class="col s12 m12 l4 social-link hide-on-med-and-down">
+            <a href="https://github.com/webCaolixin" class="tooltipped" target="_blank" data-tooltip="GitHub" data-position="top" data-delay="50">
+                <i class="fa fa-github fa-lg"></i>
+            </a>
+            <a href="mailto:changAncgz@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+                <i class="fa fa-envelope fa-lg"></i>
+            </a>
+            <a href="https://weibo.com/u/5153743489" class="tooltipped" target="_blank" data-tooltip="新浪微博" data-position="top" data-delay="50">
+                <i class="fa fa-weibo fa-lg"></i>
+            </a>
+            <a href="https://www.jianshu.com/u/a75c156bd273" class="tooltipped" target="_blank" data-tooltip="简书主页" data-position="top" data-delay="50">
+                <i class="fa fa-lg">简</i>
+            </a>
+            <a href="https://juejin.im/user/5b398404f265da5967194815" class="tooltipped" target="_blank" data-tooltip="掘金主页" data-position="top" data-delay="50">
+                <i class="fa fa-lg">掘</i>
+            </a>
+        </div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+<script src="/js/search.js"></script>
+
+<script type="text/javascript">
+  (function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title">搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus="">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-double-up"></i>
+    </a>
+</div>
+
+</body>
+</html>

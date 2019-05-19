@@ -3,7 +3,7 @@ title: 乐游原 - 青龙寺樱花
 date: 2019-03-21 19:28:13
 categories: 影集
 tags: 青龙寺(影集)
-img: /medias/galleries/qinglong-sakura/cover.webp
+img: /medias/galleries/qinglong-sakura/cover.jpg
 ---
 大学母校与佛教八大宗派之一 —— 密宗祖庭，唐朝佛教真言宗祖庭的青龙寺只有两站路程，算得上是西安城内离青龙寺最近的高校，也是一种难得的缘分。然而，大学四年却未能亲身领略青龙寺的千年樱花美景。
 

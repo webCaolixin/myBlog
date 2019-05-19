@@ -1,0 +1,704 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+
+    
+    <meta name="keywords" content="JavaScript,Function,hexo-theme-matery">
+    <meta name="description" content="
+JavaScript中的函数一直是一个很有讨论性的话题点。函数本身不仅仅是一个引用类型——所有函数都是Function类型的实例，更重要的是因为函数还会涉及到执行环境、作用域、闭包以及让人头疼的this等等…这篇文章我们来回顾一下与函数有">
+
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="JavaScript - Function">
+    <meta property="og:url" content="https://webCaolixin.github.io/2019/03/12/JavaScript-Function/">
+    <meta property="og:site_name" content="长安曹公子的博客">
+    <meta property="og:description" content="
+JavaScript中的函数一直是一个很有讨论性的话题点。函数本身不仅仅是一个引用类型——所有函数都是Function类型的实例，更重要的是因为函数还会涉及到执行环境、作用域、闭包以及让人头疼的this等等…这篇文章我们来回顾一下与函数有">
+    <meta property="og:locale" content="zh-CN">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="JavaScript - Function">
+    <meta name="twitter:description" content="
+JavaScript中的函数一直是一个很有讨论性的话题点。函数本身不仅仅是一个引用类型——所有函数都是Function类型的实例，更重要的是因为函数还会涉及到执行环境、作用域、闭包以及让人头疼的this等等…这篇文章我们来回顾一下与函数有">
+    
+    <link rel="canonical" href="/2019/03/12/JavaScript-Function/">
+
+    <title>JavaScript - Function | 长安曹公子的博客</title>
+
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <!--prettify代码高亮主题css引入-->
+    <link rel="stylesheet" type="text/css" href="/libs/prettify/css/atelier-heath-light.min.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/libs/baidu/autoPush.js"></script>
+
+    <!--prettify代码高亮脚本引入-->
+<script src="/libs/prettify/js/prettify.js"></script>
+
+<script type="text/javascript">
+  $(window).load(function(){
+    $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+    prettyPrint();
+  })
+</script>
+    
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d1e670e15af1e406f40405b910c79644";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+</head>
+</head>
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="nav-transparent">
+        <div id="navContainer" class="container">
+            <div class="nav-wrapper">
+                <div class="brand-logo">
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <img src="/medias/logo.jpg" class="logo-img hide-on-small-only">
+                        
+                        <span class="logo-span">长安曹公子的博客</span>
+                    </a>
+                </div>
+
+                <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/" class="waves-effect waves-light">首页</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/codings/" class="waves-effect waves-light">编程</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/random-thoughts/" class="waves-effect waves-light">随想</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/journals/" class="waves-effect waves-light">日志</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/galleries/" class="waves-effect waves-light">影集</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/tags/" class="waves-effect waves-light">标签</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/archives/" class="waves-effect waves-light">时间轴</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/about/" class="waves-effect waves-light">关于</a>
+        </li>
+        
+    
+    <li>
+        <a id="toggleSearch" class="waves-effect waves-light">
+            <i id="searchIcon" class="mdi-action-search"></i>
+        </a>
+    </li>
+    
+</ul>
+
+<div class="side-nav" id="mobile-nav">
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">长安曹公子的博客</div>
+        <div class="logo-desc">
+        
+            谜一样的浮世，每一步都未知
+        
+        </div>
+    </div>
+    <ul class="menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/codings/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>编程
+            </a>
+        </li>
+        
+        <li>
+            <a href="/random-thoughts/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>随想
+            </a>
+        </li>
+        
+        <li>
+            <a href="/journals/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>日志
+            </a>
+        </li>
+        
+        <li>
+            <a href="/galleries/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>影集
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>时间轴
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>关于
+            </a>
+        </li>
+        
+    </ul>
+    <div class="social-link">
+        <a href="https://github.com/webCaolixin" class="tooltipped" target="_blank" data-tooltip="GitHub" data-position="top" data-delay="50">
+            <i class="fa fa-github fa-lg"></i>
+        </a>
+        <a href="mailto:changAncgz@163.com" class="tooltipped" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+            <i class="fa fa-envelope fa-lg"></i>
+        </a>
+        <a href="https://weibo.com/u/5153743489" class="tooltipped" target="_blank" data-tooltip="新浪微博" data-position="top" data-delay="50">
+            <i class="fa fa-weibo fa-lg"></i>
+        </a>
+        <a href="https://www.jianshu.com/u/a75c156bd273" class="tooltipped" target="_blank" data-tooltip="简书主页" data-position="top" data-delay="50">
+            <i class="fa fa-lg">简</i>
+        </a>
+        <a href="https://juejin.im/user/5b398404f265da5967194815" class="tooltipped" target="_blank" data-tooltip="掘金主页" data-position="top" data-delay="50">
+            <i class="fa fa-lg">掘</i>
+        </a>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </nav>
+</header>
+
+    
+
+<div class="bg-cover post-cover" style="background-image: url('/medias/article/featureimages/JavaScript.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        JavaScript - Function
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<main class="content">
+
+    <!-- 文章内容详情 -->
+    <div id="artDetail" class="container">
+        <div class="card">
+            <div class="card-content article-info">
+                
+                <div class="article-tag">
+                    
+                    <a href="/tags/#JavaScript" target="_blank">
+                        <span class="chip bg-color">JavaScript</span>
+                    </a>
+                    
+                    <a href="/tags/#Function" target="_blank">
+                        <span class="chip bg-color">Function</span>
+                    </a>
+                    
+                </div>
+                
+                <div class="author-info">
+                    <span>
+                        <i class="fa fa-calendar fa-fw"></i>2019-03-12
+                    </span>
+                </div>
+            </div>
+            <hr>
+            <div class="card-content article-card-content">
+                <div id="articleContent">
+                
+
+                
+                    <blockquote>
+<p>JavaScript中的函数一直是一个很有讨论性的话题点。函数本身不仅仅是一个引用类型——所有函数都是Function类型的实例，更重要的是因为函数还会涉及到执行环境、作用域、闭包以及让人头疼的this等等…这篇文章我们来回顾一下与函数有关的一些值得注意的地方。</p>
+</blockquote>
+<h3 id="函数的定义"><a href="#函数的定义" class="headerlink" title="函数的定义"></a>函数的定义</h3><p>定义函数有三种方法：<br>1、函数声明 2、函数表达式 3、使用Function构造函数</p>
+<h4 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h4><pre><code>function sum (num1, num2) {
+  return num1 + num2;
+}
+</code></pre><h4 id="函数表达式"><a href="#函数表达式" class="headerlink" title="函数表达式"></a>函数表达式</h4><p>用函数表达式的方式定义函数，就是将一个匿名函数赋值给一个变量。<br>文章开头说道，所有函数都是Function类型的一个实例，所以，这个变量（引用类型）最终就是一个指向该匿名函数实例的指针。</p>
+<pre><code>var sum = function (num1, num2) {
+  return num1 + num2;
+}
+</code></pre><p>以上两种函数定义方式，从效果上看是相同的，几乎相差无几，但它们之间还是存在一些细微的差别，我们稍后再讲。</p>
+<h4 id="使用Function构造函数"><a href="#使用Function构造函数" class="headerlink" title="使用Function构造函数"></a>使用Function构造函数</h4><p>因为所有函数都是Function类型的实例，所以调用<code>new Function()</code>构造函数，也可以定义函数。</p>
+<pre><code>// 构造函数中最后一个参数始终都被看成是函数体，而前面的所有参数则是枚举出的函数的形参。
+var sum = new Function(&quot;num1&quot;, &quot;num2&quot;, &quot;return num1 +num2&quot;)
+</code></pre><p>实际开发中，很少使用这种方法定义函数。原因主要有两点：</p>
+<ol>
+<li>定义不方便。如果函数体代码过长，使用这种方法，因为最后一个参数是字符串格式，不易换行高亮等。</li>
+<li>这种方式会导致解析两次代码，影响性能。第一次是解析常规JS代码，第二次是解析传入构造函数中的字符串。</li>
+</ol>
+<h4 id="函数声明和函数表达式的区别（重要）"><a href="#函数声明和函数表达式的区别（重要）" class="headerlink" title="函数声明和函数表达式的区别（重要）"></a>函数声明和函数表达式的区别（重要）</h4><p>虽然函数声明和函数表达式都可以定义函数，但是解析器在处理他们的时候还是存在着一些差别。</p>
+<p>当解析器进入一个执行环境并向环境中加载数据的时候，对于用函数声明定义的函数，解析器会率先读取他们，保证在执行任何代码之前，就可以访问调用这些函数。</p>
+<pre><code>console.log(sum(10, 20));   // 30
+
+// ...省略很多代代码
+
+// 函数声明定义函数
+function sum (num1, num2) {
+  return sum1 + sum2;
+}
+</code></pre><p>上面的例子，先调用函数<code>sum</code>，在之后的代码中再声明该函数，完全没有问题。因为，<strong>在执行<code>sum(10, 20)</code>以及其他任何代码之前，JS解析器会先将<code>sum</code>函数的声明定义提升到当前执行环境的代码树的最顶端，保证之后随时可以访问调用该函数。这个过程叫做——<code>函数声明提升</code>。</strong></p>
+<p>而用函数表达式定义函数的方式，不会存在函数声明提升的过程。也就是说，必须等到解析器执行到函数表达式定义所在的代码行之后，函数才算被定义成功，之后才可以访问调用该函数。</p>
+<p>像下面这样调用<code>sum</code>函数式，代码运行后会报错，因为<strong>用函数表达式定义函数不会存在函数声明提升的过程</strong>，必须在函数表达式定义函数代码之后才能调用。</p>
+<pre><code>console.log(sum(10,10));    // 这里会报错
+
+// ...省略很多代代码
+
+// 函数表达式定义函数
+var sum = function(num1, num2){ 
+  return num1 + num2; 
+};
+</code></pre><p><strong>对于函数声明和函数表达式定义函数的区别，还有一点一定要更加注意：</strong></p>
+<p><strong>首先，JavaScript是支持动态创建函数的。</strong>也就是根据不同的需求或条件来动态定义函数。但是，动态创建须采用函数表达式的方式定义，使用函数声明方式会导致意想不到的错误。</p>
+<p>来看下面的例子：</p>
+<pre><code>function createFunction () {
+  // 像下面这样根据某个条件来动态声明一个函数很容易导致问题或出错！！！
+
+  // arguments是函数中内置的类数组对象，本文后面会讲到
+  if (arguments.length &gt; 1) {
+    function sum() {
+      // ...一种定义
+    }
+  } else {
+    function() {
+      // ...另一种定义
+    }
+  }
+}
+</code></pre><p>实际上，上面的动态定义函数的方式，在ECMAScript中属于无效语法，JavaScript引擎会尝试修正错误，将其转换为合理的状态。但问题是浏览器尝试修正错误的做法并不一致。大多数浏览器会返回第二个声明，忽略<code>arguments.length</code>条件；Firefox会在<code>arguments.length &gt; 1</code>时返回第一个函数声明，因此这种使用方式很危险！！！</p>
+<p>但是利用函数表达式的方式来动态定义函数，是可以达到预想的目的的！！</p>
+<p>上面的例子改写成下这样，就不会出现问题。</p>
+<pre><code>var sum = null;   // 也可以不赋初始值
+function createFunction () {
+  // arguments是函数中内置的类数组对象，本文后面会讲到
+  if (arguments.length &gt; 1) {
+    sum = function() {
+      // ...一种定义
+    }
+  } else {
+    sum = function() {
+      // ...另一种定义
+    }
+  }
+}
+</code></pre><p>仔细想想，这样能够完美达到目的也很好理解。我们先定义了一个<code>sum</code>变量，最后根据<code>arguments.length</code>是否大于0定义两个不同的匿名函数并赋值给<code>sum</code>变量，这和根据不同条件来为一个变量赋不同的值本质是完全一样的，当然不会有任何问题。</p>
+<h3 id="JS中函数没有重载（重要）"><a href="#JS中函数没有重载（重要）" class="headerlink" title="JS中函数没有重载（重要）"></a>JS中函数没有重载（重要）</h3><p>不论是以哪种方式定义的函数，<strong>函数名实际就是一个指向函数实例的指针，本质上函数名和普通变量没什么区别。</strong>这也就好理解为什么JS中没有函数重载的概念。<br>看下面的例子：</p>
+<pre><code>function sum(num){ 
+  return num + 100; 
+} 
+function sum(num) { 
+  return num + 200; 
+} 
+console.log(addSomeNumber(100));    // 300 
+</code></pre><p>上面这个例子中声明了两个同名<code>sum</code>函数，而结果则是后面的函数定义覆盖了前面的函数，更准确的说<code>sum</code>现在指向后面定义的函数。</p>
+<p>为什么会这样？就是因为JS中函数不存在重载，其实上面的代码实际上与下面的代码没有什么区别。</p>
+<pre><code>var sum = function (num){ 
+  return num + 100; 
+}; 
+sum = function (num) { 
+  return num + 200; 
+}; 
+console.log(sum(100));    // 300 
+</code></pre><p>原来，当第一次定义<code>sum</code>之后，<code>sum</code>指向第一个函数实例，当再次定义第二个函数时，<code>sum</code>会重新指向第二个函数实例。</p>
+<h3 id="函数可以作为值传递"><a href="#函数可以作为值传递" class="headerlink" title="函数可以作为值传递"></a>函数可以作为值传递</h3><p>我们多次强调函数名实际就是一个指向函数实例的指针，本质上函数名和普通变量没什么区别。既然是变量，那么函数也就可以作为另一些函数的参数和返回值来传递。</p>
+<h4 id="函数作为参数"><a href="#函数作为参数" class="headerlink" title="函数作为参数"></a>函数作为参数</h4><pre><code>function add (num) {
+  return num + 100;
+}
+
+function cal(calFun, num) {
+  return calFun(num);
+}
+
+cal(add, 100);    // 200
+</code></pre><p>上面的例子中，函数<code>cal</code>接收一个函数和一个数值作为参数，最终返回值是第二个参数（数值）在第一个参数（函数）中的执行结果。而第一个参数——函数中具体做的事情，就是将传入的数值参数与100求和。</p>
+<h4 id="函数作为返回值"><a href="#函数作为返回值" class="headerlink" title="函数作为返回值"></a>函数作为返回值</h4><p>此外，函数也可以作为另一个函数的返回值。对上面例子进行稍微的改造，也可达到相同的目的。</p>
+<pre><code>function cal() {
+  function add (num) {
+    return num + 100;
+  }
+  // 这里返回的是add函数名，而不是函数的调用
+  return add;
+}
+
+let res = cal();
+
+res(100);     // 200
+</code></pre><p>上面的例子，当执行<code>cal()</code>时，该函数返回了内部声明的<code>add</code>函数，我们将返回值再赋值给<code>res</code>变量，此时，<code>res</code>也就指向了<code>add</code>所指向的函数实例。之后我们再调用<code>res</code>函数，并传入参数，得到的结果也是<code>200</code>。</p>
+<h3 id="函数的内部属性"><a href="#函数的内部属性" class="headerlink" title="函数的内部属性"></a>函数的内部属性</h3><h4 id="arguments"><a href="#arguments" class="headerlink" title="arguments"></a>arguments</h4><p>函数中包含一个内置的<code>arguments</code>对象，它是一个类数组对象，包含着所有传入函数中的参数，你可以用数组下标的方式访问其中的元素。</p>
+<pre><code>function show (a, b, c, d, e, f) {
+  console.log(arguments[4]);    // 输出[333, 444]
+}
+
+show(1, &#39;222&#39;, true, null, [333, 444], {aa: &#39;aaa&#39;, b: function() {}});
+</code></pre><p><code>arguments</code>对象自己还有一个<code>callee</code>属性，该属性是一个指针，指向拥有这个<code>arguments</code>对象的函数，也就是这个<code>arguments</code>所属的函数。</p>
+<h4 id="arguments-callee"><a href="#arguments-callee" class="headerlink" title="arguments.callee"></a>arguments.callee</h4><p>在递归函数中，我们可能会经常使用到<code>arguments.callee</code>这一属性。以一个经典的阶乘函数为例:</p>
+<pre><code>// 递归阶乘的经典例子
+function factorial(num) {
+  if (num &lt;=1) {
+    return 1;
+  } else {
+    return num * factorial(num-1);
+  }
+}
+
+// 递归阶乘的优化例子
+function factorial(num) {
+  if (num &lt;=1) {
+    return 1;
+  } else {
+    // 这里的arguments.callee又指向factorial函数
+    return num * arguments.callee(num-1);
+  }
+}
+</code></pre><p>这样写的好处是，当指向该递归函数的函数名发生变化时，递归函数也能顺利执行完成。如果采用上面经典例子的写法，当出现如下代码逻辑时，就会出错。</p>
+<pre><code>// 将另一变量指向递归阶乘函数
+var trueFactorial = factorial;
+
+// 改写原递归阶乘函数
+factorial = function() {
+  return 0;
+};
+
+console.log(trueFactorial(5));
+console.log(factorial(5));
+</code></pre><p>如果以递归阶乘的经典例子定义<code>factorial</code>函数，那么<code>trueFactorial(5)</code>这一行就会出错。因为执行到<code>trueFactorial</code>函数内部<code>return num * factorial(num-1);</code>代码时，<code>factorial</code>实际已经指向了<code>function() {return 0;}</code>，计算结果就会出错。但用递归阶乘的优化例子就不会出现这个问题，因为执行<code>trueFactorial(5)</code>语句时，<code>arguments.callee</code>指向<code>trueFactorial</code>函数。</p>
+<h4 id="arguments-callee-caller"><a href="#arguments-callee-caller" class="headerlink" title="arguments.callee.caller"></a>arguments.callee.caller</h4><p><code>arguments.callee.caller</code>这个属性中保存着调用当前函数的函数的引用。也就是说我们可以通过该属性来获得<code>arguments</code>所属于的那个函数（<code>arguments.callee</code>）是在哪个函数（<code>arguments.callee.caller</code>）中被调用的。</p>
+<p>需要注意的是：如果是在全局作用域中调用的当前函数，<code>arguments.callee.caller</code>的获取到的值为<strong><code>null</code></strong>。</p>
+<p>ES5后，我们也可以直接通过函数实例对象的caller属性来直接访问这一属性。</p>
+<pre><code>function outer(){
+  inner();
+}
+
+function inner(){
+  console.log(inner.caller);    // 打印出outer函数的源码。因为inner是在outer中被调用的
+}
+
+outer();
+</code></pre><p>也可以这么写：</p>
+<pre><code>function outer(){
+  inner();
+}
+
+function inner(){
+  alert(arguments.callee.caller);   // 打印出outer函数的源码。
+}
+
+outer();
+</code></pre><h4 id="this"><a href="#this" class="headerlink" title="this"></a>this</h4><p>函数中另一个有意思又令人头疼的属性——this，由于this指向涉及的内容较多，情况稍微复杂一些，我们将会专门用一篇文章来探讨this相关问题。<br>但概括来说，<strong>this引用的是函数据以执行的环境对象</strong>。当this所在的函数在全局作用域中调用时，它指向window对象；当作为对象的方法调用时，它指向该对象。</p>
+
+                
+                </div>
+
+                <hr />
+                
+                <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+                <div class="reprint">
+                    <p>
+                        <span class="reprint-tip">转载请注明: </span>
+                        <a href="https://webCaolixin.github.io" class="b-link-green">长安曹公子的博客</a>
+                        <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                        <a href="/2019/03/12/JavaScript-Function/" class="b-link-green">JavaScript - Function</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        
+
+        
+        
+    <link rel="stylesheet" type="text/css" href="/libs/valine/custom.css"/>
+
+    <div id="valine-comments">
+        <div id="comments-notice">
+            <i class="fa fa-volume-up fa-lg fa-fw notice-icon"></i>
+            温馨提示：请您务必输入文明且有用的评论信息！本站评论系统支持匿名评论，建议您评论时填写个人昵称，邮箱和个人网址可选择填写，感谢您的支持！
+        </div>
+        <div class="comments" id="comments"></div>
+    </div>
+
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+    <script type="text/javascript">
+      var GUEST = ['nick','mail','link'];
+      var guest = 'nick,mail,link';
+      guest = guest.split(',').filter(function (item) {
+        return GUEST.indexOf(item)>-1;
+      });
+      new Valine({
+        el: '#comments' ,
+        verify: 'false',
+        notify: 'true',
+        appId: '8QCStxYhzTmcfzSimF0rbgWW-gzGzoHsz',
+        appKey: 'cRiWQY0NyClTBqBiF0HrCFgw',
+        placeholder: '请输入您的留言',
+        avatar: 'mm',
+        guest_info: guest,
+        pageSize: '10' || 10,
+        visitor: 'true'
+      });
+    </script>
+
+        
+
+        
+
+        
+
+<article id="articles" class="container prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6">
+            <div class="article-badge left-badge text-color">上一篇</div>
+            <div class="card">
+                <a href="/2019/03/13/ECtx-scope-closure/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/article/featureimages/JavaScript.jpg" class="responsive-img" alt="JavaScript - 执行环境、作用域、作用域链、闭包">
+                        
+                        <span class="card-title">JavaScript - 执行环境、作用域、作用域链、闭包</span>
+                    </div>
+                    <div class="card-content article-content">
+                        <div class="summary">
+                            
+JavaScript中的执行环境、作用域、作用域链、闭包一直是一个非常有意思的话题，很多博主和大神都分享过相关的文章。这些知识点不仅比较抽象，不易理解，更重要的是与这些知识点相关的问题在面试中高频出现。之前我也看过不少文章，依旧是似懂非懂
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-calendar fa-fw"></i>2019-03-13
+                            </span>
+                            <span class="publish-author">
+                                <i class="fa fa-user fa-fw"></i>
+                                
+                                    长安曹公子
+                                
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/#JavaScript" target="_blank">
+                            <span class="chip bg-color">JavaScript</span>
+                        </a>
+                        
+                    </div>
+                    
+                </a>
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6">
+            <div class="article-badge right-badge text-color">下一篇</div>
+            <div class="card">
+                <a href="/2019/03/04/JavaScript-Event/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/article/featureimages/JavaScript.jpg" class="responsive-img" alt="JavaScript - 事件（基础篇）">
+                        
+                        <span class="card-title">JavaScript - 事件（基础篇）</span>
+                    </div>
+                    <div class="card-content article-content">
+                        <div class="summary">
+                            什么是事件
+事件，就是文档或浏览器窗口中发生的一些特定的交互瞬间。——《JavaScript高级程序设计》事件就是用户或者浏览器自身执行的某种动作。——《JavaScript高级程序设计》
+
+通俗地讲，事件就是用户与文档页面、浏览器交互时做
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-calendar fa-fw"></i>2019-03-04
+                            </span>
+                            <span class="publish-author">
+                                <i class="fa fa-user fa-fw"></i>
+                                
+                                    长安曹公子
+                                
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/#JavaScript" target="_blank">
+                            <span class="chip bg-color">JavaScript</span>
+                        </a>
+                        
+                    </div>
+                    
+                </a>
+            </div>
+        </div>
+        
+    </div>
+</article>
+    </div>
+</main>
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m12 l8 copy-right">
+            本站由 &copy;<a href="http://blinkfox.com" target="_blank">Blinkfox </a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 采用
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank"> hexo-theme-matery </a>主题搭建
+        </div>
+        <div class="col s12 m12 l4 social-link hide-on-med-and-down">
+            <a href="https://github.com/webCaolixin" class="tooltipped" target="_blank" data-tooltip="GitHub" data-position="top" data-delay="50">
+                <i class="fa fa-github fa-lg"></i>
+            </a>
+            <a href="mailto:changAncgz@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+                <i class="fa fa-envelope fa-lg"></i>
+            </a>
+            <a href="https://weibo.com/u/5153743489" class="tooltipped" target="_blank" data-tooltip="新浪微博" data-position="top" data-delay="50">
+                <i class="fa fa-weibo fa-lg"></i>
+            </a>
+            <a href="https://www.jianshu.com/u/a75c156bd273" class="tooltipped" target="_blank" data-tooltip="简书主页" data-position="top" data-delay="50">
+                <i class="fa fa-lg">简</i>
+            </a>
+            <a href="https://juejin.im/user/5b398404f265da5967194815" class="tooltipped" target="_blank" data-tooltip="掘金主页" data-position="top" data-delay="50">
+                <i class="fa fa-lg">掘</i>
+            </a>
+        </div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+<script src="/js/search.js"></script>
+
+<script type="text/javascript">
+  (function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title">搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus="">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-double-up"></i>
+    </a>
+</div>
+
+</body>
+</html>

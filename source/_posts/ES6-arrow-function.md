@@ -6,7 +6,7 @@ tags:
 - ES6
 - Function
 - 箭头函数
-img: /medias/article/featureimages/arrow-function.webp
+img: /medias/article/featureimages/arrow-function.jpg
 ---
 > 这篇文章我们来了解一下ES6中的箭头函数。首先会介绍一下箭头函数的基本语法，因为基本语法比较好理解，我们用示例做简单介绍即可。之后，我们重点来讨论一下箭头函数与普通函数之间的区别。
 

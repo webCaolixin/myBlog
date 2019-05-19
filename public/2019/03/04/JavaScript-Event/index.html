@@ -1,0 +1,715 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+
+    
+    <meta name="keywords" content="JavaScript,hexo-theme-matery">
+    <meta name="description" content="什么是事件
+事件，就是文档或浏览器窗口中发生的一些特定的交互瞬间。——《JavaScript高级程序设计》事件就是用户或者浏览器自身执行的某种动作。——《JavaScript高级程序设计》
+
+通俗地讲，事件就是用户与文档页面、浏览器交互时做">
+
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="JavaScript - 事件（基础篇）">
+    <meta property="og:url" content="https://webCaolixin.github.io/2019/03/04/JavaScript-Event/">
+    <meta property="og:site_name" content="长安曹公子的博客">
+    <meta property="og:description" content="什么是事件
+事件，就是文档或浏览器窗口中发生的一些特定的交互瞬间。——《JavaScript高级程序设计》事件就是用户或者浏览器自身执行的某种动作。——《JavaScript高级程序设计》
+
+通俗地讲，事件就是用户与文档页面、浏览器交互时做">
+    <meta property="og:locale" content="zh-CN">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="JavaScript - 事件（基础篇）">
+    <meta name="twitter:description" content="什么是事件
+事件，就是文档或浏览器窗口中发生的一些特定的交互瞬间。——《JavaScript高级程序设计》事件就是用户或者浏览器自身执行的某种动作。——《JavaScript高级程序设计》
+
+通俗地讲，事件就是用户与文档页面、浏览器交互时做">
+    
+    <link rel="canonical" href="/2019/03/04/JavaScript-Event/">
+
+    <title>JavaScript - 事件（基础篇） | 长安曹公子的博客</title>
+
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <!--prettify代码高亮主题css引入-->
+    <link rel="stylesheet" type="text/css" href="/libs/prettify/css/atelier-heath-light.min.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/libs/baidu/autoPush.js"></script>
+
+    <!--prettify代码高亮脚本引入-->
+<script src="/libs/prettify/js/prettify.js"></script>
+
+<script type="text/javascript">
+  $(window).load(function(){
+    $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+    prettyPrint();
+  })
+</script>
+    
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d1e670e15af1e406f40405b910c79644";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+</head>
+</head>
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="nav-transparent">
+        <div id="navContainer" class="container">
+            <div class="nav-wrapper">
+                <div class="brand-logo">
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <img src="/medias/logo.jpg" class="logo-img hide-on-small-only">
+                        
+                        <span class="logo-span">长安曹公子的博客</span>
+                    </a>
+                </div>
+
+                <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/" class="waves-effect waves-light">首页</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/codings/" class="waves-effect waves-light">编程</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/random-thoughts/" class="waves-effect waves-light">随想</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/journals/" class="waves-effect waves-light">日志</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/galleries/" class="waves-effect waves-light">影集</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/tags/" class="waves-effect waves-light">标签</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/archives/" class="waves-effect waves-light">时间轴</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/about/" class="waves-effect waves-light">关于</a>
+        </li>
+        
+    
+    <li>
+        <a id="toggleSearch" class="waves-effect waves-light">
+            <i id="searchIcon" class="mdi-action-search"></i>
+        </a>
+    </li>
+    
+</ul>
+
+<div class="side-nav" id="mobile-nav">
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">长安曹公子的博客</div>
+        <div class="logo-desc">
+        
+            谜一样的浮世，每一步都未知
+        
+        </div>
+    </div>
+    <ul class="menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/codings/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>编程
+            </a>
+        </li>
+        
+        <li>
+            <a href="/random-thoughts/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>随想
+            </a>
+        </li>
+        
+        <li>
+            <a href="/journals/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>日志
+            </a>
+        </li>
+        
+        <li>
+            <a href="/galleries/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>影集
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>时间轴
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>关于
+            </a>
+        </li>
+        
+    </ul>
+    <div class="social-link">
+        <a href="https://github.com/webCaolixin" class="tooltipped" target="_blank" data-tooltip="GitHub" data-position="top" data-delay="50">
+            <i class="fa fa-github fa-lg"></i>
+        </a>
+        <a href="mailto:changAncgz@163.com" class="tooltipped" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+            <i class="fa fa-envelope fa-lg"></i>
+        </a>
+        <a href="https://weibo.com/u/5153743489" class="tooltipped" target="_blank" data-tooltip="新浪微博" data-position="top" data-delay="50">
+            <i class="fa fa-weibo fa-lg"></i>
+        </a>
+        <a href="https://www.jianshu.com/u/a75c156bd273" class="tooltipped" target="_blank" data-tooltip="简书主页" data-position="top" data-delay="50">
+            <i class="fa fa-lg">简</i>
+        </a>
+        <a href="https://juejin.im/user/5b398404f265da5967194815" class="tooltipped" target="_blank" data-tooltip="掘金主页" data-position="top" data-delay="50">
+            <i class="fa fa-lg">掘</i>
+        </a>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </nav>
+</header>
+
+    
+
+<div class="bg-cover post-cover" style="background-image: url('/medias/article/featureimages/JavaScript.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        JavaScript - 事件（基础篇）
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<main class="content">
+
+    <!-- 文章内容详情 -->
+    <div id="artDetail" class="container">
+        <div class="card">
+            <div class="card-content article-info">
+                
+                <div class="article-tag">
+                    
+                    <a href="/tags/#JavaScript" target="_blank">
+                        <span class="chip bg-color">JavaScript</span>
+                    </a>
+                    
+                </div>
+                
+                <div class="author-info">
+                    <span>
+                        <i class="fa fa-calendar fa-fw"></i>2019-03-04
+                    </span>
+                </div>
+            </div>
+            <hr>
+            <div class="card-content article-card-content">
+                <div id="articleContent">
+                
+
+                
+                    <h3 id="什么是事件"><a href="#什么是事件" class="headerlink" title="什么是事件"></a>什么是事件</h3><blockquote>
+<p>事件，就是文档或浏览器窗口中发生的一些特定的交互瞬间。——《JavaScript高级程序设计》<br>事件就是用户或者浏览器自身执行的某种动作。——《JavaScript高级程序设计》</p>
+</blockquote>
+<p>通俗地讲，事件就是用户与文档页面、浏览器交互时做的事情，或者浏览器自身做的某些事情。比如：当用户点击页面中某个元素触发的click事件，在文本框输入文字时的input事件，关闭当前页面的unload事件，调整浏览器窗口大小的resize事件等等…</p>
+<h3 id="事件的作用"><a href="#事件的作用" class="headerlink" title="事件的作用"></a>事件的作用</h3><blockquote>
+<p>事件最早是在 IE3 和 Netscape Navigator 2 中出现的，当时是作为分担服务器运算负载的一种手段。——《JavaScript高级程序设计》<br>JS与HTML之间的交互就是通过事件来实现的。——《JavaScript高级程序设计》</p>
+</blockquote>
+<p>所以很明显，总结起来，事件的核心作用有两点：</p>
+<ol>
+<li>把一些允许的业务逻辑处理，数据计算在前端完成，分担服务器的运算负载。（在事件处理程序中完成）</li>
+<li>完成JS代码和页面HTML的一些交互。</li>
+</ol>
+<p>我们都知道，一个HTML文档是一个树状的DOM结构。那么，试想这样一个DOM情况：</p>
+<pre><code>&lt;div id=&quot;grand&quot;&gt;
+  &lt;div id=&quot;parent&quot;&gt;
+    &lt;div id=&quot;child&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>上面这三个依次嵌套的div元素，当点击最内层的div#child元素时，是否也算点击了嵌套在它外面的#parent、#grand元素呢？如果是，那么是先点击了哪个元素呢？到底应该是哪个元素的click事件会先触发呢？这就涉及到接下来要说的事件流的概念。</p>
+<h3 id="事件流"><a href="#事件流" class="headerlink" title="事件流"></a>事件流</h3><blockquote>
+<p>事件流是用来描述从页面中接收事件的顺序。——《JavaScript高级程序设计》</p>
+</blockquote>
+<p>针对上面提出的问题，事件流就是来描述：当点击了#child时，到底是#child、#parent、#grand中哪个元素先触发click事件。</p>
+<p><strong>事件流分为<code>捕获流（事件捕获）</code>、<code>冒泡流（事件冒泡）</code>两种。</strong></p>
+<h4 id="事件冒泡"><a href="#事件冒泡" class="headerlink" title="事件冒泡"></a>事件冒泡</h4><blockquote>
+<p>事件由最具体（嵌套层次最深）的元素最先接收，逐级向上传播，直到传播到<code>document</code>对象为止（大部分浏览器会将事件一直冒泡到<code>window</code>对象上）。</p>
+</blockquote>
+<p>上面的例子，事件冒泡的过程就如下图所示：<br><img src="/medias/article/coding/event/event-bubbling.jpg" alt="事件冒泡流"></p>
+<h4 id="事件捕获"><a href="#事件捕获" class="headerlink" title="事件捕获"></a>事件捕获</h4><blockquote>
+<p>事件由最不具体（嵌套层次最外层）的元素最先接收，逐级向下传播，直到事件的目标元素为止。</p>
+</blockquote>
+<p>事件捕获的用意在于：在事件到达目标元素前捕获（拦截）它。上面的例子，事件捕获的过程就如下图所示：</p>
+<p><img src="/medias/article/coding/event/event-capturing.jpg" alt="事件捕获流"></p>
+<p><strong>“DOM2级事件”规范要求：事件捕获的起始对象和事件冒泡的终止对象为<code>document</code>对象，但大部分浏览器都把这一对象设置为<code>window</code>。</strong></p>
+<h4 id="DOM事件流"><a href="#DOM事件流" class="headerlink" title="DOM事件流"></a>DOM事件流</h4><blockquote>
+<p>“DOM2级事件”规定的事件流包括三个阶段：<code>事件捕获阶段、处于目标阶段、事件冒泡阶段</code>。</p>
+</blockquote>
+<p>所以上面的例子在“DOM2级事件流”规范中，事件触发的事件流就变成了这样：</p>
+<p><img src="/medias/article/coding/event/dom-event-flow.jpg" alt="DOM事件流"></p>
+<p><strong>这里有一些值得注意的地方：</strong></p>
+<ol>
+<li>“事件捕获阶段”到事件的目标元素紧邻的父级元素（上面的例子中就是到第<strong>⑤</strong>步div#parent元素）就结束了，之后事件流进入“处于目标元素阶段”，目标元素的事件被触发。</li>
+<li>目标元素的事件处理（也就是执行事件处理程序）又被看成是“冒泡阶段”的一部分。这也就是为什么上面的图中阶段<strong>⑥</strong>会显示在事件冒泡阶段这一侧的原因。</li>
+<li>之后，事件流进入事件“冒泡阶段”。</li>
+</ol>
+<p>尽管“DOM2级事件”规范要求：捕获阶段不会触发目标元素的事件，但大部分浏览器都会在捕获阶段也触发目标元素的事件。这样，主流浏览器的DOM事件流就变成了这样：</p>
+<p><img src="/medias/article/coding/event/dom-event-flow-browser.jpg" alt="主流浏览器中的DOM事件流"></p>
+<p>这样的事件流，就导致一个结果：<strong>在“事件捕获阶段”和“事件冒泡阶段”都可以对目标元素的事件进行处理。</strong></p>
+<p>我们不仅需要了解元素的事件以什么顺序触发，何时出发，更重要的是，当元素的事件被触发时，我们经常需要做点什么，这就是我们下来要讲的事件处理程序。</p>
+<h3 id="事件处理程序"><a href="#事件处理程序" class="headerlink" title="事件处理程序"></a>事件处理程序</h3><blockquote>
+<p>当某事件发生时，响应事件的函数就叫做事件处理程序（或事件侦听器）。——《JavaScript高级程序设计》</p>
+</blockquote>
+<p>通俗地说，事件处理程序就是事件发生时我们响应事件对应要执行的JS代码。</p>
+<p>事件处理程序名由 “on”+事件名组成。如：onclick，onload…</p>
+<p>那如何为一个元素指定（定义/注册）事件处理程序呢？有三种方式：</p>
+<ol>
+<li>HTML事件处理程序（行内式）</li>
+<li>DOM0级事件处理程序</li>
+<li>DOM2级事件处理程序</li>
+</ol>
+<p>下面，我们对这三种方式的核心与值得注意的地方做以说明。</p>
+<h4 id="HTML事件处理程序（行内式）"><a href="#HTML事件处理程序（行内式）" class="headerlink" title="HTML事件处理程序（行内式）"></a>HTML事件处理程序（行内式）</h4><blockquote>
+<p>所有元素支持的事件都可以用与事件处理程序名相同的HTML属性来指定，属性值就是需要执行的JS代码。</p>
+</blockquote>
+<p>如：</p>
+<pre><code>&lt;button onclick=&quot;alert(&#39;你好！&#39;)&quot;&gt;&lt;/button&gt;
+</code></pre><p>当事件处理程序的逻辑比较复杂，代码较多时，可以将代码定义成一个函数，将属性值赋值为<code>函数的调用</code>。</p>
+<p>如：</p>
+<pre><code>&lt;button onclick=&quot;sayHello()&quot;&gt;&lt;/button&gt;
+
+&lt;script&gt;
+  function sayHello() {
+    alert(&#39;你好！&#39;);
+  }
+&lt;/script&gt;
+</code></pre><p><strong>以这种方式指定事件处理程序值得注意的是：</strong></p>
+<ol>
+<li>函数是运行在元素的作用域中的，所以函数中的this指向绑定该事件的元素本身。</li>
+<li>事件处理程序中的代码执行时，有权访问全局作用域中的任何代码。</li>
+</ol>
+<p><strong>这种方法也存在问题和局限性：</strong></p>
+<ol>
+<li>时差问题。当绑定事件的元素渲染到页面上时，其对应的事件处理程序脚本可能还未加载，此时触发事件，可能会导致出错。</li>
+<li>HTML和JS脚本紧密耦合，不方便维护。</li>
+</ol>
+<p>正是存在以上原因，许多开发人员摒弃了这一方法，转而使用JavaScript的方式来定义事件处理程序。</p>
+<h4 id="DOM0级事件处理程序"><a href="#DOM0级事件处理程序" class="headerlink" title="DOM0级事件处理程序"></a>DOM0级事件处理程序</h4><blockquote>
+<p>将一个函数赋值给目标元素对象的事件处理程序属性。——《JavaScript高级程序设计》</p>
+</blockquote>
+<p>通俗地讲，我们获取一个DOM元素的引用（DOM对象），该对象具有一个和事件处理程序名相同的属性（或者叫方法）。将要执行的事件处理程序定义成函数，并将函数赋值给这一属性。<br>如：</p>
+<pre><code>let btn = document.getElementById(&quot;btn&quot;); 
+btn.onclick = function(){ 
+  alert(&quot;你好！&quot;); 
+}; 
+</code></pre><p><strong>以这种方式指定事件处理程序值得注意的是：</strong></p>
+<ol>
+<li>函数运行在元素的作用域中，所以函数中的this指向绑定该事件的元素。（上面的例子中，this指向#btn元素）</li>
+<li>该方法指定的事件处理程序是在<code>事件冒泡阶段</code>被调用执行的。</li>
+<li>DOM0级方式不能为同一元素指定多个事件处理程序，如果为同一元素指定了多个事件处理程序，触发事件只会执行最后一次指定的事件处理程序，因为后指定的事件处理程序会覆盖前面指定的。</li>
+</ol>
+<p>如果要移除以DOM0级事件处理程序方式指定的事件，将元素对象的事件属性值置为<code>null</code>即可。如：</p>
+<pre><code>btn.onclick = null;
+</code></pre><h4 id="DOM2级事件处理程序"><a href="#DOM2级事件处理程序" class="headerlink" title="DOM2级事件处理程序"></a>DOM2级事件处理程序</h4><blockquote>
+<p>“DOM2级事件”中，用addEventListener()方法和 removeEventListener()方法来为DOM元素注册和移除事件处理程序。</p>
+</blockquote>
+<p>这两个方法都接受三个参数，依次是：</p>
+<ol>
+<li>事件名。（String，如：’click’…）</li>
+<li>事件处理函数。（Funtion）</li>
+<li>是否在事件捕获阶段触发调用。（Boolean，true——捕获阶段执行，false——（默认值）冒泡阶段执行）</li>
+</ol>
+<p>下面是一个简单的例子：</p>
+<pre><code>let btn = document.getElementById(&quot;myBtn&quot;);
+// 注意，第二个参数为事件名&quot;click&quot;，没有&quot;on&quot;
+btn.addEventListener(&quot;click&quot;, function(){
+  alert(&#39;你好！&#39;);
+}, false);
+// false表示事件在冒泡阶段被触发。
+</code></pre><p><strong>以这种方式指定事件处理程序值得注意的是：</strong></p>
+<ol>
+<li>函数运行在元素的作用域中，所以函数中的this指向绑定该事件的元素。（上面的例子中，this指向#btn元素）</li>
+<li>用addEventListener()添加的事件处理程序<code>必须且只能</code>用removeEventListener()来移除。</li>
+<li>用removeEventListener()移除事件处理程序时，第二个参数事件处理函数，必须是添加时那个事件处理函数的引用。</li>
+</ol>
+<p>对于上述第3点，下面是一个错误的例子：</p>
+<pre><code>let btn = document.getElementById(&quot;myBtn&quot;);
+btn.addEventListener(&quot;click&quot;, function(){
+  alert(&#39;你好！&#39;);
+}, false);
+
+...
+
+/**
+ * 错误！！！
+ * 像下面这样移除前面为#btn元素注册的click事件是无效的，
+ * 因为虽然这里的第二个参数与上面添加事件时定义的函数内容相同，
+ * 但是这是两个相互独立的匿名函数，并不是同一个函数的引用。
+ **/
+btn.removeEventListener(&quot;click&quot;, function(){
+  alert(&#39;你好！&#39;);
+}, false); 
+</code></pre><p>正确的移除方法，应该是这样：</p>
+<pre><code>let btn = document.getElementById(&quot;myBtn&quot;);
+let handler = function(){
+  alert(&#39;你好！&#39;);
+};
+btn.addEventListener(&quot;click&quot;, handler, false);
+
+...
+
+// 第二个参数handler是对同一事件处理函数的引用，有效！
+btn.removeEventListener(&quot;click&quot;, handler, false);
+</code></pre><p><strong>讲到这里，想来说说DOM0级和DOM2级事件处理程序之间存在的一些差别：</strong></p>
+<ol>
+<li>DOM0级方式，不能为同一元素指定多个事件处理程序，DOM2级可以指定多个。</li>
+<li>如果采用DOM0级方式为同一元素指定了多个事件处理程序，触发事件只会执行最后一次指定的事件处理程序，因为后面指定的事件处理程序会覆盖前面指定的。</li>
+<li>DOM2级方式指定的多个事件处理程序，事件触发时会按照其添加的顺序依次执行。</li>
+</ol>
+<p>最后，我们来讲讲让很多前端开发者都头疼的IE浏览器 —— IE浏览器中的事件处理程序</p>
+<h4 id="IE事件处理程序"><a href="#IE事件处理程序" class="headerlink" title="IE事件处理程序"></a>IE事件处理程序</h4><blockquote>
+<p>IE 实现了与 DOM 中类似的两个方法：attachEvent()和 detachEvent()来为元素添加和移除事件处理程序。</p>
+</blockquote>
+<p>这两个方法都接受两个参数，依次是：</p>
+<ol>
+<li>事件处理程序名。（String，如：’onclick’…，这和DOM2级不同！！！）</li>
+<li>事件处理函数。（Funtion）</li>
+</ol>
+<p>上面的例子，在IE中代码如下：</p>
+<pre><code>let btn = document.getElementById(&quot;btn&quot;); 
+// 注意！！！这里第一个参数和DOM2级不同！！！为&quot;onclick&quot;,DOM2为&quot;clcik&quot;
+btn.attachEvent(&quot;onclick&quot;, function(){ 
+  alert(&quot;你好！&quot;); 
+}); 
+</code></pre><p><strong>IE事件处理程序中值得注意的是：</strong></p>
+<ol>
+<li>由于 IE8 及更早版本只支持事件冒泡，所以通过attachEvent()添加的事件处理程序都会被添加到<code>事件冒泡阶段</code>。</li>
+<li>通过attachEvent()添加的事件处理程序<code>运行在全局作用域</code>（而不像DOM0级和DOM2级那样运行在元素作用域）。所以，函数中this指向<code>window</code>对象。</li>
+<li>与 addEventListener()类似，attachEvent()方法也可以为同一个元素添加多个事件处理程序。</li>
+<li>但是，attachEvent()方法添加的多个事件处理程序，事件触发时会按照与添加顺序相反的顺序来执行。</li>
+<li>与removeEventListener()类似，用detachEvent()移除事件处理程序，第二个参数——事件处理函数，必须是添加时那个事件处理函数的引用。</li>
+</ol>
+
+                
+                </div>
+
+                <hr />
+                
+                <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+                <div class="reprint">
+                    <p>
+                        <span class="reprint-tip">转载请注明: </span>
+                        <a href="https://webCaolixin.github.io" class="b-link-green">长安曹公子的博客</a>
+                        <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                        <a href="/2019/03/04/JavaScript-Event/" class="b-link-green">JavaScript - 事件（基础篇）</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        
+
+        
+        
+    <link rel="stylesheet" type="text/css" href="/libs/valine/custom.css"/>
+
+    <div id="valine-comments">
+        <div id="comments-notice">
+            <i class="fa fa-volume-up fa-lg fa-fw notice-icon"></i>
+            温馨提示：请您务必输入文明且有用的评论信息！本站评论系统支持匿名评论，建议您评论时填写个人昵称，邮箱和个人网址可选择填写，感谢您的支持！
+        </div>
+        <div class="comments" id="comments"></div>
+    </div>
+
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+    <script type="text/javascript">
+      var GUEST = ['nick','mail','link'];
+      var guest = 'nick,mail,link';
+      guest = guest.split(',').filter(function (item) {
+        return GUEST.indexOf(item)>-1;
+      });
+      new Valine({
+        el: '#comments' ,
+        verify: 'false',
+        notify: 'true',
+        appId: '8QCStxYhzTmcfzSimF0rbgWW-gzGzoHsz',
+        appKey: 'cRiWQY0NyClTBqBiF0HrCFgw',
+        placeholder: '请输入您的留言',
+        avatar: 'mm',
+        guest_info: guest,
+        pageSize: '10' || 10,
+        visitor: 'true'
+      });
+    </script>
+
+        
+
+        
+
+        
+
+<article id="articles" class="container prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6">
+            <div class="article-badge left-badge text-color">上一篇</div>
+            <div class="card">
+                <a href="/2019/03/12/JavaScript-Function/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/article/featureimages/JavaScript.jpg" class="responsive-img" alt="JavaScript - Function">
+                        
+                        <span class="card-title">JavaScript - Function</span>
+                    </div>
+                    <div class="card-content article-content">
+                        <div class="summary">
+                            
+JavaScript中的函数一直是一个很有讨论性的话题点。函数本身不仅仅是一个引用类型——所有函数都是Function类型的实例，更重要的是因为函数还会涉及到执行环境、作用域、闭包以及让人头疼的this等等…这篇文章我们来回顾一下与函数有
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-calendar fa-fw"></i>2019-03-12
+                            </span>
+                            <span class="publish-author">
+                                <i class="fa fa-user fa-fw"></i>
+                                
+                                    长安曹公子
+                                
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/#JavaScript" target="_blank">
+                            <span class="chip bg-color">JavaScript</span>
+                        </a>
+                        
+                        <a href="/tags/#Function" target="_blank">
+                            <span class="chip bg-color">Function</span>
+                        </a>
+                        
+                    </div>
+                    
+                </a>
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6">
+            <div class="article-badge right-badge text-color">下一篇</div>
+            <div class="card">
+                <a href="/2018/12/31/if-there-is-no-2018/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/article/journal/goodbbye2108-hello2019.jpg" class="responsive-img" alt="如果没有2018">
+                        
+                        <span class="card-title">如果没有2018</span>
+                    </div>
+                    <div class="card-content article-content">
+                        <div class="summary">
+                            
+有人说，2018是告别的一年，说着江湖已远，说着时代落幕……也有人说，2018年是启航的一年，说着见证历史，说着荣光与梦……可如果没有2018，我们的生活又将会怎样？
+
+
+如果没有2018如果没有2018，我们应该会少涨很多“姿势”。
+如
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-calendar fa-fw"></i>2018-12-31
+                            </span>
+                            <span class="publish-author">
+                                <i class="fa fa-user fa-fw"></i>
+                                
+                                    长安曹公子
+                                
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/#2018" target="_blank">
+                            <span class="chip bg-color">2018</span>
+                        </a>
+                        
+                    </div>
+                    
+                </a>
+            </div>
+        </div>
+        
+    </div>
+</article>
+    </div>
+</main>
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m12 l8 copy-right">
+            本站由 &copy;<a href="http://blinkfox.com" target="_blank">Blinkfox </a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 采用
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank"> hexo-theme-matery </a>主题搭建
+        </div>
+        <div class="col s12 m12 l4 social-link hide-on-med-and-down">
+            <a href="https://github.com/webCaolixin" class="tooltipped" target="_blank" data-tooltip="GitHub" data-position="top" data-delay="50">
+                <i class="fa fa-github fa-lg"></i>
+            </a>
+            <a href="mailto:changAncgz@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+                <i class="fa fa-envelope fa-lg"></i>
+            </a>
+            <a href="https://weibo.com/u/5153743489" class="tooltipped" target="_blank" data-tooltip="新浪微博" data-position="top" data-delay="50">
+                <i class="fa fa-weibo fa-lg"></i>
+            </a>
+            <a href="https://www.jianshu.com/u/a75c156bd273" class="tooltipped" target="_blank" data-tooltip="简书主页" data-position="top" data-delay="50">
+                <i class="fa fa-lg">简</i>
+            </a>
+            <a href="https://juejin.im/user/5b398404f265da5967194815" class="tooltipped" target="_blank" data-tooltip="掘金主页" data-position="top" data-delay="50">
+                <i class="fa fa-lg">掘</i>
+            </a>
+        </div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+<script src="/js/search.js"></script>
+
+<script type="text/javascript">
+  (function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title">搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus="">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-double-up"></i>
+    </a>
+</div>
+
+</body>
+</html>

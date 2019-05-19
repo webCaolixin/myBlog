@@ -3,7 +3,7 @@ title: ES6 - 字符串的扩展
 date: 2019-03-21 20:03:51
 categories: 编程
 tags: ES6
-img: /medias/article/featureimages/ES6.webp
+img: /medias/article/featureimages/ES6.jpg
 ---
 ### 一、模板字符串
 

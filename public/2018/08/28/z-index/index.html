@@ -1,0 +1,829 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+
+    
+    <meta name="keywords" content="z-index,hexo-theme-matery">
+    <meta name="description" content="前言最近，在项目中遇到一个关于CSS中元素z-index属性的问题，具体问题不太好描述，总结起来就是当给元素和父元素色设置position属性和z-index相关属性后，页面上渲染的元素层级结果和我预想的不一样。根据自己之前的理解，也没找到">
+
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="CSS层叠上下文、层叠等级、层叠顺序、z-index完全说明">
+    <meta property="og:url" content="https://webCaolixin.github.io/2018/08/28/z-index/">
+    <meta property="og:site_name" content="长安曹公子的博客">
+    <meta property="og:description" content="前言最近，在项目中遇到一个关于CSS中元素z-index属性的问题，具体问题不太好描述，总结起来就是当给元素和父元素色设置position属性和z-index相关属性后，页面上渲染的元素层级结果和我预想的不一样。根据自己之前的理解，也没找到">
+    <meta property="og:locale" content="zh-CN">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="CSS层叠上下文、层叠等级、层叠顺序、z-index完全说明">
+    <meta name="twitter:description" content="前言最近，在项目中遇到一个关于CSS中元素z-index属性的问题，具体问题不太好描述，总结起来就是当给元素和父元素色设置position属性和z-index相关属性后，页面上渲染的元素层级结果和我预想的不一样。根据自己之前的理解，也没找到">
+    
+    <link rel="canonical" href="/2018/08/28/z-index/">
+
+    <title>CSS层叠上下文、层叠等级、层叠顺序、z-index完全说明 | 长安曹公子的博客</title>
+
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <!--prettify代码高亮主题css引入-->
+    <link rel="stylesheet" type="text/css" href="/libs/prettify/css/atelier-heath-light.min.css">
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="/libs/baidu/autoPush.js"></script>
+
+    <!--prettify代码高亮脚本引入-->
+<script src="/libs/prettify/js/prettify.js"></script>
+
+<script type="text/javascript">
+  $(window).load(function(){
+    $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+    prettyPrint();
+  })
+</script>
+    
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d1e670e15af1e406f40405b910c79644";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+</head>
+</head>
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="nav-transparent">
+        <div id="navContainer" class="container">
+            <div class="nav-wrapper">
+                <div class="brand-logo">
+                    <a href="/" class="waves-effect waves-light">
+                        
+                        <img src="/medias/logo.jpg" class="logo-img hide-on-small-only">
+                        
+                        <span class="logo-span">长安曹公子的博客</span>
+                    </a>
+                </div>
+
+                <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/" class="waves-effect waves-light">首页</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/codings/" class="waves-effect waves-light">编程</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/random-thoughts/" class="waves-effect waves-light">随想</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/journals/" class="waves-effect waves-light">日志</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/galleries/" class="waves-effect waves-light">影集</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/tags/" class="waves-effect waves-light">标签</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/archives/" class="waves-effect waves-light">时间轴</a>
+        </li>
+        
+    
+        
+        <li class="hide-on-med-and-down">
+            <a href="/about/" class="waves-effect waves-light">关于</a>
+        </li>
+        
+    
+    <li>
+        <a id="toggleSearch" class="waves-effect waves-light">
+            <i id="searchIcon" class="mdi-action-search"></i>
+        </a>
+    </li>
+    
+</ul>
+
+<div class="side-nav" id="mobile-nav">
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">长安曹公子的博客</div>
+        <div class="logo-desc">
+        
+            谜一样的浮世，每一步都未知
+        
+        </div>
+    </div>
+    <ul class="menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/codings/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>编程
+            </a>
+        </li>
+        
+        <li>
+            <a href="/random-thoughts/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>随想
+            </a>
+        </li>
+        
+        <li>
+            <a href="/journals/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>日志
+            </a>
+        </li>
+        
+        <li>
+            <a href="/galleries/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>影集
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>时间轴
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about/" class="waves-effect waves-light">
+                <i class="fa fa-link fa-lg fa-fw"></i>关于
+            </a>
+        </li>
+        
+    </ul>
+    <div class="social-link">
+        <a href="https://github.com/webCaolixin" class="tooltipped" target="_blank" data-tooltip="GitHub" data-position="top" data-delay="50">
+            <i class="fa fa-github fa-lg"></i>
+        </a>
+        <a href="mailto:changAncgz@163.com" class="tooltipped" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+            <i class="fa fa-envelope fa-lg"></i>
+        </a>
+        <a href="https://weibo.com/u/5153743489" class="tooltipped" target="_blank" data-tooltip="新浪微博" data-position="top" data-delay="50">
+            <i class="fa fa-weibo fa-lg"></i>
+        </a>
+        <a href="https://www.jianshu.com/u/a75c156bd273" class="tooltipped" target="_blank" data-tooltip="简书主页" data-position="top" data-delay="50">
+            <i class="fa fa-lg">简</i>
+        </a>
+        <a href="https://juejin.im/user/5b398404f265da5967194815" class="tooltipped" target="_blank" data-tooltip="掘金主页" data-position="top" data-delay="50">
+            <i class="fa fa-lg">掘</i>
+        </a>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </nav>
+</header>
+
+    
+
+<div class="bg-cover post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        CSS层叠上下文、层叠等级、层叠顺序、z-index完全说明
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<main class="content">
+
+    <!-- 文章内容详情 -->
+    <div id="artDetail" class="container">
+        <div class="card">
+            <div class="card-content article-info">
+                
+                <div class="article-tag">
+                    
+                    <a href="/tags/#z-index" target="_blank">
+                        <span class="chip bg-color">z-index</span>
+                    </a>
+                    
+                </div>
+                
+                <div class="author-info">
+                    <span>
+                        <i class="fa fa-calendar fa-fw"></i>2018-08-28
+                    </span>
+                </div>
+            </div>
+            <hr>
+            <div class="card-content article-card-content">
+                <div id="articleContent">
+                
+
+                
+                    <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近，在项目中遇到一个关于CSS中元素<code>z-index</code>属性的问题，具体问题不太好描述，总结起来就是当给元素和父元素色设置<code>position</code>属性和<code>z-index</code>相关属性后，页面上渲染的元素层级结果和我预想的不一样。根据自己之前的理解，也没找到一个合理的解释。我知道，肯定是我对相关属性的细节理解存在问题，所以结合官方文档和在网上各种搜集整理，明白了其中的原因。写下这篇文章，和大家分享有关CSS中<code>层叠上下文</code>、<code>层叠等级</code>、<code>层叠顺序</code>以及<code>z-index</code>相关的一整套技术细节。</p>
+<p>如果存在什么错误或重要遗漏或者有什么疑问，欢迎留言指正、讨论！感谢！</p>
+<a id="more"></a>
+<h3 id="一个“片面”的理解"><a href="#一个“片面”的理解" class="headerlink" title="一个“片面”的理解"></a>一个“片面”的理解</h3><p>以往，由于自己使用<code>z-index</code>的频率不大，所以对这个CSS属性存在比较片面的认识。一直认为<code>z-index</code>就是用来描述定义一个元素在屏幕<code>Z轴</code>上的堆叠顺序。<code>z-index</code>值越大在<code>Z轴</code>上就越靠上，也就是离屏幕观察者越近。最后才发现这个认识存在很大的问题：</p>
+<ol>
+<li>首先，<code>z-index</code>属性值并不是在任何元素上都有效果。它<strong>仅在</strong>定位元素（定义了<code>position</code>属性，且属性值为非<code>static</code>值的元素）上有效果。</li>
+<li>判断元素在<code>Z轴</code>上的堆叠顺序，不仅仅是直接比较两个元素的<code>z-index</code>值的大小，这个堆叠顺序实际由元素的<strong>层叠上下文</strong>、<strong>层叠等级</strong>共同决定。</li>
+</ol>
+<p><img src="/medias/article/coding/z-index/XYZ.png" alt="屏幕上的XYZ轴"></p>
+<p>要想完全理解一个东西，首先要明白它是什么，也就是它的定义。我们先看看上面提到的<code>层叠上下文</code>、<code>层叠等级</code>、<code>层叠顺序</code>都是什么？定义又太过抽象，后面会再用一个具象的比喻来让你彻底明白它们到底是什么，有什么联系。</p>
+<h3 id="什么是“层叠上下文”"><a href="#什么是“层叠上下文”" class="headerlink" title="什么是“层叠上下文”"></a>什么是“层叠上下文”</h3><p>层叠上下文(stacking context)，是<code>HTML</code>中一个三维的概念。在<code>CSS2.1</code>规范中，每个盒模型的位置是三维的，分别是平面画布上的<code>X轴</code>，<code>Y轴</code>以及表示层叠的<code>Z轴</code>。一般情况下，元素在页面上沿<code>X轴Y轴</code>平铺，我们察觉不到它们在<code>Z轴</code>上的层叠关系。而一旦元素发生堆叠，这时就能发现某个元素可能覆盖了另一个元素或者被另一个元素覆盖。</p>
+<p>如果一个元素含有层叠上下文，(也就是说它是层叠上下文元素)，我们可以理解为这个元素在<code>Z轴</code>上就“高人一等”，最终表现就是它离屏幕观察者更近。</p>
+<blockquote>
+<p><strong>具象的比喻</strong>：你可以把层叠上下文元素理解为理解为<strong>该元素当了官</strong>，而其他非层叠上下文元素则可以理解为普通群众。凡是“当了官的元素”就比普通元素等级要高，也就是说元素在<code>Z轴</code>上更靠上，更靠近观察者。</p>
+</blockquote>
+<h3 id="什么是“层叠等级”"><a href="#什么是“层叠等级”" class="headerlink" title="什么是“层叠等级”"></a>什么是“层叠等级”</h3><p>那么，层叠等级指的又是什么？层叠等级(stacking level，叫“层叠级别”/“层叠水平”也行)</p>
+<ul>
+<li>在同一个层叠上下文中，它描述定义的是该层叠上下文中的层叠上下文元素在<code>Z轴</code>上的上下顺序。</li>
+<li>在其他普通元素中，它描述定义的是这些普通元素在<code>Z轴</code>上的上下顺序。</li>
+</ul>
+<p>说到这，可能很多人疑问了，不论在层叠上下文中还是在普通元素中，层叠等级都表示元素在<code>Z轴</code>上的上下顺序，那就直接说它描述定义了所有元素在<code>Z轴</code>上的上下顺序就OK啊！为什么要分开描述？</p>
+<p>为了说明原因，先举个栗子：</p>
+<blockquote>
+<p><strong>具象的比喻</strong>：我们之前说到，处于层叠上下文中的元素，就像是元素当了官，等级自然比普通元素高。再想象一下，假设一个官员A是个省级领导，他下属有一个秘书a-1，家里有一个保姆a-2。另一个官员B是一个县级领导，他下属有一个秘书b-1，家里有一个保姆b-2。a-1和b-1虽然都是秘书，但是你想一个省级领导的秘书和一个县级领导的秘书之间有可比性么？甚至保姆a-2都要比秘书b-1的等级高得多。谁大谁小，谁高谁低一目了然，所以根本没有比较的意义。只有在A下属的a-1、a-2以及B下属的b-1、b-2中相互比较大小高低才有意义。</p>
+</blockquote>
+<p><strong>再类比回“层叠上下文”和“层叠等级”，就得出一个结论：</strong></p>
+<ol>
+<li>普通元素的层叠等级优先由其所在的层叠上下文决定。</li>
+<li>层叠等级的比较只有在当前层叠上下文元素中才有意义。不同层叠上下文中比较层叠等级是没有意义的。</li>
+</ol>
+<h3 id="如何产生“层叠上下文”"><a href="#如何产生“层叠上下文”" class="headerlink" title="如何产生“层叠上下文”"></a>如何产生“层叠上下文”</h3><p>前面说了那么多，知道了“层叠上下文”和“层叠等级”，其中还有一个最关键的问题：到底如何产生层叠上下文呢？如何让一个元素变成层叠上下文元素呢？</p>
+<p>其实，层叠上下文也基本上是有一些特定的CSS属性创建的，一般有3种方法：</p>
+<ol>
+<li><code>HTML</code>中的根元素<code>&lt;html&gt;&lt;/html&gt;</code>本身j就具有层叠上下文，称为“根层叠上下文”。</li>
+<li>普通元素设置<code>position</code>属性为<strong>非</strong><code>static</code>值并设置<code>z-index</code>属性为具体数值，产生层叠上下文。</li>
+<li>CSS3中的新属性也可以产生层叠上下文。</li>
+</ol>
+<p>至此，终于可以上代码了，我们用代码说话，来验证上面的结论：</p>
+<p><strong>栗子1:</strong><br><strong>有两个div，p.a、p.b被包裹在一个div里，p.c被包裹在另一个盒子里，只为.a、.b、.c设置<code>position</code>和<code>z-index</code>属性</strong></p>
+<pre><code>&lt;style&gt;
+  div {  
+    position: relative;  
+    width: 100px;  
+    height: 100px;  
+  }  
+  p {  
+    position: absolute;  
+    font-size: 20px;  
+    width: 100px;  
+    height: 100px;  
+  }  
+  .a {  
+    background-color: blue;  
+    z-index: 1;  
+  }  
+  .b {  
+    background-color: green;  
+    z-index: 2;  
+    top: 20px;  
+    left: 20px;  
+  }  
+  .c {  
+    background-color: red;  
+    z-index: 3;  
+    top: -20px;  
+    left: 40px;  
+  }
+&lt;/style&gt;
+
+&lt;body&gt;  
+  &lt;div&gt;  
+    &lt;p class=&quot;a&quot;&gt;a&lt;/p&gt;  
+    &lt;p class=&quot;b&quot;&gt;b&lt;/p&gt;  
+  &lt;/div&gt; 
+
+  &lt;div&gt;  
+    &lt;p class=&quot;c&quot;&gt;c&lt;/p&gt;  
+  &lt;/div&gt;  
+&lt;/body&gt; 
+</code></pre><p>效果：<br><img src="/medias/article/coding/z-index/xiaoguo1.jpg" alt="效果1"><br>因为p.a、p.b、p.c三个的父元素div都没有设置<code>z-index</code>，所以不会产生层叠上下文，所以.a、.b、.c都处于由<code>&lt;html&gt;&lt;/html&gt;</code>标签产生的“根层叠上下文”中，属于同一个层叠上下文，此时谁的<code>z-index</code>值大，谁在上面。</p>
+<p><strong>栗子2：</strong><br><strong>有两个div，p.a、p.b被包裹在一个div里，p.c被包裹在另一个盒子里，同时为两个div和.a、.b、.c设置<code>position</code>和<code>z-index</code>属性</strong></p>
+<pre><code>&lt;style&gt;
+  div {
+    width: 100px;
+    height: 100px;
+    position: relative;
+  }
+  .box1 {
+    z-index: 2;
+  }
+  .box2 {
+    z-index: 1;
+  }
+  p {
+    position: absolute;
+    font-size: 20px;
+    width: 100px;
+    height: 100px;
+  }
+  .a {
+    background-color: blue;
+    z-index: 100;
+  }
+  .b {
+    background-color: green;
+    top: 20px;
+    left: 20px;
+    z-index: 200;
+  }
+  .c {
+    background-color: red;
+    top: -20px;
+    left: 40px;
+    z-index: 9999;
+  }
+&lt;/style&gt;
+
+&lt;body&gt;
+  &lt;div class=&quot;box1&quot;&gt;
+    &lt;p class=&quot;a&quot;&gt;a&lt;/p&gt;
+    &lt;p class=&quot;b&quot;&gt;b&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;box2&quot;&gt;
+    &lt;p class=&quot;c&quot;&gt;c&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+</code></pre><p>效果：<br><img src="/medias/article/coding/z-index/xiaoguo2.jpg" alt="效果2"><br>我们发下，虽然<code>p.c</code>元素的<code>z-index</code>值为9999，远大于<code>p.a</code>和<code>p.b</code>的<code>z-index</code>值，但是由于<code>p.a</code>、<code>p.b</code>的父元素<code>div.box1</code>产生的层叠上下文的<code>z-index</code>的值为2，<code>p.c</code>的父元素<code>div.box2</code>所产生的层叠上下文的<code>z-index</code>值为1，所以<code>p.c</code>永远在<code>p.a</code>和<code>p.b</code>下面。</p>
+<p>同时，如果我们只更改<code>p.a</code>和<code>p.b</code>的<code>z-index</code>值，由于这两个元素都在父元素<code>div.box1</code>产生的层叠上下文中，所以，谁的<code>z-index</code>值大，谁在上面。</p>
+<h3 id="什么是“层叠顺序”"><a href="#什么是“层叠顺序”" class="headerlink" title="什么是“层叠顺序”"></a>什么是“层叠顺序”</h3><p>说完“层叠上下文”和“层叠等级”，我们再来说说“层叠顺序”。“层叠顺序”(stacking order)表示元素发生层叠时按照特定的顺序规则在<code>Z轴</code>上垂直显示。<strong>由此可见，前面所说的“层叠上下文”和“层叠等级”是一种概念，而这里的“层叠顺序”是一种规则。</strong></p>
+<p><img src="/medias/article/coding/z-index/stacking-order.jpg" alt="不同属性的元素的层叠顺序"></p>
+<p>在不考虑CSS3的情况下，当元素发生层叠时，层叠顺讯遵循上面途中的规则。<br><strong>这里值得注意的是：</strong></p>
+<ol>
+<li>左上角”层叠上下文<code>background/border</code>“指的是层叠上下文元素的背景和边框。</li>
+<li><code>inline/inline-block</code>元素的层叠顺序要高于<code>block</code>(块级)/<code>float</code>(浮动)元素。</li>
+<li>单纯考虑层叠顺序，<code>z-index: auto</code>和<code>z-index: 0</code>在同一层级，但这两个属性值本身是有根本区别的。</li>
+</ol>
+<blockquote>
+<p>对于上面第2条，为什么<code>inline/inline-block</code>元素的层叠顺序要高于<code>block</code>(块级)/<code>float</code>(浮动)元素？这个大家可以思考一下！<br>其实很简单，像<code>border/background</code>属于装饰元素的属性，浮动和块级元素一般用来页面布局，而网页设计之初最重要的就是文字内容，所以在发生层叠时会优先显示文字内容，保证其不被覆盖。</p>
+</blockquote>
+<h3 id="你要的“套路”"><a href="#你要的“套路”" class="headerlink" title="你要的“套路”"></a>你要的“套路”</h3><p>上面说了那么多，可能你还是有点懵。这么多概念规则，来点最实际的，有没有一个“套路”当遇到元素层叠时，能很清晰地判断出他们谁在上谁在下呢？答案是——肯定有啊！</p>
+<blockquote>
+<p>1、首先先看要比较的两个元素是否处于同一个层叠上下文中：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1如果是，谁的层叠等级大，谁在上面（怎么判断层叠等级大小呢？——看“层叠顺序”图）。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.2如果两个元素不在统一层叠上下文中，请先比较他们所处的层叠上下文的层叠等级。<br>2、当两个元素层叠等级相同、层叠顺序相同时，在DOM结构中后面的元素层叠等级在前面元素之上。</p>
+</blockquote>
+<h3 id="光说不练假把式"><a href="#光说不练假把式" class="headerlink" title="光说不练假把式"></a>光说不练假把式</h3><p>对于技术学习，代码展示是最直观最易懂的方式之一。话不多说，直接上代码，我们通过以下几个“栗子”，来进一步验证掌握上面的结论。</p>
+<p><strong>栗子3：</strong></p>
+<pre><code>&lt;style&gt;
+  .box1, .box2 {
+    position: relative;
+    z-index: auto;
+  }
+  .child1 {
+    width: 200px;
+    height: 100px;
+    background: #168bf5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+  }
+  .child2 {
+    width: 100px;
+    height: 200px;
+    background: #32c292;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+&lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  &lt;div class=&quot;box1&quot;&gt;
+    &lt;div class=&quot;child1&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;box2&quot;&gt;
+    &lt;div class=&quot;child2&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+</code></pre><p>效果：<br><img src="/medias/article/coding/z-index/xiaoguo3.jpg" alt="效果3"><br><strong>说明：</strong><code>.box1/.box2</code>虽然设置了<code>position: relative</code>，但是<code>z-index: auto</code>的情况下，这两个<code>div</code>还是普通元素，并没有产生层叠上下文。所以，<code>child1/.child2</code>属于<code>&lt;html&gt;&lt;/html&gt;</code>元素的“根层叠上下文”中，此时，<strong>谁的<code>z-index</code>值大，谁在上面</strong>。</p>
+<p><strong>栗子4：</strong></p>
+<p>对于栗子1中的CSS代码，我们只把<code>.box1/.box2</code>的<code>z-index</code>属性值改为<code>数值0</code>，其余不变。</p>
+<pre><code>.box1, .box2 {
+  position: relative;
+  z-index: 0;
+}
+...
+
+</code></pre><p>效果：<br><img src="/medias/article/coding/z-index/xiaoguo4.jpg" alt="效果4"><br><strong>说明：</strong> 此时，我们发现，仅仅修改了<code>.box1/.box2</code>的<code>z-index</code>属性值改为<code>数值0</code>，最终结果完全相反。这时<code>.child2</code>覆盖在了<code>.child1</code>上面。原因是什么呢？很简单：因为设置<code>z-index: 0</code>后，<code>.box1/.box2</code>产生了各自的层叠上下文，这时候要比较<code>.child1/.child2</code>的层叠关系完全由父元素<code>.box1/.box2</code>的层叠关系决定。但是<code>.box1/.box2</code>的<code>z-index</code>值都为<code>0</code>，都是块级元素（所以它们的层叠等级，层叠顺序是相同的），这种情况下，在<code>DOM</code>结构中<strong>后面的覆盖前面的</strong>，所以<code>.child2</code>就在上面。</p>
+<h3 id="CSS3中的属性对层叠上下文的影响"><a href="#CSS3中的属性对层叠上下文的影响" class="headerlink" title="CSS3中的属性对层叠上下文的影响"></a>CSS3中的属性对层叠上下文的影响</h3><p>CSS3中出现了很多新属性，其中一些属性对层叠上下文也产生了很大的影响。如下：</p>
+<ol>
+<li>父元素的display属性值为<code>flex|inline-flex</code>，子元素<code>z-index</code>属性值不为<code>auto</code>的时候，子元素为层叠上下文元素；</li>
+<li>元素的<code>opacity</code>属性值不是<code>1</code>；</li>
+<li>元素的<code>transform</code>属性值不是<code>none</code>；</li>
+<li>元素<code>mix-blend-mode属性值不是</code>normal`；</li>
+<li>元素的<code>filter</code>属性值不是<code>none</code>；</li>
+<li>元素的<code>isolation</code>属性值是<code>isolate</code>；</li>
+<li><code>will-change</code>指定的属性值为上面任意一个；</li>
+<li>元素的<code>-webkit-overflow-scrolling</code>属性值设置为<code>touch</code>。</li>
+</ol>
+<p>CSS3中，元素属性满足以上条件之一，就会产生层叠上下文。我们用第1条来做一个简单的解释说明。</p>
+<p><strong>栗子5：</strong></p>
+<pre><code>&lt;style&gt;
+  .box {
+  }
+  .parent {
+    width: 200px;
+    height: 100px;
+    background: #168bf5;
+    /* 虽然设置了z-index，但是没有设置position，z-index无效，.parent还是普通元素，没有产生层叠上下文 */
+    z-index: 1;
+  }
+  .child {
+    width: 100px;
+    height: 200px;
+    background: #32d19c;
+    position: relative;
+    z-index: -1;
+  }
+&lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  &lt;div class=&quot;box&quot;&gt;
+    &lt;div class=&quot;parent&quot;&gt;
+      parent
+      &lt;div class=&quot;child&quot;&gt;child&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+</code></pre><p>效果：<br><img src="/medias/article/coding/z-index/xiaoguo5.jpg" alt="效果5"><br><strong>说明：</strong> 我们发现，<code>.child</code>被<code>.parent</code>覆盖了。按照“套路”来分析一下：<br>虽然<code>.parent</code>设置了<code>z-index</code>属性值，但是没有设置<code>position</code>属性，<code>z-index</code>无效，所以没有产生层叠上下文，<code>.parent</code>还是普通的块级元素。此时，在层叠顺序规则中，<code>z-index</code>值小于<code>0</code>的<code>.child</code>会被普通的<code>block</code>块级元素<code>.parent</code>覆盖。</p>
+<p><strong>栗子6</strong></p>
+<p>对于上面的栗子，我们只修改.box的属性，设置display: flex，其余属性和DOM结构不变。</p>
+<pre><code>.box {
+  display: flex;
+}
+</code></pre><p>效果：<br><img src="/medias/article/coding/z-index/xiaoguo6.jpg" alt="效果6"><br><strong>说明：</strong> 当给<code>.box</code>设置<code>display: flex</code>时，<code>.parent</code>就变成层叠上下文元素，根据层叠顺序规则，层叠上下文元素的<code>background/border</code>的层叠等级小于<code>z-index</code>值小于<code>0</code>的元素的层叠等级，所以<code>z-index</code>值为<code>-1</code>的<code>.child</code>在<code>.parent</code>上面。</p>
+<h3 id="小测试"><a href="#小测试" class="headerlink" title="小测试"></a>小测试</h3><p>下面的代码，我会把最终页面渲染的结果放在代码之后，有兴趣的“童鞋”可以分析一下，各个元素的层叠等级，最后来确定这些元素哪个在上哪个在下。</p>
+<pre><code>&lt;style&gt;
+  .parent {
+    width: 100px;
+    height: 200px;
+    background: #168bf5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+  }
+  .child1 {
+    width: 100px;
+    height: 200px;
+    background: #32d19c;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1;
+  }
+  .child2 {
+    width: 100px;
+    height: 200px;
+    background: #e4c950;
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    z-index: -1;
+  }
+  .child2-1 {
+    width: 100px;
+    height: 200px;
+    background: #e45050;
+    position: absolute;
+    top: 60px;
+    left: 60px;
+    z-index: 9999;
+  }
+  .child2-2 {
+    width: 100px;
+    height: 200px;
+    background: #db68a7;
+    position: absolute;
+    top: 80px;
+    left: 40px;
+    z-index: -9999;
+  }
+&lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  &lt;div class=&quot;parent&quot;&gt;
+    parent
+    &lt;div class=&quot;child1&quot;&gt;child1&lt;/div&gt;
+    &lt;div class=&quot;child2&quot;&gt;
+      child2
+      &lt;div class=&quot;child2-1&quot;&gt;child2-1&lt;/div&gt;
+      &lt;div class=&quot;child2-2&quot;&gt;child2-2&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+</code></pre><p>效果：<br><img src="/medias/article/coding/z-index/test.jpg" alt="小测试代码页面渲染结果"></p>
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><p>以上的内容有一部分内容参考了以下两位大神的博客，写的很好，也很清晰，推荐大家看一看，你会对相关知识点掌握的更清晰。</p>
+<blockquote>
+<p><a href="https://www.zhangxinxu.com/wordpress/2016/01/understand-css-stacking-context-order-z-index/" target="_blank" rel="noopener">张鑫旭-《深入理解CSS中的层叠上下文和层叠顺序》</a><br><a href="https://blog.csdn.net/weixin_40672882/article/details/81183321" target="_blank" rel="noopener">AMInInsist-《CSS 中的z-index属性》</a></p>
+</blockquote>
+<h3 id="推荐文章"><a href="#推荐文章" class="headerlink" title="推荐文章"></a>推荐文章</h3><p><strong>下面的文章链接是我在学习实践过程中看到的一些觉得比较好的文章，有兴趣霍有需要的朋友可以参考参考，希望可以帮你彻底弄清文章中涉及的这些问题。</strong></p>
+<blockquote>
+<p><a href="http://www.w3help.org/zh-cn/kb/013/" target="_blank" rel="noopener">lijinxieyang-《层叠上下文【stacking context】与层叠顺序【stacking order】》</a><br><a href="http://www.w3help.org/zh-cn/kb/013/" target="_blank" rel="noopener">w3help.org - 《KB013: 分层的显示( Layered presentation )》</a><br><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context" target="_blank" rel="noopener">MDN-《The stacking context》</a><br><a href="https://www.cnblogs.com/chenshanyuanzi/p/7700823.html" target="_blank" rel="noopener">尚-《css之层叠上下文和层叠顺序》</a></p>
+</blockquote>
+
+                
+                </div>
+
+                <hr />
+                
+                <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+                <div class="reprint">
+                    <p>
+                        <span class="reprint-tip">转载请注明: </span>
+                        <a href="https://webCaolixin.github.io" class="b-link-green">长安曹公子的博客</a>
+                        <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
+                        <a href="/2018/08/28/z-index/" class="b-link-green">CSS层叠上下文、层叠等级、层叠顺序、z-index完全说明</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        
+
+        
+        
+    <link rel="stylesheet" type="text/css" href="/libs/valine/custom.css"/>
+
+    <div id="valine-comments">
+        <div id="comments-notice">
+            <i class="fa fa-volume-up fa-lg fa-fw notice-icon"></i>
+            温馨提示：请您务必输入文明且有用的评论信息！本站评论系统支持匿名评论，建议您评论时填写个人昵称，邮箱和个人网址可选择填写，感谢您的支持！
+        </div>
+        <div class="comments" id="comments"></div>
+    </div>
+
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+    <script type="text/javascript">
+      var GUEST = ['nick','mail','link'];
+      var guest = 'nick,mail,link';
+      guest = guest.split(',').filter(function (item) {
+        return GUEST.indexOf(item)>-1;
+      });
+      new Valine({
+        el: '#comments' ,
+        verify: 'false',
+        notify: 'true',
+        appId: '8QCStxYhzTmcfzSimF0rbgWW-gzGzoHsz',
+        appKey: 'cRiWQY0NyClTBqBiF0HrCFgw',
+        placeholder: '请输入您的留言',
+        avatar: 'mm',
+        guest_info: guest,
+        pageSize: '10' || 10,
+        visitor: 'true'
+      });
+    </script>
+
+        
+
+        
+
+        
+
+<article id="articles" class="container prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6">
+            <div class="article-badge left-badge text-color">上一篇</div>
+            <div class="card">
+                <a href="/2018/09/18/the-night-scence-of-chang-An-city/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="长安城里的夜">
+                        
+                        <span class="card-title">长安城里的夜</span>
+                    </div>
+                    <div class="card-content article-content">
+                        <div class="summary">
+                            前言
+本文写于我大四实习期间，2017年7月2日，周日凌晨。那时我还住在学校，平时坐车上下班。7月1日加班至近午夜零点，下班后于街上漫步，幸遇些许人物场景，心生感慨，遂记之。
+
+正文昨日加班，下班时已近午夜，身心有些疲惫。心想，晚了便晚了罢
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-calendar fa-fw"></i>2018-09-18
+                            </span>
+                            <span class="publish-author">
+                                <i class="fa fa-user fa-fw"></i>
+                                
+                                    长安曹公子
+                                
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/#朝花夕拾" target="_blank">
+                            <span class="chip bg-color">朝花夕拾</span>
+                        </a>
+                        
+                    </div>
+                    
+                </a>
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6">
+            <div class="article-badge right-badge text-color">下一篇</div>
+            <div class="card">
+                <a href="/2018/08/20/random-thoughts-2/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/24.jpg" class="responsive-img" alt="愿你拥有“太阳”，亦拥有“繁星”">
+                        
+                        <span class="card-title">愿你拥有“太阳”，亦拥有“繁星”</span>
+                    </div>
+                    <div class="card-content article-content">
+                        <div class="summary">
+                            近来在网上读到一段话，很是触动。网上标注这段话出自英国著名女作家，2007年诺贝尔文学奖获得者多丽丝·莱莘的长篇小说《幸存者回忆录》，我粗略地阅读原著后并未在文中找到这段话，但可以肯定的是这段话确实出自莱莘笔下。进来，计划通读此书，再对以上
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-calendar fa-fw"></i>2018-08-20
+                            </span>
+                            <span class="publish-author">
+                                <i class="fa fa-user fa-fw"></i>
+                                
+                                    长安曹公子
+                                
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/#阅读感悟" target="_blank">
+                            <span class="chip bg-color">阅读感悟</span>
+                        </a>
+                        
+                    </div>
+                    
+                </a>
+            </div>
+        </div>
+        
+    </div>
+</article>
+    </div>
+</main>
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m12 l8 copy-right">
+            本站由 &copy;<a href="http://blinkfox.com" target="_blank">Blinkfox </a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 采用
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank"> hexo-theme-matery </a>主题搭建
+        </div>
+        <div class="col s12 m12 l4 social-link hide-on-med-and-down">
+            <a href="https://github.com/webCaolixin" class="tooltipped" target="_blank" data-tooltip="GitHub" data-position="top" data-delay="50">
+                <i class="fa fa-github fa-lg"></i>
+            </a>
+            <a href="mailto:changAncgz@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+                <i class="fa fa-envelope fa-lg"></i>
+            </a>
+            <a href="https://weibo.com/u/5153743489" class="tooltipped" target="_blank" data-tooltip="新浪微博" data-position="top" data-delay="50">
+                <i class="fa fa-weibo fa-lg"></i>
+            </a>
+            <a href="https://www.jianshu.com/u/a75c156bd273" class="tooltipped" target="_blank" data-tooltip="简书主页" data-position="top" data-delay="50">
+                <i class="fa fa-lg">简</i>
+            </a>
+            <a href="https://juejin.im/user/5b398404f265da5967194815" class="tooltipped" target="_blank" data-tooltip="掘金主页" data-position="top" data-delay="50">
+                <i class="fa fa-lg">掘</i>
+            </a>
+        </div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+<script src="/libs/materialize/js/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+<script src="/js/search.js"></script>
+
+<script type="text/javascript">
+  (function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title">搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus="">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-double-up"></i>
+    </a>
+</div>
+
+</body>
+</html>

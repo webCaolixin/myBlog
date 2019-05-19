@@ -41,7 +41,7 @@ tags: 朝花夕拾
 
 最后，把我最喜欢的一位歌手——**[李健](https://www.baidu.com/link?url=BsltTzlHbDVY83hcXfq3fs1sPLee1fFXhRZperHgpnpGYrvNA1pkm_tIOWp6uwExDNz7hzr-4fK3XXpcLC3cvZElHhODunSKMhXqKqAcjTu&wd=&eqid=a1ae7140000804bc000000035b7167a3)**的一首歌曲 **[《异乡人》](https://baike.baidu.com/item/%E5%BC%82%E4%B9%A1%E4%BA%BA/6402179?fr=aladdin)**分享给大家。这是作为东北黑龙江人的李健当时身处北京时，所作的一首歌曲。在2017年《歌手》节目中对歌词进行新的修改和补充，词曲中对独自在外拼搏的“异乡人”的生活做了细致的描写，也对“异乡人”的孤独、迷茫、无助以及对故乡思念的情感进行了淋漓尽致的表达。
 <div id="content-ctn">
-  <div class="centerContent">
+  <div class="center-content">
     **异乡人**
     **作词： 李健**
     **作曲: 李健**
